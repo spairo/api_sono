@@ -1,9 +1,76 @@
 html,body {
     height: 100%;
     min-height: 100%;
-    position: relative;
-    background:#B6B5B5;
+    background: url('../img/bg_login.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
+.container-register{
+  margin-top: 30%;
+  position: relative;
+}
+  .container-register .title_start{
+    color: #E6E6E6;
+    font-weight: lighter;
+    font-size: 70px;
+    letter-spacing: 20px;
+    text-align: center;
+  }
+  .container-register .line{
+    border-bottom: 2px solid #E6E6E6;
+  }
+  .container-register .login{
+    color: #E6E6E6;
+    font-weight: lighter;
+    font-size: 20px;
+    letter-spacing: 20px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .container-register .sigin{
+    color: #E6E6E6;
+    font-weight: lighter;
+    font-size: 20px;
+    letter-spacing: 20px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+.modal-register{
+  background: #F1F2F9;
+}
+  .modal-register .title{
+    color: #3B3A3D;
+    text-transform: uppercase;
+    text-align: left;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .modal-register .input-regs{
+    width: 100%;
+    height:50px;
+    background: #F1F2F9;
+    border: 2px solid #3A66FB;
+    padding-left: 10px;
+  }
+
+  .modal-register .btn-regis{
+    background: #3A66FB;
+    width: 100%;
+    height:50px;
+    border: none;
+    margin: 30px 0 0 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
 .form-signin
 {
     max-width: 330px;

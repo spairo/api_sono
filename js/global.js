@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  console.info( "ready!" );
+  console.info( "global.js, ready." );
 });
 
 $(document).on('click', '#register_account', function (){
@@ -20,25 +20,23 @@ $(document).on('click', '#register_account', function (){
     var xhr = new XMLHttpRequest({mozSystem: true});
 
     if( !email || !passw || !passw2 || !type){
-        //$('#messages').append('<div class="animated flash alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>All fields are required</div>').fadeOut(3000);
+
         alert("All fields are required");
+
     }
     else{
-
-        //alert("Venga!");
 
         var data = { username: email, password:passw, second_password: passw2, user_role: type }
 
         $.ajax({
           type: "POST",
-          url: "http://127.0.0.1:5000/users",
+          url: "http://godster.mx:5000/users",
           data: data,
           success: function(data){
-              alert("entro")
-              console.log(response);
+            alert("Registered with succeeds");
           },
           error: function(data){
-              console.log(response);
+
           }
         });
 
@@ -46,14 +44,121 @@ $(document).on('click', '#register_account', function (){
 });
 
 
+$(document).on('click', '#login_account', function (){
 
-    /*var UserModel = Backbone.Model.extend({
-        urlRoot: 'http://godster.mx:5000/login/',
-        defaults: {
-            name: '',
-            email: ''
-        }
+    //$('#messages').css("display","block");
+    //$('#messages').empty();
+
+    var email = $('.email_login').val();
+    var passw = $('.passw_login').val();
+
+    //username, password,second_password, user_role
+
+    //alert(email);
+
+    var xhr = new XMLHttpRequest({mozSystem: true});
+
+    if( !email || !passw){
+        alert("All fields are required");
+    }
+    else{
+
+        var data = { username: email, password:passw }
+
+        $.ajax({
+          type: "POST",
+          url: "http://godster.mx:5000/login",
+          data: data,
+          success: function(data){
+            alert("You will redirect soon");
+          },
+          error: function(data){
+            alert("User / Passw not found");
+          }
+        });
+
+    }
+});
+
+
+$(document).on('click', '.opn', function (){
+  alert("Testing account");
+});
+
+
+
+/*
+(function(){
+
+  window.App = {
+    Models: {},
+    Collections: {},
+    Views: {},
+    Router: {}
+  };
+
+  App.Router = Backbone.Router.extend({
+      routes: {
+          '': 'index',
+          'upload': 'upload'
+      },
+      index: function(){
+          console.info( "Index ready!" );
+          //$(document.body).append("Index route has been called..");
+          //alert("soy index");
+      },
+      upload: function(){
+        alert("soy upload");
+
+        $(document.result).append("<h1>Hello World</h1>");
+
+      },
+
+  });
+
+  new App.Router;
+  Backbone.history.start();
+
+})();
+
+
+
+    var RegisterModel = Backbone.Model.extend({
+        urlRoot: 'http://godster.mx:5000/users',
+
     });
+
+
+    var bostonCream = new RegisterModel({
+        username: 'Bawston Cream',
+        password: 'Bawston Cream',
+        second_password: 'Bawston Cream',
+        user_role: 'Ministerio'
+    });
+
+    //bostonCream.save();
+
+   var RegisterCollection = Backbone.Collection.extend({
+
+        model: RegisterModel,
+        url: 'http://godster.mx:5000/users/',
+
+        initialize: function(){
+          //console.info("Playlist Collection started");
+        }
+
+    });
+
+    var myplaylist = new RegisterCollection();
+*/
+
+
+
+    //myplaylist.fetch();
+    //myplaylist.toJSON();
+
+
+   /*
     var user = new Usermodel();
     // Notice that we haven't set an `id`
     var userDetails = {
@@ -143,7 +248,7 @@ $(document).on('click', '#register_account', function (){
           console.log(newplaylist.toJSON());
 
         }
-    });/*
+    });*/
 
     // Notice that we haven't set an `id`
 

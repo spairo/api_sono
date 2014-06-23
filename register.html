@@ -4,14 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CMS</title>
+    <title>SONOFE</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -20,39 +19,74 @@
   <body>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-4 col-md-offset-4">
-                <div class="messages"></div>
-                <div class="account-wall">
-                    <div class="form-signin">
-                    <input type="text" class="email form-control" placeholder="Email">
-                    <input type="password" class="passw form-control" placeholder="Password">
-                    <input type="password" class="passw2 form-control" placeholder="Password Again">
-                    <label>Tipo de Cuenta</label>
-                    <select class="account form-control">
-                      <option>Disquera</option>
-                      <option>Artista Independiente</option>
-                      <option>Conferencista Independiente</option>
-                      <option>Ministerio</option>
-                    </select>
-
-                    <button class="btn btn-lg btn-primary btn-block" id="register_account">Sign In</button>
-                    <label class="checkbox pull-left">
-                        <input type="checkbox" value="remember-me">
-                        Remember me
-                    </label>
-                      <a href="faq.html" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+            <div class="col-md-3"></div>
+            <div class="col-sm-6 container-register">
+                <div class="title_start">SONOFE</div>
+                <div class="line"></div>
+                <div class="row">
+                    <div class="col-md-6 well-lg">
+                      <a href="" class="login" data-toggle="modal" data-target="#myLogin">Log In</a>
+                    </div>
+                    <div class="col-md-6 well-lg">
+                      <a href="" class="sigin" data-toggle="modal" data-target="#myRegister">Sign In</a>
                     </div>
                 </div>
-                <a href="login.html" class="text-center new-account">Sign in to Sonofe </a>
             </div>
+            <div class="col-md-3"></div>
         </div>
     </div>
+<!-- Modal Register -->
+<div class="modal fade" id="myRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body modal-register">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="form-signin">
+            <label class="title">Sign In</label>
+            <input type="text" class="email input-regs" placeholder="Email">
+            <input type="password" class="passw input-regs" placeholder="Password">
+            <input type="password" class="passw2 input-regs" placeholder="Password Again">
+            <label class="title">Tipo de Cuenta</label>
+            <select class="account input-regs">
+              <option>Disquera</option>
+              <option>Artista Independiente</option>
+              <option>Conferencista Independiente</option>
+              <option>Ministerio</option>
+            </select>
+            <button class="btn-regis" id="register_account">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Login -->
+<div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body modal-register">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="form-signin">
+          <label class="title">Log In</label>
+          <img class="profile-img" src="img/02.Astronauta.png" alt="">
+          <input type="text" class="input-regs email_login" placeholder="Email" required autofocus>
+          <input type="password" class="input-regs passw_login" placeholder="Password" required>
+          <button class="btn-regis" id="login_account">Sign in</button>
+          <label class="checkbox pull-left">
+              <input type="checkbox" value="remember-me">
+              Remember me
+          </label>
+          <a href="faq.html" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- JavaScript Includes -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/main.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
-
+<script src="js/vendor/underscore.js"></script>
+<script src="js/vendor/backbone.js"></script>
+<script src="js/global.js"></script>
 </body>
 </html>
