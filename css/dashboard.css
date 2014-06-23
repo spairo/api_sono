@@ -88,9 +88,6 @@ html, body {
   bottom: 0;
   overflow: auto;
 }
- #page{
-   position:relative;
- }
 
 /* Upload Module */
 
@@ -133,9 +130,3 @@ html, body {
   }
 
 /* Accounts Module */
-
-.accounts-form{
-  width: 100%;
-  height: 1050px;
-  background: #ccc;
-}
