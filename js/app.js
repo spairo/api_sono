@@ -73,7 +73,7 @@ routerApp.service('fileUpload', ['$http', function ($http) {
             headers: {'Content-Type': undefined}
         })
         .success(function(){
-          alert("todo o");
+          alert("todo");
         })
         .error(function(){
           alert("algo anda mal");
@@ -84,7 +84,7 @@ routerApp.service('fileUpload', ['$http', function ($http) {
 routerApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
     $scope.uploadFile = function(){
-        var file = $scope.conference_file;
+        var file = $scope.myFile;
         console.log('file is ' + JSON.stringify(file));
         var uploadUrl = "http://godster.mx:5000/conference";
         fileUpload.uploadFileToUrl(file, uploadUrl);
