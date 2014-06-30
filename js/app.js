@@ -84,7 +84,7 @@ routerApp.service('fileUpload', ['$http', function ($http) {
 routerApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
     $scope.uploadFile = function(){
-        var file = $scope.foo;
+        var file = $scope.conference_file;
         console.log('file is ' + JSON.stringify(file));
         var uploadUrl = "http://godster.mx:5000/conference";
         fileUpload.uploadFileToUrl(file, uploadUrl);
