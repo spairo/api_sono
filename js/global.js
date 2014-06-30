@@ -29,6 +29,7 @@ $(document).on('click', '#register_account', function (){
           url: "http://godster.mx:5000/users",
           data: data,
             success: function(data){
+            window.location = "/sonofe"
             alert("Registered with succeeds");
           },
             error: function(data){
@@ -66,6 +67,8 @@ $(document).on('click', '#login_account', function (){
           url: "http://godster.mx:5000/login",
           data: data,
           success: function(data){
+
+            window.location = "/sonofe"
             alert("You will redirect soon");
           },
           error: function(data){
