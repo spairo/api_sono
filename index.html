@@ -20,7 +20,7 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body>
+	<body ng-app="routerApp">
 		<div id="container">
 					<!-- /Header -->
 					<div id="header">
@@ -28,26 +28,34 @@
 						<div class="settings"><span class="glyphicon glyphicon-cog"></span></div>
 						<div class="profile"><span class="glyphicon glyphicon-user"></span></div>
 					</div>
+
 					<!-- Navigation -->
 					<div id="section_left">
 						<nav class="navigation">
-							<a href="#"><li class="block"><span class="glyphicon glyphicon-dashboard"></span></li></a>
-							<a href="#/upload"><li class="block"><span class="glyphicon glyphicon-cloud-upload"></span></li></a>
-							<a href="#/accounts"><li class="block"><span class="glyphicon glyphicon-user"></span></li></a>
-							<a href="#"><li class="block"><span class="glyphicon glyphicon-plus"></span></li></a>
+							<a ui-sref="home"><li class="block"><span class="glyphicon glyphicon-dashboard"></span></li></a>
+							<a ui-sref="upload"><li class="block"><span class="glyphicon glyphicon-cloud-upload"></span></li></a>
+							<a ui-sref="accounts"><li class="block"><span class="glyphicon glyphicon-user"></span></li></a>
+							<a ui-sref="about"><li class="block"><span class="glyphicon glyphicon-plus"></span></li></a>
 							<a href="#"><li class="block"><span class="glyphicon glyphicon-plus"></span></li></a>
 							<a href="#"><li class="block"><span class="glyphicon glyphicon-plus"></span></li></a>
 						</nav>
 					</div>
 					<div id="wrap">
-						<div id="page">
+						<div class="slide" ui-view>
 							Loading...
 						</div>
 						<div id="footer"></div>
 					</div><!-- //Wrapper -->
 		</div><!-- //Container -->
 
-		<!-- Core JavaScript -->
-		<script data-main="js/main" src="js/libs/require/require.js"></script>
+		<!-- Core Js -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vendor/ajaxupload.3.5.js"></script>
+		<script type="text/javascript" src="js/vendor/ajaxuploadOnFly.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-animate.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/vendor/audiometa.js"></script>
 	</body>
 </html>

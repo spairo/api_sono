@@ -1,3 +1,59 @@
-<div id="singleupload2">Uploading</div>
-<br />
-<button class="opn">open</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 well-lg">
+
+      <div class="upload-box">
+        <span class="title">Subir Archivos</span>
+        <div class="row well-lg">
+          <div class="upload-container" >
+            <a href="#/upload/music">
+              <div class="col-md-6 button">
+                <div class="upload_files" id="upload-1">
+                  <div class="upload-container" >
+                      <span class="btn-wrapper">
+                          <span class="add-files">Add files</span>
+                      </span>
+                  </div>
+                  <br />
+                  <span class="status-msg" ></span>
+                  <ul class="file-list" ></ul>
+               </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+<!--
+ <div class="upload_files" id="upload-1">
+   <div class="upload-container" >
+       <span class="btn-wrapper btn-success">
+           <span class="add-files">Add files</span>
+       </span>
+   </div>
+   <span class="status-msg" ></span>
+   <ul class="file-list" ></ul>
+</div>
+-->
+
+<script type="text/javascript" >
+  $(document).ready(function(){
+    var options={
+      'allowedExt': "jpg|png|jpeg|gif|doc|docx|ppt|pptx|xls|xlsx|tex|pdf|txt|mp3",
+      'actionUrl': "http://godster.mx:5000/conference",
+      'fieldName': "uploadfile",
+      'errorExt': "The supplied file format is not allowed",
+      'errorUpload': "Unable to upload file, try again",
+      'loadingText': "Loading..."
+    };
+
+    $('#upload-1').uploadOnFly(options);
+
+    });
+</script>

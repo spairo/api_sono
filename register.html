@@ -43,9 +43,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class="form-signin">
             <label class="title">Sign In</label>
-            <input type="text" class="email input-regs" placeholder="Email">
-            <input type="password" class="passw input-regs" placeholder="Password">
-            <input type="password" class="passw2 input-regs" placeholder="Password Again">
+            <input type="text" class="email input-regs" placeholder="Username" required>
+            <input type="password" class="passw input-regs" placeholder="Password" required>
+            <input type="password" class="passw2 input-regs" placeholder="Password Again" required>
             <label class="title">Tipo de Cuenta</label>
             <select class="account input-regs">
               <option>Disquera</option>
@@ -68,7 +68,7 @@
         <div class="form-signin">
           <label class="title">Log In</label>
           <img class="profile-img" src="img/02.Astronauta.png" alt="">
-          <input type="text" class="input-regs email_login" placeholder="Email" required autofocus>
+          <input type="text" class="input-regs email_login" placeholder="Username" required>
           <input type="password" class="input-regs passw_login" placeholder="Password" required>
           <button class="btn-regis" id="login_account">Sign in</button>
           <label class="checkbox pull-left">
@@ -83,10 +83,9 @@
 </div>
 
 <!-- JavaScript Includes -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/vendor/underscore.js"></script>
-<script src="js/vendor/backbone.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/global.js"></script>
 </body>
 </html>
