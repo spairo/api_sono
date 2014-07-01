@@ -1,37 +1,38 @@
 <div class="container" ng-controller="UploadController" ng-file-drop>
   <div class="row">
     <div class="col-md-3">
-        <h3>Select files</h3>
+        <h2>Upload Files</h2>
+
         <div ng-show="uploader.isHTML5">
             <!-- 3. ng-file-over | ng-file-over="className" -->
             <div class="well my-drop-zone" ng-file-over>
-                Base drop zone
+
             </div>
 
             <!-- Example: ng-file-drop | ng-file-drop="options" -->
             <div class="well my-drop-zone" ng-file-drop="{ url: '/foo' }" ng-file-over="another-file-over-class">
-                Another drop zone with its own settings
+
             </div>
         </div>
 
         <!-- 2. ng-file-select | ng-file-select="options" -->
-        Multiple
-        <input ng-file-select name="conference_file" filename="conference_file" type="file" multiple  />
+        <!--Multiple
+        <input ng-file-select name="conference_file" filename="conference_file" type="file" multiple  />-->
         <br/>
-        Single
+        Seleccionar
         <input ng-file-select name="conference_file" filename="conference_file" type="file" />
     </div>
     <div class="col-md-9" style="margin-bottom: 40px">
 
-        <h3>Upload queue</h3>
-        <p>Queue length: {{ uploader.queue.length }}</p>
+        <h3></h3>
+        <p>Longitud de la cola: {{ uploader.queue.length }}</p>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th width="50%">Name</th>
-                    <th ng-show="uploader.isHTML5">Size</th>
-                    <th ng-show="uploader.isHTML5">Progress</th>
+                    <th width="50%">Nombre</th>
+                    <th ng-show="uploader.isHTML5">Tamaño</th>
+                    <th ng-show="uploader.isHTML5">Progreso</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
