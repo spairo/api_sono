@@ -175,6 +175,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               console.log(response);
               // The return value gets picked up by the then in the controller.
               return response.data;
+            alert(response.data);
           })
           .error(function(){
           });
