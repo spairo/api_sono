@@ -172,7 +172,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   appSonofe.service('fileUpload', ['$http', function ($http) {
 
-      this.uploadFileAndFieldsToUrl = function(file, fields, uploadUrl){
+      this.uploadFileAndFieldsToUrl = function(file, file2, fields, uploadUrl){
 
           var fd = new FormData();
 
@@ -195,7 +195,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           })
 
           .error(function(){
-
+            alert("no");
           });
       }
   }]);
@@ -215,7 +215,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
                          {"name": "company", "data": $scope.field2},
                          {"name": "genre", "data": $scope.field3} ];
 
-          fileUpload.uploadFileAndFieldsToUrl(file, fields, uploadUrl);
+          fileUpload.uploadFileAndFieldsToUrl(file, file2, fields, uploadUrl);
       };
 
   }]);
