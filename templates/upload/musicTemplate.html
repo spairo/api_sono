@@ -1,7 +1,7 @@
-
+<h1>Upload</h1>
 <div ng-controller = "myCtrl">
     <input type="file" name="conference_file" file-model="myFile"/>
-    <button ng-click="uploadFile()">upload me</button>
+    <button class="btn" ng-click="uploadFile()">upload me</button>
 </div>
 <!--
 <div class="container">
@@ -47,19 +47,3 @@
    <ul class="file-list" ></ul>
 </div>
 -->
-
-<script type="text/javascript" >
-  /*$(document).ready(function(){
-    var options={
-      'allowedExt': "jpg|png|jpeg|gif|doc|docx|ppt|pptx|xls|xlsx|tex|pdf|txt|mp3",
-      'actionUrl': "http://godster.mx:5000/conference",
-      'fieldName': "conference_file",
-      'errorExt': "The supplied file format is not allowed",
-      'errorUpload': "Unable to upload file, try again",
-      'loadingText': "Loading..."
-    };
-
-    $('#upload-1').uploadOnFly(options);
-        console.log(response);
-    });*/
-</script>

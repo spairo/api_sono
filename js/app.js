@@ -75,7 +75,7 @@ appSonofe.service('fileUpload', ['$http', function ($http) {
           console.log(data);
         })
         .error(function(data, status, headers, config){
-          alert("file is uploaded successfully.."+data+"..status.."+status);
+          alert("algo fallo."+data+"..status.."+status);
           // file is uploaded successfully
           console.log(data);
         });
