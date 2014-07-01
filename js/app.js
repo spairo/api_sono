@@ -1,8 +1,8 @@
 // Router UI
 
-var routerApp = angular.module('routerApp', ['ui.router', 'ngAnimate']);
+var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate']);
 
-routerApp.config(function($stateProvider, $urlRouterProvider) {
+appSonofe.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/home');
 
@@ -45,10 +45,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-
-//var myApp = angular.module('myApp', []);
-
-routerApp.directive('fileModel', ['$parse', function ($parse) {
+appSonofe.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
@@ -64,7 +61,7 @@ routerApp.directive('fileModel', ['$parse', function ($parse) {
     };
 }]);
 
-routerApp.service('fileUpload', ['$http', function ($http) {
+appSonofe.service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function(file, uploadUrl){
         var fd = new FormData();
         fd.append('conference_file', file);
@@ -72,18 +69,20 @@ routerApp.service('fileUpload', ['$http', function ($http) {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
-        .success(function(response){
-          alert("todo");
-          alert(response);
-          console.log(response);
+        .success(function(data, status, headers, config){
+          alert("file is uploaded successfully.."+data+"..status.."+status);
+          // file is uploaded successfully
+          console.log(data);
         })
-        .error(function(){
-          alert("algo anda mal");
+        .error(function(data, status, headers, config){
+          alert("file is uploaded successfully.."+data+"..status.."+status);
+          // file is uploaded successfully
+          console.log(data);
         });
     }
 }]);
 
-routerApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+appSonofe.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
     $scope.uploadFile = function(){
         var file = $scope.myFile;
