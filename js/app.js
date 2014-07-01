@@ -54,7 +54,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       // create a uploader with options
       var uploader = $scope.uploader = $fileUploader.create({
           scope: $scope,                          // to automatically update the html. Default: $rootScope
-          url: 'http://godster.mx:5000/conference',
+          url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
           isHTML5: true,
@@ -171,23 +171,42 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
           })
-          .success(function(response){
-              console.log(response);
-              // The return value gets picked up by the then in the controller.
-              return response.data;
-            alert(response.data);
-          })
-          .error(function(){
+          .then(function (response) {
+            // The then function here is an opportunity to modify the response
+            console.log(response);
+            // The return value gets picked up by the then in the controller.
+            return response.data;
           });
+          //.success(function(response, data){
+            //  console.log(response);
+              //return response.data;
+              //alert(response.data);
+               //$scope.response = data;
+               //var foo = JSON.parse(data);
+               //console.log(foo);
+          //})
+          //.error(function(){
+          //});
       }
+
   }]);
+
+  appSonofe.controller('MainCtrl', function( fileUpload,$scope) {
+    // Call the async method and then do stuff with what is returned inside our own then function
+    fileUpload.async().then(function(d) {
+      $scope.data = d;
+    });
+
+  });
 
   appSonofe.controller('fooCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
       $scope.uploadFile = function(){
           var file = $scope.myFile;
+
+
           console.log('file is ' + JSON.stringify(file));
-          var uploadUrl = "http://godster.mx:5000/conference";
+          var uploadUrl = "http://godster.mx/conference";
           fileUpload.uploadFileToUrl(file, uploadUrl);
       };
 
