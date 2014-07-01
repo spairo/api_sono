@@ -177,7 +177,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           var fd = new FormData();
 
           fd.append('background_image', file);
-          fd.append('profile_image', file);
+          fd.append('profile_image', file2);
 
           for(var i = 0; i < fields.length; i++){
 
@@ -203,7 +203,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   appSonofe.controller('createArtistCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
       $scope.uploadForm = function(){
+
           var file = $scope.myFile;
+          var file2 = $scope.myFile2;
 
           console.log('file is ' + JSON.stringify(file));
 
