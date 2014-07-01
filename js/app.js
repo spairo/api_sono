@@ -144,70 +144,76 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   });
 
 
-  //test mode
+  //Create Artist
 
   appSonofe.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
 
-            element.bind('change', function(){
-                scope.$apply(function(){
-                    modelSetter(scope, element[0].files[0]);
-                });
-            });
-        }
-    };
+      return {
+
+          restrict: 'A',
+
+          link: function(scope, element, attrs) {
+
+              var model = $parse(attrs.fileModel);
+
+              var modelSetter = model.assign;
+
+              element.bind('change', function(){
+
+                  scope.$apply(function(){
+
+                      modelSetter(scope, element[0].files[0]);
+
+                  });
+              });
+          }
+      };
   }]);
 
   appSonofe.service('fileUpload', ['$http', function ($http) {
 
-      this.uploadFileToUrl = function(file, uploadUrl){
+      this.uploadFileAndFieldsToUrl = function(file, fields, uploadUrl){
+
           var fd = new FormData();
-          fd.append('conference_file', file);
-          $http.post(uploadUrl, fd, {
+
+          fd.append('background_image', file);
+          fd2.append('profile_image', file);
+
+          for(var i = 0; i < fields.length; i++){
+
+              fd.append(fields[i].name, fields[i].data)
+
+          }
+
+          $http.post(uploadUrl, fd, f2, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
           })
-          .then(function (response) {
-            // The then function here is an opportunity to modify the response
-            console.log(response);
-            // The return value gets picked up by the then in the controller.
-            return response.data;
-          });
-          //.success(function(response, data){
-            //  console.log(response);
-              //return response.data;
-              //alert(response.data);
-               //$scope.response = data;
-               //var foo = JSON.parse(data);
-               //console.log(foo);
-          //})
-          //.error(function(){
-          //});
-      }
 
+          .success(function(){
+
+          })
+
+          .error(function(){
+
+          });
+      }
   }]);
 
-  appSonofe.controller('MainCtrl', function( fileUpload,$scope) {
-    // Call the async method and then do stuff with what is returned inside our own then function
-    fileUpload.async().then(function(d) {
-      $scope.data = d;
-    });
+  appSonofe.controller('createArtistCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
 
-  });
-
-  appSonofe.controller('fooCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
-
-      $scope.uploadFile = function(){
+      $scope.uploadForm = function(){
           var file = $scope.myFile;
 
-
           console.log('file is ' + JSON.stringify(file));
-          var uploadUrl = "http://godster.mx/conference";
-          fileUpload.uploadFileToUrl(file, uploadUrl);
+
+          var uploadUrl = "http://godster.mx/artist";
+
+          var fields = [ {"name": "artist_name", "data": $scope.field1},
+                         {"name": "company", "data": $scope.field2},
+                         {"name": "genre", "data": $scope.field3} ];
+
+          fileUpload.uploadFileAndFieldsToUrl(file, fields, uploadUrl);
       };
 
   }]);

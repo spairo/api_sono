@@ -1,26 +1,26 @@
-<div class="well-lg" role="form">
+<div class="well-lg" ng-controller="createArtistCtrl">
   <h2>Crear Artista</h2>
   <div class="form-group">
-    <label for="exampleInputPassword1">Nombre del Artista</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nombre del Artista">
+    <label for="artist">Nombre del Artista</label>
+    <input type="text" class="form-control" ng-model="field1" placeholder="Nombre del Artista">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Compañia</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Compañia">
+    <label for="company">Compañia</label>
+    <input type="text" class="form-control" ng-model="field2" placeholder="Compañia">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Genero</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Genero">
+    <label for="genere">Genero</label>
+    <input type="text" class="form-control" ng-model="field3" placeholder="Genero">
   </div>
   <div class="form-group">
-    <label for="exampleInputFile">Background Image</label>
-    <input type="file" id="exampleInputFile">
+    <label for="background_img">Background Image</label>
+    <input type="file" file-model="myFile1">
     <p class="help-block"></p>
   </div>
   <div class="form-group">
-    <label for="exampleInputFile">Profile Image</label>
-    <input type="file" id="exampleInputFile">
+    <label for="profile_img">Profile Image</label>
+    <input type="file" file-model="myFile2">
     <p class="help-block"></p>
   </div>
-  <button type="submit" class="btn btn-default">Agregar</button>
+  <button ng-click="uploadForm()" class="btn btn-default">Crear Usuario</button>
 </div>
