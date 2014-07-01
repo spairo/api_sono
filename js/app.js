@@ -72,9 +72,10 @@ routerApp.service('fileUpload', ['$http', function ($http) {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
-        .success(function(){
+        .success(function(response){
           alert("todo");
           alert(response);
+          console.log(response);
         })
         .error(function(){
           alert("algo anda mal");
