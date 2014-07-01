@@ -177,7 +177,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           var fd = new FormData();
 
           fd.append('background_image', file);
-          fd2.append('profile_image', file);
+          fd.append('profile_image', file);
 
           for(var i = 0; i < fields.length; i++){
 
@@ -185,7 +185,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           }
 
-          $http.post(uploadUrl, fd, f2, {
+          $http.post(uploadUrl, fd, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
           })
