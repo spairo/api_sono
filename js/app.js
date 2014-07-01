@@ -67,7 +67,7 @@ routerApp.directive('fileModel', ['$parse', function ($parse) {
 routerApp.service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function(file, uploadUrl){
         var fd = new FormData();
-        fd.append('name', file);
+        fd.append('conference_file', file);
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
