@@ -57,10 +57,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           url: '/conference',
           method: 'POST',
           alias: 'conference_file',
-          crossDomain: 'true',
-          async: 'true',
-          isHTML5: 'true',
-          withCredentials: 'true',
+          isHTML5: true,
+          withCredentials: true,
           formData: [
               { key: 'value' }
           ],
