@@ -54,7 +54,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       // create a uploader with options
       var uploader = $scope.uploader = $fileUploader.create({
           scope: $scope,                          // to automatically update the html. Default: $rootScope
-          url: 'http://godster.mx/conference',
+          url: 'http://godster.mx:5000/conference',
           method: 'POST',
           alias: 'conference_file',
           isHTML5: true,
@@ -183,7 +183,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       $scope.uploadFile = function(){
           var file = $scope.myFile;
           console.log('file is ' + JSON.stringify(file));
-          var uploadUrl = "http://godster.mx/conference";
+          var uploadUrl = "http://godster.mx:5000/conference";
           fileUpload.uploadFileToUrl(file, uploadUrl);
       };
 
