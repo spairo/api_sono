@@ -163,6 +163,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   }]);
 
   appSonofe.service('fileUpload', ['$http', function ($http) {
+
       this.uploadFileToUrl = function(file, uploadUrl){
           var fd = new FormData();
           fd.append('conference_file', file);
@@ -171,7 +172,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               headers: {'Content-Type': undefined}
           })
           .success(function(response){
-            alert("well done");
+              console.log(response);
+              // The return value gets picked up by the then in the controller.
+              return response.data;
           })
           .error(function(){
           });
