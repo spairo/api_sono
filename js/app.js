@@ -67,13 +67,14 @@ routerApp.directive('fileModel', ['$parse', function ($parse) {
 routerApp.service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function(file, uploadUrl){
         var fd = new FormData();
-        fd.append('file', conference_file);
+        fd.append('name', file);
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
         .success(function(){
           alert("todo");
+          alert(response);
         })
         .error(function(){
           alert("algo anda mal");
