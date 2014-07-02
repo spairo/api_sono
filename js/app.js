@@ -116,11 +116,22 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Progress: ' + progress, item);
       });
 
-      uploader.bind('success', function (event, xhr, item, response) {
-          console.info('Success', xhr, item, response);
-          alert(response);
-          console.log(response);
+      //success $scope.artist = data.response; 
+
+      uploader.bind('success', function (event, xhr, item, response, data) {
+          //console.info('Success', xhr, item, response);
+          //alert(response);
+        console.log(response);
+
+        console.log(response, "Logged!");
+		console.info(response, "Logged!");
+		console.warn(response, "Logged!");
+		console.debug(response, "Logged!");
+		console.error(response, "Logged!");
+
+
       });
+
 
       uploader.bind('cancel', function (event, xhr, item) {
           console.info('Cancel', xhr, item);
