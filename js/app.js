@@ -122,8 +122,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         //console.info('Success', xhr, item, response);
 
         var nodo = angular.toJson(response);
-
-        alert(nodo);
 		console.info("Nodo: " ,nodo);
 		//console.warn(nodo, "Warning");
 		//console.error(nodo, "Error");  	
@@ -136,8 +134,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('error', function (event, xhr, item, response) {
           console.info('Error', xhr, item, response);
-          alert("Oops, algo salio mal");
-          console.log(response);
+          console.error("Oops, something went wrong");
       });
 
       uploader.bind('complete', function (event, xhr, item, response) {
