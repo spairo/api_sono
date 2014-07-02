@@ -120,7 +120,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           console.warn("1 Respuesta" , response);
 
-		  var nodo = angular.toJson(response.node_id);
+		  var nodo = angular.toJson(response);
 		  
 		  console.warn("2 Respuesta: " , nodo);
 
