@@ -126,7 +126,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
 		  var foo = nodo.response;
 		  
-		  console.warn("3 Respuesta" , foo)
+		  console.warn("3 Respuesta" , foo);
 		  
 		  //$scope.no = nodo.response;
 		  //onsole.info("Nodo2: " ,no);
@@ -162,6 +162,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
       $scope.artist = data.response;
+      console.warn("1" , artist);
 
     });
   });
