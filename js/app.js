@@ -116,7 +116,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       });
 
       uploader.bind('success', function (event, xhr, item, response) {
-          //console.info('Success', xhr, item, response);
+          console.info('Success', xhr, item, response);
 
           //console.warn("1 Respuesta" , response);
 
@@ -133,7 +133,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       	  //console.warn("1" , artist);
 
 
-		  var data = response.data;
+		  var data = response.response;
 		  console.warn("Please" , data);
 		  //var status = response.status;
 		  //etc
