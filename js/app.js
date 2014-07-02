@@ -115,7 +115,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Progress: ' + progress, item);
       });
 
-      uploader.bind('success', function (event, xhr, item, response, data) {
+      uploader.bind('success', function (event, xhr, item, response) {
           console.info('Success', xhr, item, response);
 
           //console.warn("1 Respuesta" , response);
@@ -124,7 +124,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 		  
 		  //console.warn("2 Respuesta: " , nodo);
 
-		  var foo = data.response;
+		  var foo = response.response;
 		  
 		  console.warn("3 Respuesta" , foo);
 
