@@ -115,21 +115,23 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Progress: ' + progress, item);
       });
 
-      uploader.bind('success', function (event, xhr, item, response) {
+      uploader.bind('success', function (event, xhr, item, response, data) {
           console.info('Success', xhr, item, response);
 
-          console.warn("1 Respuesta" , response);
+          //console.warn("1 Respuesta" , response);
 
-		  var nodo = angular.toJson(response);
+		  //var nodo = angular.toJson(response);
 		  
-		  console.warn("2 Respuesta: " , nodo);
+		  //console.warn("2 Respuesta: " , nodo);
 
-		  var foo = nodo.response;
+		  var foo = data.response;
 		  
 		  console.warn("3 Respuesta" , foo);
-		  
-		  //$scope.no = nodo.response;
-		  //onsole.info("Nodo2: " ,no);
+
+		  //$scope.artist = data.response;
+      	
+      	  //console.warn("1" , artist);
+
 	  });
      
 
