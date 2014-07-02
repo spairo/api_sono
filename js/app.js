@@ -119,12 +119,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Success', xhr, item, response);
 
 		  var nodo = angular.toJson(response);
-		  console.info("Nodo: " ,nodo);
+		  console.info("Nodo1: " ,nodo);
 
-		  var no;
-		  $scope.no = nodo.response;
+		  var no = nodo.response;
 		  
-		  console.info("Nodo: " ,no);
+		  //$scope.no = nodo.response;
+		  
+		  console.info("Nodo2: " ,no);
       
       });
 
