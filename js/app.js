@@ -65,7 +65,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           filters: [
               function (item) {                    // first user filter
                   console.info('filter1');
-                  return true;
+                  return false;
               }
           ]
       });
@@ -74,7 +74,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       // FAQ #1
       var item = {
           file: {
-              name: 'Previously uploaded file',
+              name: 'test',
               size: 1e6
           },
           progress: 100,
