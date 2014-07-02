@@ -118,10 +118,14 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       uploader.bind('success', function (event, xhr, item, response) {
           console.info('Success', xhr, item, response);
 
-		var nodo = angular.toJson(response);
-		
-		$scope.conference = nodo.response;
-		console.info("Nodo: " ,conference);
+		  var nodo = angular.toJson(response);
+		  console.info("Nodo: " ,nodo);
+
+		  var no;
+		  $scope.no = nodo.response;
+		  
+		  console.info("Nodo: " ,no);
+      
       });
 
       uploader.bind('cancel', function (event, xhr, item) {
