@@ -78,7 +78,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               size: 1e6
           },
           progress: 100,
-          isUploaded: true,
+          isUploaded: false,
           isSuccess: true
       };
       item.remove = function() {
