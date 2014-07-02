@@ -56,8 +56,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
-          isHTML5: true,
-          withCredentials: true,
           formData: [
               { key: 'value' }
           ],
@@ -115,7 +113,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Progress: ' + progress, item);
       });
 
-      uploader.bind('success', function (event, xhr, item, response) {
+      uploader.bind('success', function (data, event, xhr, item, response) {
           console.info('Success', xhr, item, response);
 
           //console.warn("1 Respuesta" , response);
