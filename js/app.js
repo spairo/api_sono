@@ -118,13 +118,16 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       //success $scope.artist = data.response; 
 
-      uploader.bind('success', function (event, xhr, item, response, data) {
+      uploader.bind('success', function (event, xhr, item, response) {
           //console.info('Success', xhr, item, response);
-        alert(response);
-        console.log(response, "Logs");
-		console.info(response.data, "info");
-		console.warn(response.data, "Warning");
-		console.error(response.data, "Error");
+
+        var json = angular.toJson(response);
+
+        alert(json);
+        console.log(json, "Logs");
+		console.info(json.data, "info");
+		console.warn(json.data, "Warning");
+		console.error(json.data, "Error");
 
 		//artist = data.response;
       	
