@@ -120,7 +120,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           //console.warn("1 Respuesta" , response);
 
-		  //var nodo = angular.toJson(response);
+		  var nodo = angular.toJson(response);
 		  
 		  //console.warn("2 Respuesta: " , nodo);
 
@@ -133,7 +133,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       	  //console.warn("1" , artist);
 
 
-		  var data = response.response;
+      	  // var data = response.data;
+  		//var status = response.status;
+
+		  var data = nodo.data;
 		  console.warn("Please" , data);
 		  //var status = response.status;
 		  //etc
