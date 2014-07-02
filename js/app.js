@@ -121,7 +121,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 		  var nodo = angular.toJson(response);
 		  console.info("Nodo1: " ,nodo);
 
-		  var no = nodo[0];
+		  var no = nodo['response'];
 		  
 		  alert(no);
 		  //$scope.no = nodo.response;
