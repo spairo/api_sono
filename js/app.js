@@ -60,7 +60,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           withCredentials: true,
           formData: [
               { key: 'value' }
-          ],function( event, xhr, item, response ) {}
+          ]
           filters: [
               function (item) {                    // first user filter
                   console.info('filter1');
