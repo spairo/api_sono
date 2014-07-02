@@ -65,7 +65,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           filters: [
               function (item) {                    // first user filter
                   console.info('filter1');
-                  return false;
+                  return true;
               }
           ]
       });
@@ -78,8 +78,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               size: 1e6
           },
           progress: 100,
-          isUploaded: false,
-          isSuccess: false
+          isUploaded: true,
+          isSuccess: true
       };
       item.remove = function() {
           uploader.removeFromQueue(this);
