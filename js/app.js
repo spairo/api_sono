@@ -124,9 +124,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 		  
 		  console.warn("2 Respuesta: " , nodo);
 
-		  //var no = nodo['response'];
+		  var foo = nodo[0];
 		  
-		  //alert(no);
+		  console.warn("3 Respuesta" , foo)
+		  
 		  //$scope.no = nodo.response;
 		  //onsole.info("Nodo2: " ,no);
 	  });
