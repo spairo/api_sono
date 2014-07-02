@@ -118,10 +118,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       uploader.bind('success', function (event, xhr, item, response) {
           console.info('Success', xhr, item, response);
 
-          console.info("1 Respuesta" , response);
-		  //var nodo = angular.toJson(response);
+          console.warn("1 Respuesta" , response);
+
+		  var nodo = angular.toJson(response.node_id);
 		  
-		  //console.info("Nodo1: " ,nodo);
+		  console.warn("2 Respuesta: " , nodo);
 
 		  //var no = nodo['response'];
 		  
