@@ -3,7 +3,6 @@
 var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload']);
 
 
-
   appSonofe.config(function($stateProvider, $urlRouterProvider){
 
       $urlRouterProvider.otherwise('/home');
@@ -143,6 +142,15 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
+  // Artist List
+
+  appSonofe.controller('ArtistlistCtrl', function($scope, $http){
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+
+      $scope.artist = data.response;
+
+    });
+  });
 
   //Create Artist
 

@@ -11,3 +11,8 @@
     <div class="col-md-3"></div>
   </div>
 </div>
+<div ng-controller="ArtistlistCtrl">
+  <ul ng-repeat="artists in artist">
+    <li>{{artists.node_id}} - {{artists.name}}</li>
+  </ul>
+</div>
