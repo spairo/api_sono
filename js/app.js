@@ -191,11 +191,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           })
 
           .success(function(){
-
+              alert("Artista Creado exitosamente");
           })
 
           .error(function(){
-            alert("no");
+            alert("Oops! algo salio mal");
           });
       }
   }]);
