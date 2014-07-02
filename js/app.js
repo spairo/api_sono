@@ -127,7 +127,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 		  //alert(no);
 		  //$scope.no = nodo.response;
 		  //onsole.info("Nodo2: " ,no);
-
+	  });
      
 
       uploader.bind('cancel', function (event, xhr, item) {
