@@ -1,4 +1,4 @@
-// appSonofe CMS v.1
+// appSonofe  v.1
 
 var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload']);
 
@@ -9,7 +9,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       $stateProvider
 
-        //Default Module
+        //Default #
 
         .state('home', {
             url: '/home',
@@ -60,7 +60,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           withCredentials: true,
           formData: [
               { key: 'value' }
-          ],
+          ],function( event, xhr, item, response ) {}
           filters: [
               function (item) {                    // first user filter
                   console.info('filter1');
@@ -118,6 +118,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
           console.info('Success', xhr, item, response);
+          alert(response);
       });
 
       uploader.bind('cancel', function (event, xhr, item) {
@@ -126,6 +127,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('error', function (event, xhr, item, response) {
           console.info('Error', xhr, item, response);
+          alert("Oops! Algo salio mal, intenta otra vez")
       });
 
       uploader.bind('complete', function (event, xhr, item, response) {
@@ -145,7 +147,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   // Artist List
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
-    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){   
 
       $scope.artist = data.response;
 
