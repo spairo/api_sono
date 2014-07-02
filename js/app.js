@@ -120,11 +120,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response, data) {
           //console.info('Success', xhr, item, response);
-        alert(response);
-        console.log(response, "Logs");
-		console.info(response, "info");
-		console.warn(response, "Warning");
-		console.error(response, "Error");
+        alert(data);
+        console.log(data, "Logs");
+		console.info(data, "info");
+		console.warn(data, "Warning");
+		console.error(data, "Error");
       });
 
 
