@@ -120,11 +120,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response, data) {
           //console.info('Success', xhr, item, response);
-        alert(data);
-        console.log(response.data, "Logs");
+        alert(response);
+        console.log(response, "Logs");
 		console.info(response.data, "info");
 		console.warn(response.data, "Warning");
 		console.error(response.data, "Error");
+
+		//artist = data.response;
       	
       });
 
