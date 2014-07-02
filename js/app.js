@@ -79,7 +79,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           },
           progress: 100,
           isUploaded: false,
-          isSuccess: true
+          isSuccess: false
       };
       item.remove = function() {
           uploader.removeFromQueue(this);
