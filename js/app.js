@@ -69,7 +69,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           ]
       });
 
-
       // FAQ #1
       var item = {
           file: {
@@ -116,17 +115,14 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Progress: ' + progress, item);
       });
 
-      //success $scope.artist = data.response; 
-
       uploader.bind('success', function (event, xhr, item, response) {
-        //console.info('Success', xhr, item, response);
+          console.info('Success', xhr, item, response);
 
-        var nodo = angular.toJson(response);
+		var nodo = angular.toJson(response);
 		console.info("Nodo: " ,nodo);
-		//console.warn(nodo, "Warning");
-		//console.error(nodo, "Error");  	
-      });
+		$scope.conference = data.response;
 
+      });
 
       uploader.bind('cancel', function (event, xhr, item) {
           console.info('Cancel', xhr, item);
@@ -236,3 +232,12 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
+
+
+  //Tools 
+
+/*
+  console.info(var, "Info");
+  console.warn(var, "Warning");
+  console.error(var, "Error"); 
+*/ 
