@@ -55,7 +55,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           scope: $scope,                          // to automatically update the html. Default: $rootScope
           url: 'http://godster.mx/conference',
           method: 'POST',
-          alias: 'conference_file',
+          //alias: 'conference_file',
           headers 'Content-Type: application/json',
           formData: [
               { key: 'value' }
