@@ -122,7 +122,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
          // alert(item);
           //alert(response);
 
-          	var foo = angular.fromJson(response);
+          	//var foo = angular.fromJson(response);
+
+          	var foo = angular.toJson(response);
 
           	//response.data = safeJson(response.data);
       		
