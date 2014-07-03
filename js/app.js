@@ -117,6 +117,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Success', xhr, item, response);
 
           var foo = xhr.response;
+          
+          alert(foo);
 
           console.warn("1 Respuesta" , foo);
 
