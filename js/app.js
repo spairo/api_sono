@@ -117,11 +117,17 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           
           console.info('Success', xhr, item, response);
           
-          var node =  angular.toJson(response);
+          //var node =  angular.toJson(response);
 
-          var data = response.node;
+          //var
+
+          var data = jQuery.parseJSON(response);
 
           alert(data);
+
+          //var speakers =  response.speakers;
+
+
 		  //var nodo = angular.toJson(response);
 		  
 		  //console.warn("2 Respuesta: " , nodo);
