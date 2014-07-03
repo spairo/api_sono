@@ -56,7 +56,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
-          //headers {},
+          headers 'Content-Type: application/json',
           formData: [
               { key: 'value' }
           ],
@@ -119,8 +119,18 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           console.info('Success', xhr, item, response);
           
           //JSON.parse(response); // to parse it
-    	  
+    	  	
+          alert(response);
+
     	  var node = angular.toJson(response);
+
+    	  alert(node);
+
+    	  var foo = nodo.response.node_id;
+
+    	  alert(foo);
+
+    	  console.log(foo);
 
     	  //$scope.json = angular.toJson($scope.user);
 
@@ -131,7 +141,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       		
       		//return response;
       		
-      		alert(node);
+      		
       
       		//var foo2 = $.parseJSON(response);
             //alert(foo2);
