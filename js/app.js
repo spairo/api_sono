@@ -124,15 +124,15 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     	  var node = angular.toJson(response);
 
-    	  alert(node);
+    	  //alert(node);
 
-    	  console.warn("ESTAAAA" , node);
+    	  //console.warn("ESTAAAA" , node);
 
-    	  var foo = node.node_id;
+    	  var foo = node.response[0].node_id;
 
     	  alert(foo);
 
-    	  console.log(foo);
+    	  console.log("GOD", foo);
 
     	  //$scope.json = angular.toJson($scope.user);
 
