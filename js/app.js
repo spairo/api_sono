@@ -126,9 +126,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     	  alert(node);
 
+    	  console.warn("ESTAAAA" , node);
+
     	  var foo = node.node_id;
 
-    	  alert(node);
+    	  alert(foo);
 
     	  console.log(foo);
 
