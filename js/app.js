@@ -118,13 +118,17 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           
           console.info('Success', xhr, item, response);
           
-          console.log('RESPUESTA', response);
+          console.log('R', response);
 
           alert(response);
 
     	  var node = angular.toJson(response);
 
-    	  var foo = node.node_id;
+    	  //var productosJSON = JSON.stringify(response);
+
+    	  var foo = node[0].node_id;
+			
+		  console.log('RESPUESTA', foo);
 
     	  alert(foo);
 
