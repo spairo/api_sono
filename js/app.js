@@ -118,7 +118,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var foo = xhr.response;
           
-          var node = foo[0];
+          var node =  $parse.foo;
 
           console.warn("1 Respuesta" , node);
 
