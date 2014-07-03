@@ -123,6 +123,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           console.log(response.response);
 
+          console.log(response.response[0].node_id);
+
           //alert(response);
 
     	  //var node = angular.toJson(response);
