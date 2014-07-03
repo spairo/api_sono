@@ -118,9 +118,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var foo = xhr.response;
           
-          var node =  $filter('json')(foo);
+          var node =  angular.toJson(foo);
 
           alert(node);
+          
           console.warn("1 Respuesta" , node);
 
 		  //var nodo = angular.toJson(response);
