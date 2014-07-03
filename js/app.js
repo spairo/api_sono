@@ -56,7 +56,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
-          headers {},
+          //headers {},
           formData: [
               { key: 'value' }
           ],
