@@ -116,7 +116,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
           
-          //console.info('Success', xhr, item, response);
+          console.info('Success', xhr, item, response);
           
 
 		  console.log(response);
@@ -125,68 +125,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           console.log(response.response[0].node_id);
 
-          //alert(response);
+          var node = response.response[0].node_id;
 
-    	  //var node = angular.toJson(response);
-
-    	  //var foo = response[0].node_id;
-			
-		  //console.log('RESPUESTA', foo);
-
-    	  //alert(foo);
-
-    	  //$scope.json = angular.toJson($scope.user);
-
-    		//console.warn(response)
-          	//var foo = angular.JSON.parse(response)
-
-          	//response.data = safeJson(response.data);
-      		
-      		//return response;
-      		
-      		
-      
-      		//var foo2 = $.parseJSON(response);
-            //alert(foo2);
-
-
-             //alert(response);
-          //var node =  angular.toJson(response);
-
-          //var
-
-          //var data = jQuery.parseJSON(response);
-
-          //alert(data);
-
-          //var speakers =  response.speakers;
-
-
-		  //var nodo = angular.toJson(response);
-		  
-		  //console.warn("2 Respuesta: " , nodo);
-
-		  //var foo = nodo.response.node_id;
-		  
-		  //console.warn("3 Respuesta" , foo);
-
-		  //$scope.artist = data.response;
-      	
-      	  //console.warn("1" , artist);
-
-
-      	  // var data = response.data;
-  		//var status = response.status;
-
-		  //var data = nodo.data;
-		  //console.warn("Please" , data);
-		  //var status = response.status;
-		  //etc
-
-
-
+          alert(node);
 	  });
-     
 
       uploader.bind('cancel', function (event, xhr, item) {
           console.info('Cancel', xhr, item);
