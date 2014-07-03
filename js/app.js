@@ -121,7 +121,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
 		  console.log(response);
 
-          console.log(response[1].node_id);
+          console.log(response.response);
 
           //alert(response);
 
