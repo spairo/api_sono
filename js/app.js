@@ -118,9 +118,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var foo = xhr.response;
           
-          alert(foo);
+          var node = foo[0];
 
-          console.warn("1 Respuesta" , foo);
+          console.warn("1 Respuesta" , node);
 
 		  //var nodo = angular.toJson(response);
 		  
