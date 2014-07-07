@@ -1,6 +1,6 @@
 // appSonofe CMS v.1
 
-var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload']);
+var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload', 'audiometa']);
 
 
   appSonofe.config(function($stateProvider, $urlRouterProvider){
@@ -117,17 +117,19 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       uploader.bind('success', function (event, xhr, item, response) {
           
           console.info('Success', xhr, item, response);
-          
+         
+		  //console.log(response);
 
-		  console.log(response);
+          //console.log(response.response);
 
-          console.log(response.response);
-
-          console.log(response.response[0].node_id);
+          //console.log(response.response[0].node_id);
 
           var node = response.response[0].node_id;
 
-          alert(node);
+          //alert(node);
+
+          //$('show')
+
 	  });
 
       uploader.bind('cancel', function (event, xhr, item) {
@@ -153,13 +155,51 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
+  // Metadata
+
+  //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="thisalbum" -F title="thistitle" -F artist="thisartist" -F genre="thisgenre" -F year="thisyear" -F content_type="023" -X PUT
+
+
+
+myApp.controller('GreetingController', ['$scope', function($scope) {
+  $scope.greeting = 'Hola!';
+}]);
+
+
+  appSonofe.controller('MetadataController', function ($scope, $fileUploader) {
+  	
+  	$scope.setFile = function(file){
+            AudioParser.getInfo(file).then(function(fileInfo){
+                // do something here
+            });
+    }
+
+  });
+
+
+
+
+    angular.module("myapp").controller "ctrl", ["AudioParser", function (AudioParser) {
+
+        $scope.setFile = function(file){
+            AudioParser.getInfo(file).then(function(fileInfo){
+                // do something here
+            });
+        }
+
+    }]
+
+
+
+
   // Artist List
+
+
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
-      $scope.artist = data.response;
-      console.warn("1" , artist);
+  		$scope.artist = data.response;
 
     });
   });
@@ -188,6 +228,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               });
           }
       };
+
   }]);
 
   appSonofe.service('fileUpload', ['$http', function ($http) {
@@ -218,6 +259,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             alert("Oops! algo salio mal");
           });
       }
+
   }]);
 
   appSonofe.controller('createArtistCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
