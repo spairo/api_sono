@@ -160,12 +160,12 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="thisalbum" -F title="thistitle" -F artist="thisartist" -F genre="thisgenre" -F year="thisyear" -F content_type="023" -X PUT
 
 
+  /*
+  myApp.controller('GreetingController', ['$scope', function($scope) {
+    $scope.greeting = 'Hola!';
+  }]);*/
 
-myApp.controller('GreetingController', ['$scope', function($scope) {
-  $scope.greeting = 'Hola!';
-}]);
-
-
+  /*
   appSonofe.controller('MetadataController', function ($scope, $fileUploader) {
 
   	$scope.setFile = function(file){
@@ -174,7 +174,7 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
             });
     }
 
-  });
+  });*/
 
 
 
@@ -193,8 +193,6 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
 
 
   // Artist List
-
-
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
