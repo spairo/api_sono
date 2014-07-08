@@ -115,9 +115,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       });
 
       uploader.bind('success', function (event, xhr, item, response) {
-          
+
           console.info('Success', xhr, item, response);
-         
+
 		  //console.log(response);
 
           //console.log(response.response);
@@ -167,7 +167,7 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
 
 
   appSonofe.controller('MetadataController', function ($scope, $fileUploader) {
-  	
+
   	$scope.setFile = function(file){
             AudioParser.getInfo(file).then(function(fileInfo){
                 // do something here
@@ -179,7 +179,7 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
 
 
 
-    angular.module("myapp").controller "ctrl", ["AudioParser", function (AudioParser) {
+    /*angular.module("myapp").controller "ctrl", ["AudioParser", function (AudioParser) {
 
         $scope.setFile = function(file){
             AudioParser.getInfo(file).then(function(fileInfo){
@@ -187,7 +187,7 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
             });
         }
 
-    }]
+    }]*/
 
 
 
@@ -283,10 +283,10 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
   }]);
 
 
-  //Tools 
+  //Tools
 
 /*
   console.info(var, "Info");
   console.warn(var, "Warning");
-  console.error(var, "Error"); 
-*/ 
+  console.error(var, "Error");
+*/
