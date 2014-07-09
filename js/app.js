@@ -37,7 +37,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
                 templateUrl: 'templates/accounts/createTemplate.html'
             })
 
-
         .state('about', {
             url: '/about',
             templateUrl: 'templates/tmp_about.html'
@@ -159,36 +158,50 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="thisalbum" -F title="thistitle" -F artist="thisartist" -F genre="thisgenre" -F year="thisyear" -F content_type="023" -X PUT
 
+  appSonofe.controller('MetadataControllers', ["AudioParser", function ($scope, AudioParser) {
+          /*
+          $scope.setFile = function(file){
+              console.log("select file");
+              AudioParser.getInfo(file).then(function(fileInfo){
+                  // do something here
+                  console.info(fileInfo);
 
-  /*
-  myApp.controller('GreetingController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
-  }]);*/
+              });
+          };
+          */
 
-  /*
-  appSonofe.controller('MetadataController', function ($scope, $fileUploader) {
-
-  	$scope.setFile = function(file){
-            AudioParser.getInfo(file).then(function(fileInfo){
-                // do something here
-            });
-    }
-
-  });*/
+  }]);
 
 
 
+  appSonofe.controller('MetadataController', function($scope) {
 
-    /*angular.module("myapp").controller "ctrl", ["AudioParser", function (AudioParser) {
+    $scope.file = null;
 
-        $scope.setFile = function(file){
-            AudioParser.getInfo(file).then(function(fileInfo){
-                // do something here
-            });
-        }
+    $scope.clear = function() {
+      $scope.file = null;
 
-    }]*/
+    };
 
+  });
+
+  appSonofe.directive('fileSelect', function() {
+
+    var template = '<input type="file" name="files"/>';
+    return function( scope, elem, attrs ) {
+      var selector = $( template );
+      elem.append(selector);
+      selector.bind('change', function( event ) {
+        scope.$apply(function() {
+          scope[ attrs.fileSelect ] = event.originalEvent.target.files;
+        });
+      });
+      scope.$watch(attrs.fileSelect, function(file) {
+        selector.val(file);
+      });
+    };
+
+  });
 
 
 

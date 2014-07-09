@@ -1,16 +1,19 @@
-<div class="well-lg" ng-controller="createArtistCtrl">
+<form class="well-lg" ng-controller="createArtistCtrl" name="forma">
   <h2>Crear Artista</h2>
-  <div class="form-group">
+  <div class="help-block" role="alert" ng-show="forma.nombreA.$error.required || forma.empresa.$error.required || forma.genero.$error.required">
+    <span class="text-danger">Todos los Campos son Obligatorios</span>
+  </div>
+  <div class="form-group" ng-class="{'has-error': forma.nombreA.$invalid , 'has-success': forma.nombreA.$valid}">
     <label for="artist">Nombre del Artista</label>
-    <input type="text" class="form-control" ng-model="field1" placeholder="Nombre del Artista">
+    <input type="text" class="form-control" ng-model="field1" placeholder="Nombre del Artista" name="nombreA" required>
   </div>
-  <div class="form-group">
+  <div class="form-group" ng-class="{'has-error': forma.empresa.$invalid , 'has-success': forma.empresa.$valid}">
     <label for="company">Compañia</label>
-    <input type="text" class="form-control" ng-model="field2" placeholder="Compañia">
+    <input type="text" class="form-control" ng-model="field2" placeholder="Compañia" name="empresa" required>
   </div>
-  <div class="form-group">
-    <label for="genere">Genero</label>
-    <input type="text" class="form-control" ng-model="field3" placeholder="Genero">
+  <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+    <label for="genere">Genero Musical</label>
+    <input type="text" class="form-control" ng-model="field3" placeholder="Genero" name="genero" required>
   </div>
   <div class="form-group">
     <label for="background_img">Background Image</label>
@@ -22,5 +25,5 @@
     <input type="file" file-model="myFile2">
     <p class="help-block"></p>
   </div>
-  <button ng-click="uploadForm()" class="btn">Agregar Artista</button>
-</div>
+  <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid">Agregar Artista</button>
+</form>

@@ -1,3 +1,9 @@
+<div ng-controller="MetadataController">
+    <div file-select="file"></div>
+  <button ng-click="clear()">clear</button>
+  <p>file: {{ file | json }}</p>
+</div>
+
 <div class="container" ng-controller="UploadController" ng-file-drop>
   <div class="row">
     <div class="col-md-3">
@@ -21,7 +27,8 @@
         <br/>
         <b>Seleccionar</b>
         <br />
-        <input ng-file-select name="conference_file" filename="conference_file" type="file" onchange="angular.element(this).scope().setFile(this)" />
+        <input ng-file-select name="conference_file" filename="conference_file" type="file" />
+        <!--<input type="file" multiple onchange="angular.element(this).scope().setFiles(this)"/>-->
     </div>
     <div class="col-md-9" style="margin-bottom: 40px">
 
@@ -91,26 +98,4 @@
 <!-- Metada -->
 
 <h3>Editar Metadata</h3>
-<div ng-controller="MetadataController">
-    <ul>
-        <li ng-repeat="file in files">
-            <div ng-show="file.info.title">Title: {{file.info.title}}</div>
-            <div ng-show="file.info.album">Album: {{file.info.album}}</div>
-            <div ng-show="file.info.artist">Artist: {{file.info.artist}}</div>
-            <div ng-show="file.info.type">Type: {{file.info.type}}</div>
-            <div ng-show="file.info.size">Size: {{file.info.size}}</div>
-            <div ng-show="file.info.bitRate">Bitrate: {{file.info.bitRate}}bps</div>
-            <div ng-show="file.info.channels">Channels:
-                <span ng-show="file.info.channels == 1">Mono</span>
-                <span ng-show="file.info.channels == 2">Stereo</span>
-                <span ng-show="file.info.channels > 2">{{file.info.channels}}</span>
-            </div>
-            <div ng-show="file.info.bits">Sample size: {{file.info.bits}}bits</div>
-            <div ng-show="file.info.sampleRate">Sample rate: {{file.info.sampleRate}}Hz</div>
-        </li>
-    </ul>
-</div>
-
-
-
-
+<div ng-controller="MetadataController"></div>
