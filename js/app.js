@@ -185,23 +185,40 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
-  appSonofe.directive('fileSelect', function() {
+  //appSonofe.directive('fileSelect', function() {
+  appSonofe.directive('fileSelect', ["AudioParser", function () {
 
     var template = '<input type="file" name="files"/>';
-    return function( scope, elem, attrs ) {
+
+    return function( scope, elem, attrs, AudioParser) {
+
       var selector = $( template );
+
       elem.append(selector);
+
       selector.bind('change', function( event ) {
         scope.$apply(function() {
+
           scope[ attrs.fileSelect ] = event.originalEvent.target.files;
+
         });
       });
+
       scope.$watch(attrs.fileSelect, function(file) {
+
         selector.val(file);
+        
+        AudioParser.getInfo(file).then(function(fileInfo){
+            // do something here
+            console.info(fileInfo);
+
+        });
+
       });
+
     };
 
-  });
+  }]);
 
 
 
