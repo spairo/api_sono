@@ -58,13 +58,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           //headers 'Content-Type: application/json',
           formData: [
               { key: 'value' }
-          ],
-          filters: [
+          ]
+          /*,filters: [
               function (item) {                    // first user filter
                   console.info('filter1');
                   return true;
               }
-          ]
+          ]*/
       });
 
       // FAQ #1
@@ -80,8 +80,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       item.remove = function() {
           uploader.removeFromQueue(this);
       };
-      uploader.queue.push(item);
-      uploader.progress = 100;
+      //uploader.queue.push(item);
+      //uploader.progress = 100;
 
 
       // ADDING FILTERS
@@ -117,19 +117,12 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           console.info('Success', xhr, item, response);
 
-		  //console.log(response);
+          console.warn("ATENCIO", item);
 
-          //console.log(response.response);
-
-          //console.log(response.response[0].node_id);
 
           var node = response.response[0].node_id;
 
-          //alert(node);
-
-          //$('show')
-
-	  });
+	    });
 
       uploader.bind('cancel', function (event, xhr, item) {
           console.info('Cancel', xhr, item);
@@ -158,69 +151,51 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="thisalbum" -F title="thistitle" -F artist="thisartist" -F genre="thisgenre" -F year="thisyear" -F content_type="023" -X PUT
 
-  appSonofe.controller('MetadataControllers', ["AudioParser", function ($scope, AudioParser) {
-          /*
+  function MyCtrl($scope, $window) {
+
+      $scope.name = 'Superhero';
+
+      MyCtrl.prototype.$scope = $scope;
+  }
+
+  MyCtrl.prototype.setFile = function(element) {
+      var $scope = this.$scope;
+
+      $scope.$apply(function() {
+
+          $scope.theFile = element.files[0];
+
+      });
+  };
+
+//////////////////////////
+  
+  function MetadataCtrl($scope, $window) {
+
+      $scope.name = 'Superhero';
+
+      MetadataCtrl.prototype.$scope = $scope;
+  }
+
+  MetadataCtrl.prototype.setFiles = function(element) {
+      var $scope = this.$scope;
+
+      $scope.$apply(function() {
+          $scope.theFile = element.files[0];
+      });
+  };
+
+  appSonofe.controller('MetadataCtrl', ["AudioParser", function ($scope, AudioParser) {
+
+          var setFiles;
+
           $scope.setFile = function(file){
-              console.log("select file");
               AudioParser.getInfo(file).then(function(fileInfo){
                   // do something here
-                  console.info(fileInfo);
-
               });
           };
-          */
 
   }]);
-
-
-
-  appSonofe.controller('MetadataController', function($scope) {
-
-    $scope.file = null;
-
-    $scope.clear = function() {
-      $scope.file = null;
-
-    };
-
-  });
-
-  //appSonofe.directive('fileSelect', function() {
-  appSonofe.directive('fileSelect', ["AudioParser", function () {
-
-    var template = '<input type="file" name="files"/>';
-
-    return function( scope, elem, attrs, AudioParser) {
-
-      var selector = $( template );
-
-      elem.append(selector);
-
-      selector.bind('change', function( event ) {
-        scope.$apply(function() {
-
-          scope[ attrs.fileSelect ] = event.originalEvent.target.files;
-
-        });
-      });
-
-      scope.$watch(attrs.fileSelect, function(file) {
-
-        selector.val(file);
-        
-        AudioParser.getInfo(file).then(function(fileInfo){
-            // do something here
-            console.info(fileInfo);
-
-        });
-
-      });
-
-    };
-
-  }]);
-
-
 
   // Artist List
 

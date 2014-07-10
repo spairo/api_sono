@@ -1,36 +1,61 @@
-<div ng-controller="MetadataController">
-    <div file-select="file"></div>
-  <button ng-click="clear()">clear</button>
-  <p>file: {{ file | json }}</p>
-</div>
-
 <div class="container" ng-controller="UploadController" ng-file-drop>
+  <h2 class="text-center">Subir a Sonofe</h2>
   <div class="row">
-    <div class="col-md-3">
-        <h3>Subir Conferencias</h3>
+    <div class="col-md-4">
 
+        <!--
         <div ng-show="uploader.isHTML5">
-            <!-- 3. ng-file-over | ng-file-over="className" -->
+
             <div class="well my-drop-zone" ng-file-over>
               Drag Files
             </div>
 
-            <!-- Example: ng-file-drop | ng-file-drop="options" -->
+
             <div class="my-drop-zone" ng-file-drop="{ url: '' }" ng-file-over="another-file-over-class">
 
             </div>
-        </div>
+        </div>-->
 
         <!-- 2. ng-file-select | ng-file-select="options" -->
         <!--Multiple-->
         <!--<input ng-file-select name="conference_file" filename="conference_file" type="file" multiple  />-->
-        <br/>
-        <b>Seleccionar</b>
+
+        <b>Seleccionar archivo</b>
         <br />
-        <input ng-file-select name="conference_file" filename="conference_file" type="file" />
+        <br />
+        <input class="btn btn-default btn-lg well-sm" ng-file-select name="conference_file" filename="conference_file" type="file" />
         <!--<input type="file" multiple onchange="angular.element(this).scope().setFiles(this)"/>-->
+
+        <form class="well-sm" ng-controller="Metactrl" name="forma">
+          <h2>Metadata</h2>
+          <div class="help-block" role="alert" ng-show="forma.nombreA.$error.required || forma.empresa.$error.required || forma.genero.$error.required">
+            <span class="text-danger">Todos los Campos son Obligatorios</span>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.nombreA.$invalid , 'has-success': forma.nombreA.$valid}">
+            <label for="artist">Titulo</label>
+            <input type="text" class="form-control" ng-model="field1" placeholder="Titulo" name="nombreA" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.empresa.$invalid , 'has-success': forma.empresa.$valid}">
+            <label for="company">Artista</label>
+            <input type="text" class="form-control" ng-model="field2" placeholder="Artista" name="empresa" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+            <label for="genere">Album</label>
+            <input type="text" class="form-control" ng-model="field3" placeholder="Album" name="genero" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+            <label for="genere">Genero</label>
+            <input type="text" class="form-control" ng-model="field3" placeholder="Genero" name="genero" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+            <label for="genere">Año</label>
+            <input type="text" class="form-control" ng-model="field3" placeholder="Año" name="year" required>
+          </div>
+
+          <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid">Salvar Metada</button>
+        </form>
     </div>
-    <div class="col-md-9" style="margin-bottom: 40px">
+    <div class="col-md-8" style="margin-top:0px">
 
         <h3></h3>
         <p>Longitud de la cola: {{ uploader.queue.length }}</p>
@@ -60,6 +85,9 @@
                         <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                     </td>
                     <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="showme=true" ng-disabled="">
+                            <span class="glyphicon glyphicon-edit"></span> Metada
+                        </button>
                         <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
                             <span class="glyphicon glyphicon-upload"></span> Subir
                         </button>
@@ -96,6 +124,3 @@
 </div>
 
 <!-- Metada -->
-
-<h3>Editar Metadata</h3>
-<div ng-controller="MetadataController"></div>

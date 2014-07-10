@@ -1,1 +1,46 @@
-<h1>About</h1>
+<h1>Upload file test</h1>
+
+<div ng-controller="MyCtrl">
+    <input type="file" onchange="MyCtrl.prototype.setFile(this)">
+    <hr>
+    {{theFile.name}}
+</div>
+<br />
+<h1>Upload file test 2</h1>
+
+<div ng-controller="MetadataCtrl">
+  <input type="file" onchange="angular.element(this).scope().setFile(this)"/>
+
+  <br />
+</div>
+
+
+
+    <dl>
+        <dt>Artist</dt>
+        <dd id="artist"></dd>
+
+        <dt>Title</dt>
+        <dd id="title"></dd>
+
+        <dt>Album</dt>
+        <dd id="album"></dd>
+
+        <dt>Year</dt>
+        <dd id="year"></dd>
+
+        <dt>Comment</dt>
+        <dd id="comment"></dd>
+
+        <dt>Genre</dt>
+        <dd id="genre"></dd>
+
+        <dt>Track</dt>
+        <dd id="track"></dd>
+
+        <dt>Lyrics</dt>
+        <dd id="lyrics"></dd>
+
+        <dt>Cover Art</dt>
+        <dd><img id="art" src=""></dd>
+    </dl>
