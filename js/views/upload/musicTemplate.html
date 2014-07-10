@@ -51,6 +51,11 @@
             <label for="genere">Año</label>
             <input type="text" class="form-control" ng-model="field3" placeholder="Año" name="year" required>
           </div>
+          <div class="form-group">
+            <label for="profile_img">Cover</label>
+            <input type="file" file-model="myFile">
+            <p class="help-block"></p>
+          </div>
 
           <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid">Salvar Metada</button>
         </form>
@@ -85,7 +90,7 @@
                         <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                     </td>
                     <td nowrap>
-                        <button type="button" class="btn btn-success btn-xs" ng-click="showme=true" ng-disabled="">
+                        <button type="button" class="btn btn-success btn-xs" ng-click="showme=true">
                             <span class="glyphicon glyphicon-edit"></span> Metada
                         </button>
                         <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">

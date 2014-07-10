@@ -13,33 +13,33 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
         .state('home', {
             url: '/home',
-            templateUrl: 'templates/tmp_home.html'
+            templateUrl: 'js/views/tmp_home.html'
         })
 
         //Upload Module
 
         .state('upload', {
             url: '/upload',
-            templateUrl: 'templates/upload/uploadTemplate.html'
+            templateUrl: 'js/views/upload/uploadTemplate.html'
         })
             .state('music', {
                 url: '/upload/music',
-                templateUrl: 'templates/upload/musicTemplate.html'
+                templateUrl: 'js/views/upload/musicTemplate.html'
             })
         //Accounts Module
 
         .state('accounts', {
             url: '/accounts',
-            templateUrl: 'templates/accounts/accountsTemplate.html'
+            templateUrl: 'js/views/accounts/accountsTemplate.html'
         })
             .state('create', {
                 url: '/accounts/create',
-                templateUrl: 'templates/accounts/createTemplate.html'
+                templateUrl: 'js/views/accounts/createTemplate.html'
             })
 
         .state('about', {
             url: '/about',
-            templateUrl: 'templates/tmp_about.html'
+            templateUrl: 'js/views/tmp_about.html'
         });
 
   });
@@ -122,6 +122,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var node = response.response[0].node_id;
 
+          return node.data;
+          //  return response.data;
 	    });
 
       uploader.bind('cancel', function (event, xhr, item) {
