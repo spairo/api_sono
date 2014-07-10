@@ -169,21 +169,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   };
 
 //////////////////////////
-  
-  function MetadataCtrl($scope, $window) {
-
-      $scope.name = 'Superhero';
-
-      MetadataCtrl.prototype.$scope = $scope;
-  }
-
-  MetadataCtrl.prototype.setFiles = function(element) {
-      var $scope = this.$scope;
-
-      $scope.$apply(function() {
-          $scope.theFile = element.files[0];
-      });
-  };
 
   appSonofe.controller('MetadataCtrl', ["AudioParser", function ($scope, AudioParser) {
 
