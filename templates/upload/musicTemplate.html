@@ -28,6 +28,45 @@
 
 
 
+        
+
+
+
+        <!--
+        <form class="well-sm"  name="forma">
+          <h2>Metadata</h2>
+          <div class="help-block" role="alert" ng-show="forma.nombreA.$error.required || forma.empresa.$error.required || forma.genero.$error.required">
+            <span class="text-danger">Todos los Campos son Obligatorios</span>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.nombreA.$invalid , 'has-success': forma.nombreA.$valid}">
+            <label for="artist">Titulo</label>
+            <input type="text" class="form-control" ng-model="field1" placeholder="Titulo" name="nombreA" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.empresa.$invalid , 'has-success': forma.empresa.$valid}">
+            <label for="company">Artista</label>
+            <input type="text" class="form-control" ng-model="field2" placeholder="Artista" name="empresa" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+            <label for="genere">Album</label>
+            <input type="text" class="form-control" ng-model="field3" placeholder="Album" name="genero" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+            <label for="genere">Genero</label>
+            <input type="text" class="form-control" ng-model="field3" placeholder="Genero" name="genero" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': forma.genero.$invalid , 'has-success': forma.genero.$valid}">
+            <label for="genere">Año</label>
+            <input type="text" class="form-control" ng-model="field3" placeholder="Año" name="year" required>
+          </div>
+          <div class="form-group">
+            <label for="profile_img">Cover</label>
+            <input type="file" file-model="myFile">
+            <p class="help-block"></p>
+          </div>
+
+          <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid">Salvar Metada</button>
+        </form>
+        -->
     </div>
     <div class="col-md-8" style="margin-top:0px">
 
@@ -55,11 +94,13 @@
                     </td>
                     <td class="text-center">
                         <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                        <span ng-show="item.isSuccess">wuala</span>
                         <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
                         <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                     </td>
                     <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="showme=true">
+                            <span class="glyphicon glyphicon-edit"></span> Metada
+                        </button>
                         <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
                             <span class="glyphicon glyphicon-upload"></span> Subir
                         </button>
@@ -77,62 +118,18 @@
         <div>
             <p>
                 Cola de progreso:
-                <div class="progress" ng-show="item.isSuccess" style="">
+                <div class="progress" style="">
                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                 </div>
             </p>
-            <div ng-controller="ModalDemoCtrl">
-                <script type="text/ng-template" id="myModalContent.html">
-                    <div class="modal-body">
-                        <form class="well-sm" ng-controller="MetadataEditCtrl" name="forma">
-                          <h2 class="text-center">Metadata</h2>
-                          <div class="help-block" role="alert" ng-show="forma.Titulo.$error.required || forma.Artista.$error.required || forma.Album.$error.required">
-                            <span class="text-danger">Los Campos marcados son Obligatorios</span>
-                          </div>
-                          <div class="form-group" ng-class="{'has-error': forma.Titulo.$invalid , 'has-success': forma.Titulo.$valid}">
-                            <label for="Titulo">Titulo</label>
-                            <input type="text" class="form-control" ng-model="field1" placeholder="Titulo" name="Titulo" required>
-                          </div>
-                          <div class="form-group" ng-class="{'has-error': forma.Artista.$invalid , 'has-success': forma.Artista.$valid}">
-                            <label for="Artista">Artista</label>
-                            <input type="text" class="form-control" ng-model="field2" placeholder="Artista" name="Artista" required>
-                          </div>
-                          <div class="form-group" ng-class="{'has-error': forma.Album.$invalid , 'has-success': forma.Album.$valid}">
-                            <label for="Album">Album</label>
-                            <input type="text" class="form-control" ng-model="field3" placeholder="Album" name="Album" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="genere">Genero</label>
-                            <input type="text" class="form-control" ng-model="field4" placeholder="Genero" name="genero">
-                          </div>
-                          <div class="form-group">
-                            <label for="genere">Año</label>
-                            <input type="text" class="form-control" ng-model="field5" placeholder="Año" name="year">
-                          </div>
-                          <div class="form-group">
-                            <label for="profile_img">Cover</label>
-                            <input type="file" file-model="myFile">
-                            <p class="help-block"></p>
-                          </div>
-                          <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
-
-                          <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid" ng-class="{'btn-warning': forma.$invalid , 'btn-success': forma.$valid}">Guardar</button>
-                        </form>
-                        Selected node: <b>{{ selected.item }}</b>
-                    </div>
-                </script>
-
-
-                <button ctype="button" class="btn btn-default" ng-click="openmeta()" ng-disabled="!uploader.getNotUploadedItems().length"><span class="glyphicon glyphicon-edit"></span> Metada</button>
-            </div>
             <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                <span class="glyphicon glyphicon-upload"></span> Subir
+                <span class="glyphicon glyphicon-upload"></span> Subir Todo
             </button>
             <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
+                <span class="glyphicon glyphicon-ban-circle"></span> Cancelar Todo
             </button>
             <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                <span class="glyphicon glyphicon-trash"></span> Remover
+                <span class="glyphicon glyphicon-trash"></span> Remover Todo
             </button>
         </div>
     </div>
