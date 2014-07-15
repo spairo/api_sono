@@ -26,6 +26,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
                 url: '/upload/music',
                 templateUrl: 'js/views/upload/musicTemplate.html'
             })
+
         //Accounts Module
 
         .state('accounts', {
@@ -36,6 +37,20 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
                 url: '/accounts/create',
                 templateUrl: 'js/views/accounts/createTemplate.html'
             })
+
+
+        //Login / Register Module
+
+        .state('start', {
+            url: '/start',
+            templateUrl: 'js/views/start/startTpl.html'
+        })
+          .state('second', {
+              url: '/start/second',
+              templateUrl: 'js/views/start/start2Tpl.html'
+          })
+
+        //Extra
 
         .state('about', {
             url: '/about',
@@ -390,7 +405,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
-
 
   //Tools
 

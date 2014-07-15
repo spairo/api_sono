@@ -1,17 +1,146 @@
-html,body {
+html,
+body{
     height: 100%;
     min-height: 100%;
-    background: url('../img/bg_login.jpg') no-repeat center center fixed;
+    background: #FFFFFF;
+    /*background: url('../img/bg_new.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    margin-bottom: 60px;
+    margin-top: 60px;*/
 }
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 60px;
+  background-color: #F1F2F9;
+  z-index:1;
+}
+  .header .buttons{
+    float: right;
+    margin-left: 10px;
+    background: #F1F2F9;
+    border: 1px #3A66FB solid;
+    padding: 10px;
+    color: #3A66FB;
+    letter-spacing:4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    top: 10px;
+    position: relative;
+  }
+  .header .buttons:hover{
+    float: right;
+    margin-left: 10px;
+    background: #3A66FB;
+    border: 1px #3A66FB solid;
+    padding: 10px;
+    color: #fff;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    top: 10px;
+    position: relative;
+  }
 
-.container-register{
-  margin-top: 30%;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #3B3A3D;
+  overflow: hidden;
+}
+  .footer .right{
+    float: right;
+    list-style: none outside none;
+    text-transform: uppercase;
+    position: relative;
+    top: 20px;
+  }
+  .footer .right li{
+    display: inline;
+    margin-right: 10px;
+    color: #F1F2F5;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .footer .right li a{
+    text-decoration: none;
+  }
+
+#wrap{
+  height:100%;
+  overflow:hidden;
+  z-index: 0;
+}
+  .bg_one{
+      height: 100%;
+      position: relative;
+      background: #3A66FB;
+      background: url('../img/bg_new.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+.container-wrap{
+  margin-top: 80px;
   position: relative;
 }
+  .container-wrap h1{
+    color: #E6E6E6;
+    font-weight: lighter;
+    font-size: 32px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .container-wrap p{
+    margin-top: 40px;
+    color: #E6E6E6;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+.fix-height{
+  margin-top: 150px;
+}
+.box-account{
+  background: #F1F2F9;
+  min-height: 200px;
+  overflow: hidden;
+}
+  .box-account .title{
+    color: #3B3A3D;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    margin: 10px 0 0 10px;
+  }
+  .box-account .box-option{
+    background: #F1F2F9;
+    float:left;
+    border: 2px solid #3A66FB;
+    height:100px;
+    overflow: hidden;
+    position: relative;
+    top: 30px;
+    left: 25%;
+  }
+
+
+
+
+
+
   .container-register .title_start{
     color: #E6E6E6;
     font-weight: lighter;
