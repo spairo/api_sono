@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SONOFE</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="appSonofe">
+    <div class="header">
+      <div class="container">
+        <a ui-sref="second"><button type="button" class="buttons">sign up</button></a>
+        <a ui-sref="login"><button type="button" class="buttons">log in</button></a>
+      </div>
+    </div>
+    <div id="wrap" ui-view>
+      Loading...
+    </div>
+    <div class="footer">
+      <div class="container">
+        <ul class="right">
+          <li><a href="#">faq</a></li>
+          <li><a href="#about">about us</a></li>
+          <li><a href="#">contact us</a></li>
+          <li><a href="#">terms of use</a></li>
+          <li>Sonofe inc. all right reserved.</li>
+        </ul>
+      </div>
+    </div>
+    <!-- JavaScript Includes -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js" type="text/javascript"></script>
+    <script src="js/vendor/ui-bootstrap.js"></script>
+    <script src="js/vendor/angular-file-upload.js"></script>
+    <script src="js/vendor/audiometa.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-animate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+</html>
