@@ -506,7 +506,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               method  : 'POST',
               url     : 'http://godster.mx/users',
               data    : $scope.formsignup,
-              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+              headers : { 'Content-Type': 'application/application/json' }  // set the headers so angular passing info as form data (not request payload)
 
         }).success(function(data) {
 
