@@ -19,8 +19,83 @@
   <body ng-app="appSonofe">
     <div class="header">
       <div class="container">
-        <a ui-sref="second"><button type="button" class="buttons">sign up</button></a>
-        <a ui-sref="login"><button type="button" class="buttons">log in</button></a>
+        <div ng-controller="ModalSigninCtrl">
+            <script type="text/ng-template" id="myModalSignin.html">
+                    <div class="modal-content">
+                      <div class="modal-body modal-register">
+                        <button type="button" class="close" ng-click="cancel()">&times;</button>
+
+                        <form class="form-login" ng-controller="SignupCtrl" name="form_signup">
+                            <label class="title">Sign Up</label>
+
+                            <div class="form-group" ng-class="{'has-error': form_signup.username.$invalid , 'has-success': form_signup.username.$valid}">
+                              <input type="text" class="input-regs" ng-model="formsignup.field1" name="username" placeholder="Username" required>
+                              <p ng-show="form_signup.username.$invalid && !form_login.username.$pristine" class="help-block">Enter your Username</p>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': form_signup.passw.$invalid , 'has-success': form_signup.passw.$valid}">
+                              <input type="password" class="input-regs" ng-model="formsignup.field2" name="passw" placeholder="Password" required>
+                              <p ng-show="form_signup.passw.$invalid && !form_login.passw.$pristine" class="help-block">Enter your Password</p>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': form_signup.passw2.$invalid , 'has-success': form_signup.passw2.$valid}">
+                              <input type="password" class="input-regs" ng-model="formsignup.field3" name="passw2" placeholder="Password" required>
+                              <p ng-show="form_signup.passw2.$invalid && !form_login.passw2.$pristine" class="help-block">Enter your Password again</p>
+                            </div>
+
+                            <label class="title">Tipo de Cuenta</label>
+                            <select class="input-regs" ng-model="formsignup.field4">
+                              <option>Disquera</option>
+                              <option>Artista Independiente</option>
+                              <option>Conferencista Independiente</option>
+                              <option>Ministerio</option>
+                            </select>
+
+                            <label>
+                              <code>{{ formsignup }}</code>
+                            </label>
+
+                            <button class="btn-regis" ng-click="signup()" ng-disabled="form_signup.$invalid">Sign Up</button>
+                        </form>
+
+                      </div>
+                    </div>
+            </script>
+            <button type="button" class="buttons" ng-click="opensignup(lg)">Sign up</button>
+        </div>
+
+        <div ng-controller="ModalLoginCtrl">
+            <script type="text/ng-template" id="myModalLogin.html">
+                <div class="modal-content">
+                  <div class="modal-body modal-register">
+                    <button type="button" class="close" ng-click="cancel()">&times;</button>
+
+                    <form class="form-login" ng-controller="LoginCtrl" name="form_login">
+                        <label class="title" name="">Log In</label>
+                        <img class="profile-img" src="img/02.Astronauta.png" alt="icon">
+                        <div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
+                          <input type="text" class="input-regs" ng-model="formlogin.field1" name="username" placeholder="Username" required>
+                          <p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': form_login.passw.$invalid , 'has-success': form_login.passw.$valid}">
+                          <input type="password" class="input-regs" ng-model="formlogin.field2" name="passw" placeholder="Password" required>
+                          <p ng-show="form_login.passw.$invalid && !form_login.passw.$pristine" class="help-block">You Password is required.</p>
+                        </div>
+                        <label class="checkbox pull-left">
+                            <input type="checkbox" value="remember-me">
+                            Remember me
+                        </label>
+                        <label>
+                          <code>{{ field1 }}</code>
+                        </label>
+                        <button ng-click="processForm()" class="btn-regis" ng-disabled="form_login.$invalid">Log in</button>
+                    </form>
+
+                  </div>
+                </div>
+            </script>
+            <button type="button" class="buttons" ng-click="openlogin()">log in</button>
+        </div>
       </div>
     </div>
     <div id="wrap" ui-view>
