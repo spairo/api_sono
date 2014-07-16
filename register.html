@@ -34,17 +34,17 @@
                             </div>
 
                             <div class="form-group" ng-class="{'has-error': form_signup.passw.$invalid , 'has-success': form_signup.passw.$valid}">
-                              <input type="password" class="input-regs" ng-model="formsignup.'password'" name="passw" placeholder="Password" required>
+                              <input type="password" class="input-regs" ng-model="formsignup.password" name="passw" placeholder="Password" required>
                               <p ng-show="form_signup.passw.$invalid && !form_login.passw.$pristine" class="help-block">Enter your Password</p>
                             </div>
 
                             <div class="form-group" ng-class="{'has-error': form_signup.passw2.$invalid , 'has-success': form_signup.passw2.$valid}">
-                              <input type="password" class="input-regs" ng-model="formsignup.'second_password'" name="passw2" placeholder="Password" required>
+                              <input type="password" class="input-regs" ng-model="formsignup.second_password" name="passw2" placeholder="Password" required>
                               <p ng-show="form_signup.passw2.$invalid && !form_login.passw2.$pristine" class="help-block">Enter your Password again</p>
                             </div>
 
                             <label class="title">Tipo de Cuenta</label>
-                            <select class="input-regs" ng-model="formsignup.'user_role'">
+                            <select class="input-regs" ng-model="formsignup.user_role">
                               <option>Disquera</option>
                               <option>Artista Independiente</option>
                               <option>Conferencista Independiente</option>
