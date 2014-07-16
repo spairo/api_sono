@@ -29,22 +29,22 @@
                             <label class="title">Sign Up</label>
 
                             <div class="form-group" ng-class="{'has-error': form_signup.username.$invalid , 'has-success': form_signup.username.$valid}">
-                              <input type="text" class="input-regs" ng-model="formsignup.field1" name="username" placeholder="Username" required>
+                              <input type="text" class="input-regs" ng-model="formsignup.username" name="username" placeholder="Username" required>
                               <p ng-show="form_signup.username.$invalid && !form_login.username.$pristine" class="help-block">Enter your Username</p>
                             </div>
 
                             <div class="form-group" ng-class="{'has-error': form_signup.passw.$invalid , 'has-success': form_signup.passw.$valid}">
-                              <input type="password" class="input-regs" ng-model="formsignup.field2" name="passw" placeholder="Password" required>
+                              <input type="password" class="input-regs" ng-model="formsignup.'password'" name="passw" placeholder="Password" required>
                               <p ng-show="form_signup.passw.$invalid && !form_login.passw.$pristine" class="help-block">Enter your Password</p>
                             </div>
 
                             <div class="form-group" ng-class="{'has-error': form_signup.passw2.$invalid , 'has-success': form_signup.passw2.$valid}">
-                              <input type="password" class="input-regs" ng-model="formsignup.field3" name="passw2" placeholder="Password" required>
+                              <input type="password" class="input-regs" ng-model="formsignup.'second_password'" name="passw2" placeholder="Password" required>
                               <p ng-show="form_signup.passw2.$invalid && !form_login.passw2.$pristine" class="help-block">Enter your Password again</p>
                             </div>
 
                             <label class="title">Tipo de Cuenta</label>
-                            <select class="input-regs" ng-model="formsignup.field4">
+                            <select class="input-regs" ng-model="formsignup.'user_role'">
                               <option>Disquera</option>
                               <option>Artista Independiente</option>
                               <option>Conferencista Independiente</option>
@@ -74,11 +74,11 @@
                         <label class="title" name="">Log In</label>
                         <img class="profile-img" src="img/02.Astronauta.png" alt="icon">
                         <div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
-                          <input type="text" class="input-regs" ng-model="formlogin.field1" name="username" placeholder="Username" required>
+                          <input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required>
                           <p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
                         </div>
                         <div class="form-group" ng-class="{'has-error': form_login.passw.$invalid , 'has-success': form_login.passw.$valid}">
-                          <input type="password" class="input-regs" ng-model="formlogin.field2" name="passw" placeholder="Password" required>
+                          <input type="password" class="input-regs" ng-model="formlogin.password" name="passw" placeholder="Password" required>
                           <p ng-show="form_login.passw.$invalid && !form_login.passw.$pristine" class="help-block">You Password is required.</p>
                         </div>
                         <label class="checkbox pull-left">
@@ -86,7 +86,7 @@
                             Remember me
                         </label>
                         <label>
-                          <code>{{ field1 }}</code>
+                          <code>{{ formlogin }}</code>
                         </label>
                         <button ng-click="processForm()" class="btn-regis" ng-disabled="form_login.$invalid">Log in</button>
                     </form>
