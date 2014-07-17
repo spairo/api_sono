@@ -1,19 +1,59 @@
 // appSonofe CMS v.1
 
-var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload', 'audiometa', 'ui.bootstrap']);
+var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookies', 'angularFileUpload', 'audiometa', 'ui.bootstrap']);
 
 
   appSonofe.config(function($stateProvider, $urlRouterProvider){
 
-      $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/start');
 
       $stateProvider
 
         //Default Module
 
-        .state('home', {
-            url: '/home',
-            templateUrl: 'js/views/tmp_home.html'
+        .state('start', {
+            url: '/start',
+            templateUrl: 'js/views/start/index.html'
+        })
+          .state('second', {
+              url: '/start/second',
+              templateUrl: 'js/views/start/start2Tpl.html'
+          })
+
+        //Register Form
+
+        // route to show our basic form (/form)
+        .state('form', {
+            url: '/form',
+            templateUrl: 'js/views/form/form.html',
+            controller: 'SignupCtrl'
+        })
+
+        // nested states
+        // each of these sections will have their own view
+        // url will be nested (/form/profile)
+        .state('form.profile', {
+            url: '/profile',
+            templateUrl: 'js/views/form/form-profile.html'
+        })
+
+        // url will be /form/interests
+        .state('form.interests', {
+            url: '/interests',
+            templateUrl: 'js/views/form/form-interests.html'
+        })
+
+        // url will be /form/payment
+        .state('form.payment', {
+            url: '/payment',
+            templateUrl: 'js/views/form/form-payment.html'
+        })
+
+        //Dashboard Module
+
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: 'js/views/dashboard/index.html'
         })
 
         //Upload Module
@@ -38,18 +78,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
                 templateUrl: 'js/views/accounts/createTemplate.html'
             })
 
-
-        //Login / Register Module
-
-        .state('start', {
-            url: '/start',
-            templateUrl: 'js/views/start/startTpl.html'
-        })
-          .state('second', {
-              url: '/start/second',
-              templateUrl: 'js/views/start/start2Tpl.html'
-          })
-
         //Extra
 
         .state('about', {
@@ -58,6 +86,25 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         });
 
   });
+
+
+  //Wizard Register
+
+  appSonofe.controller('SignupCtrl', function($scope) {
+
+      // we will store all of our form data in this object
+      $scope.formsignup = {};
+
+      // function to process the form
+      $scope.processForm = function() {
+          alert('awesome!');
+      };
+
+  });
+
+
+
+
 
   //Upload Manager files
 
@@ -495,18 +542,19 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
 
   // Register
-
+/*
   appSonofe.controller('SignupCtrl', function($scope, $http, $log){
 
     $scope.formsignup = {};
 
     $scope.signup = function() {
 
+
         $http({
               method  : 'POST',
               url     : 'http://godster.mx/users',
-              data    : $scope.formsignup,
-              headers : { 'Content-Type': 'application/application/json' }  // set the headers so angular passing info as form data (not request payload)
+              data    : $.param($scope.formData),
+              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
 
         }).success(function(data) {
 
@@ -517,7 +565,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     };
 
-  });
+  });*/
 
 
   //Tools

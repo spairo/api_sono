@@ -8,48 +8,167 @@ html, body {
 
 /* Structure General App */
 
-#container{
-   margin: auto;
-   position: absolute;
-   width: 100%;
-   height: 100%;
-}
-#header{
-  background: none repeat scroll 0 0 #F1F2F9 ;
-  position: fixed;
-  min-height: 119px;
-  max-height: 350px;
+.header {
+  position: absolute;
   top: 0;
   width: 100%;
-  z-index: 100;
+  min-height: 60px;
+  background-color: #F1F2F9;
+  z-index:1;
 }
-  #header .logo{
-    font-size: 16px;
-    font-weight: normal;
+  .header .buttons{
+    float: right;
+    margin-left: 10px;
+    background: #F1F2F9;
+    border: 1px #3A66FB solid;
+    padding: 10px;
+    color: #3A66FB;
+    letter-spacing:4px;
+    font-size: 12px;
+    font-weight: bold;
     text-transform: uppercase;
-    letter-spacing:8px;
-    color: #3A66FB;
+    top: 10px;
     position: relative;
-    top: 45px;
-    left: 30px;
   }
-  #header .settings{
-    color: #3A66FB;
-    position: relative;
-    top: 15px;
-    right: 150px;
+  .header .buttons:hover{
     float: right;
-    font-size: 26px;
-    border: none;
-  }
-  #header .profile{
-    color: #3A66FB;
+    margin-left: 10px;
+    background: #3A66FB;
+    border: 1px #3A66FB solid;
+    padding: 10px;
+    color: #fff;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    top: 10px;
     position: relative;
-    top: 15px;
-    right: 40px;
-    float: right;
-    font-size: 26px;
   }
+
+/* Footer Sticky */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #3B3A3D;
+  overflow: hidden;
+}
+  .footer .right{
+    float: right;
+    list-style: none outside none;
+    text-transform: uppercase;
+    position: relative;
+    top: 20px;
+  }
+  .footer .right li{
+    display: inline;
+    margin-right: 10px;
+    color: #F1F2F5;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .footer .right li a{
+    text-decoration: none;
+  }
+
+/* Wrap */
+
+#wrap{
+  height:100%;
+  overflow:hidden;
+  z-index: 0;
+}
+  .bg_one{
+      height: 100%;
+      position: relative;
+      background: #3A66FB;
+      background: url('../img/bg_new.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+
+
+
+/* form styling */
+
+#form-container{
+  background:#F1F2F9;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+#form-container .page-header{
+  background: #F1F2F9;
+  margin:0;
+  padding:30px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+}
+/* numbered buttons */
+#status-buttons                 {  }
+#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px;
+    border-radius:50%; }
+/* active buttons */
+#status-buttons a.active span   { background:#3A66FB; }
+
+/* ANIMATION STYLINGS */
+
+#signup-form            { position:relative; min-height:300px; overflow:hidden; padding:30px; }
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
+}
+
+/* enter animation */
+#form-views.ng-enter            {
+    -webkit-animation: slideInRight 0.5s both ease;
+    -moz-animation: slideInRight 0.5s both ease;
+    animation: slideInRight 0.5s both ease;
+}
+/* leave animation */
+#form-views.ng-leave            {
+    -webkit-animation: slideOutLeft 0.5s both ease;
+    -moz-animation: slideOutLeft 0.5s both ease;
+    animation: slideOutLeft 0.5s both ease;
+}
+
+/* Animations */
+
+/* slide out to the left */
+
+@keyframes slideOutLeft {
+    to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {
+    to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to      { -webkit-transform: translateX(-200%); }
+}
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(200%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from    { -moz-transform:translateX(200%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform:translateX(200%); }
+    to      { -webkit-transform: translateX(0); }
+}
+
+/* Left Menu slide */
 
 #section_left{
   background: none repeat scroll 0 0 #3B3A3D;
@@ -81,13 +200,6 @@ html, body {
       top:40px;
     }
 
-#wrap{
-  position: fixed;
-  top: 120px;
-  left: 111px;   /*Set left value to section_left*/
-  bottom: 0;
-  overflow: auto;
-}
 
 /* Upload Module */
 
@@ -157,4 +269,119 @@ html, body {
        -o-transform: scaleX(1);
           transform: scaleX(1);
   opacity: 1;
+}
+
+
+
+/* Modals */
+.modal-register{
+  background: #F1F2F9;
+}
+  .modal-register .title{
+    color: #3B3A3D;
+    text-transform: uppercase;
+    text-align: left;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .modal-register .input-regs{
+    width: 100%;
+    height:50px;
+    background: #F1F2F9;
+    border: 2px solid #3A66FB;
+    padding-left: 10px;
+  }
+
+  .modal-register .btn-regis{
+    background: #3A66FB;
+    width: 100%;
+    height:50px;
+    border: none;
+    margin: 30px 0 0 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin select{
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #F1F2F9;
+    opacity: 0.9px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
 }

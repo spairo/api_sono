@@ -3,13 +3,8 @@ body{
     height: 100%;
     min-height: 100%;
     background: #FFFFFF;
-    /*background: url('../img/bg_new.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    margin-bottom: 60px;
-    margin-top: 60px;*/
+    padding: 0;
+    margin: 0;
 }
 .header {
   position: absolute;

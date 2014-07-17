@@ -8,7 +8,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -17,52 +18,10 @@
     <![endif]-->
   </head>
   <body ng-app="appSonofe">
+
     <div class="header">
       <div class="container">
-        <div ng-controller="ModalSigninCtrl">
-            <script type="text/ng-template" id="myModalSignin.html">
-                    <div class="modal-content">
-                      <div class="modal-body modal-register">
-                        <button type="button" class="close" ng-click="cancel()">&times;</button>
-
-                        <form class="form-login" ng-controller="SignupCtrl" name="form_signup">
-                            <label class="title">Sign Up</label>
-
-                            <div class="form-group" ng-class="{'has-error': form_signup.username.$invalid , 'has-success': form_signup.username.$valid}">
-                              <input type="text" class="input-regs" ng-model="formsignup.username" name="username" placeholder="Username" required>
-                              <p ng-show="form_signup.username.$invalid && !form_login.username.$pristine" class="help-block">Enter your Username</p>
-                            </div>
-
-                            <div class="form-group" ng-class="{'has-error': form_signup.passw.$invalid , 'has-success': form_signup.passw.$valid}">
-                              <input type="password" class="input-regs" ng-model="formsignup.password" name="passw" placeholder="Password" required>
-                              <p ng-show="form_signup.passw.$invalid && !form_login.passw.$pristine" class="help-block">Enter your Password</p>
-                            </div>
-
-                            <div class="form-group" ng-class="{'has-error': form_signup.passw2.$invalid , 'has-success': form_signup.passw2.$valid}">
-                              <input type="password" class="input-regs" ng-model="formsignup.second_password" name="passw2" placeholder="Password" required>
-                              <p ng-show="form_signup.passw2.$invalid && !form_login.passw2.$pristine" class="help-block">Enter your Password again</p>
-                            </div>
-
-                            <label class="title">Tipo de Cuenta</label>
-                            <select class="input-regs" ng-model="formsignup.user_role">
-                              <option>Disquera</option>
-                              <option>Artista Independiente</option>
-                              <option>Conferencista Independiente</option>
-                              <option>Ministerio</option>
-                            </select>
-
-                            <label>
-                              <code>{{ formsignup }}</code>
-                            </label>
-
-                            <button class="btn-regis" ng-click="signup()" ng-disabled="form_signup.$invalid">Sign Up</button>
-                        </form>
-
-                      </div>
-                    </div>
-            </script>
-            <button type="button" class="buttons" ng-click="opensignup(lg)">Sign up</button>
-        </div>
+        <a ui-sref-active="active" ui-sref="form.interests" class="buttons">Sign Up</a>
 
         <div ng-controller="ModalLoginCtrl">
             <script type="text/ng-template" id="myModalLogin.html">
@@ -74,11 +33,11 @@
                         <label class="title" name="">Log In</label>
                         <img class="profile-img" src="img/02.Astronauta.png" alt="icon">
                         <div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
-                          <input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required>
+                          <input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required autofocus>
                           <p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
                         </div>
                         <div class="form-group" ng-class="{'has-error': form_login.passw.$invalid , 'has-success': form_login.passw.$valid}">
-                          <input type="password" class="input-regs" ng-model="formlogin.password" name="passw" placeholder="Password" required>
+                          <input type="password" class="input-regs" ng-model="formlogin.password" name="passw" placeholder="Password" required autofocus>
                           <p ng-show="form_login.passw.$invalid && !form_login.passw.$pristine" class="help-block">You Password is required.</p>
                         </div>
                         <label class="checkbox pull-left">
@@ -112,13 +71,18 @@
         </ul>
       </div>
     </div>
+
+
+
     <!-- JavaScript Includes -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js" type="text/javascript"></script>
     <script src="js/vendor/ui-bootstrap.js"></script>
     <script src="js/vendor/angular-file-upload.js"></script>
     <script src="js/vendor/audiometa.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-animate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-cookies.min.js"></script>
     <script src="js/app.js"></script>
-    </body>
+  </body>
 </html>
