@@ -1,30 +1,47 @@
 <label>
-  <h4>Selecciona el tipo de cuenta:</h4>
+  <span class="subtitle">Selecciona el tipo de cuenta:</span>
 </label>
 <div class="form-group">
     <div class="radio">
         <label>
            <input type="radio" ng-model="formsignup.user_role" value="independiente" checked>
-           Artista Independiente
+           <span class="accounts_type">Artista Independiente</span>
         </label>
     </div>
     <div class="radio">
         <label>
             <input type="radio" ng-model="formsignup.user_role" value="disquera">
-            Disquera
+            <span class="accounts_type">Disquera</span>
         </label>
     </div>
     <div class="radio">
         <label>
             <input type="radio" ng-model="formsignup.user_role" value="ministerio">
-            Ministerio
+            <span class="accounts_type">Ministerio</span>
         </label>
     </div>
 </div>
-<div class="form-group row">
-<div class="col-xs-6 col-xs-offset-3">
-    <a ui-sref="form.profile" class="btn btn-lg btn-block btn-info">
-    Siguiente <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+
+<div class="description_accounts" ng-if="formsignup.user_role">
+  <div ng-show="formsignup.user_role == 'independiente'">
+    <h2>Artista Independiente<h2>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
+  </div>
+  <div ng-show="formsignup.user_role == 'disquera'">
+    <h2>Disquera<h2>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
+  </div>
+  <div ng-show="formsignup.user_role == 'ministerio'">
+    <h2>Ministerio<h2>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
+  </div>
 </div>
+
+<div class="form-group row">
+  <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref="form.profile" ng-disabled="!formsignup.user_role" class="btn btn-lg btn-block btn-info">
+        <span class="button-text">Siguiente</span>
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+  </div>
 </div>

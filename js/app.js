@@ -87,7 +87,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
   });
 
-
   //Wizard Register
 
   appSonofe.controller('SignupCtrl', function($scope) {
@@ -97,13 +96,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
       // function to process the form
       $scope.processForm = function() {
-          alert('awesome!');
+          alert('awesome! Te has registrado');
       };
 
   });
-
-
-
 
 
   //Upload Manager files

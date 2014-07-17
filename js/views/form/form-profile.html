@@ -1,24 +1,28 @@
 
+
 <div class="form-group" ng-class="{'has-error': form_signup.username.$invalid , 'has-success': form_signup.username.$valid}">
+  <label class="accounts_type">Username</label>
   <input type="text" class="form-control" ng-model="formsignup.username" name="username" placeholder="Username" required>
   <p ng-show="form_signup.username.$invalid && !form_login.username.$pristine" class="help-block">Enter your Username</p>
 </div>
 
 <div class="form-group" ng-class="{'has-error': form_signup.passw.$invalid , 'has-success': form_signup.passw.$valid}">
+  <label class="accounts_type">Password</label>
   <input type="password" class="form-control" ng-model="formsignup.password" name="passw" placeholder="Password" required>
   <p ng-show="form_signup.passw.$invalid && !form_login.passw.$pristine" class="help-block">Enter your Password</p>
 </div>
 
 <div class="form-group" ng-class="{'has-error': form_signup.passw2.$invalid , 'has-success': form_signup.passw2.$valid}">
+  <label class="accounts_type">Repeat Password</label>
   <input type="password" class="form-control" ng-model="formsignup.second_password" name="passw2" placeholder="Password" required>
   <p ng-show="form_signup.passw2.$invalid && !form_login.passw2.$pristine" class="help-block">Enter your Password again</p>
 </div>
 
-
 <div class="form-group row">
   <div class="col-xs-6 col-xs-offset-3">
-      <a ui-sref="form.payment" class="btn btn-lg btn-block btn-info">
-      Siguiente <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      <a ui-sref="form.payment" ng-disabled="form_signup.$invalid" class="btn btn-lg btn-block btn-info">
+        <span class="button-text">Siguiente</span>
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>
   </div>
 </div>
