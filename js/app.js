@@ -138,9 +138,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             //withCredentials: true,
 
-            data: {myObj: $scope.myModelObj},
+            data: { conference_file: $scope.myModelObj},
 
-            file: file, // or list of files ($files) for html5 only
+            //file: file, // or list of files ($files) for html5 only
 
             //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
 
