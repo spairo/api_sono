@@ -128,26 +128,29 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     $scope.onFileSelect = function($files) {
       //$files: an array of files selected, each file has name, size, and type.
       for (var i = 0; i < $files.length; i++) {
+
         var file = $files[i];
+
         $scope.upload = $upload.upload({
-          url: 'http://godster.mx/conference', //servlet url
-          method: 'POST',
-          //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          //withCredentials: true,
 
-          data: { myObj: $scope.onFileSelect($files)},
+            url: 'http://godster.mx/conference', //servlet url
+            method: 'POST',
+            //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            //withCredentials: true,
 
-          file: file, // or list of files ($files) for html5 only
+            data: {myObj: $scope.myModelObj},
 
-          //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
+            file: file, // or list of files ($files) for html5 only
 
-          // customize file formData name ('Content-Desposition'), server side file variable name.
+            //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
 
-          //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file'
+            // customize file formData name ('Content-Desposition'), server side file variable name.
 
-          // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
+            //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file'
 
-          //formDataAppender: function(formData, key, val){}
+            // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
+
+            //formDataAppender: function(formData, key, val){}
 
         }).progress(function(evt) {
 
