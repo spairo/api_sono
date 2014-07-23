@@ -123,7 +123,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   // Uploader Files
 
-
   var filesCtrl = [ '$scope', '$upload', function($scope, $upload) {
 
     $scope.onFileSelect = function($files) {
@@ -133,15 +132,23 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         $scope.upload = $upload.upload({
           url: 'http://godster.mx/conference', //servlet url
           method: 'POST',
-          //headers: {'header-key': 'header-value'},
+          //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           //withCredentials: true,
-          data: {myObj: $scope.myModelObj},
+
+          data: {conference_file: $scope.formupload.conference_file},
+
           file: file, // or list of files ($files) for html5 only
+
           //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
+
           // customize file formData name ('Content-Desposition'), server side file variable name.
+
           //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file'
+
           // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
+
           //formDataAppender: function(formData, key, val){}
+
         }).progress(function(evt) {
 
           console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
@@ -165,6 +172,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   //Upload Manager files
 
   appSonofe.controller('UploadController', function ($scope, $fileUploader) {
+
       'use strict';
 
       // create a uploader with options
