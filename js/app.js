@@ -137,12 +137,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           formData: [
               { key: 'value' }
           ]
-          /*,filters: [
-              function (item) {                    // first user filter
-                  console.info('filter1');
-                  return true;
-              }
-          ]*/
       });
 
       // FAQ #1
@@ -193,13 +187,14 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
 
-          console.info('Success', xhr, item, response);
+          //console.info('Success', xhr, item, response);
 
-          console.warn("ATENCIO", item);
+          //console.warn("ATENCIO", item);
 
           var node = response.response[0].node_id;
 
-          return node.data;
+          alert(node);
+          //return node.data;
           //  return response.data;
 	    });
 
