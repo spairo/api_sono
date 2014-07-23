@@ -80,6 +80,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
         //Extra
 
+        .state('uploader', {
+            url: '/uploader',
+            templateUrl: 'js/views/upload/index.html'
+        })
+
         .state('about', {
             url: '/about',
             templateUrl: 'js/views/tmp_about.html'
