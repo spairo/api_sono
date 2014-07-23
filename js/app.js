@@ -135,7 +135,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           //withCredentials: true,
 
-          data: {conference_file: $scope.formupload.conference_file},
+          data: {myObj: $scope.myModelObj},
 
           file: file, // or list of files ($files) for html5 only
 
