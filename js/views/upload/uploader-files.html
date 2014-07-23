@@ -27,7 +27,7 @@
               </td>
               <td class="text-center">
                   <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                  <span ng-show="item.isSuccess">wuala</span>
+                  <span ng-show="item.isSuccess">wuala {{node}}</span>
                   <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
                   <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
               </td>
@@ -49,7 +49,7 @@
       </tbody>
   </table>
 </div>
-<strong>{{foo}}</strong>
+
 <div class="form-group row well-lg">
   <div class="col-xs-6 col-xs-offset-3">
       <a ui-sref="uploader.metadata" class="btn btn-lg btn-block btn-info">

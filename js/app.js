@@ -191,7 +191,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var node = response.response[0].node_id;
 
-          $scope.foo = node;
+          $scope.node;
 
 	    });
 
