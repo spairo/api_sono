@@ -106,18 +106,11 @@ html, body {
     }
 
 
-
-/* start screen */
-
-
-
-
 /* form Register */
 
 #form-container{
   background:#F1F2F9;
-  margin-top: 100px;
-  margin-bottom: 20px;
+  border-radius: 8px;
 }
   #form-container .page-header{
     background: #F1F2F9;
@@ -232,7 +225,18 @@ html, body {
     letter-spacing: 2px;
   }
 
+/* Uploader Form */
 
+.uploader-form{
+  background: #F1F2F9;
+  border-radius: 8px;
+}
+  .uploader-form .button-text{
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 15px;
+    font-weight: lighter;
+  }
 
 
 /* Left Menu slide */
@@ -294,6 +298,7 @@ html, body {
     overflow:hidden;
     font-size: 11px;
     padding-top: 14px;
+    margin: 20px 0 0 0;
   }
   .upload-box .button:hover{
     border: 2px solid #3A66FB;
@@ -307,12 +312,44 @@ html, body {
     font-size: 11px;
     padding-top: 14px;
   }
+  .upload-box input[type=radio]{
+		display:none;
+	}
+  .upload-box input[type=radio] + label{
+		border: 2px solid #3A66FB;
+    width: 100%;
+    height: 50px;
+    color: #3B3A61;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing:8px;
+    overflow:hidden;
+    font-size: 11px;
+    padding-top: 14px;
+    margin: 20px 0 0 0;
+	}
+	.upload-box input[type=radio]:checked + label{
+	    border: 2px solid #3A66FB;
+      height: 50px;
+      color: #fff;
+      background: #3A66FB;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing:8px;
+      overflow:hidden;
+      font-size: 11px;
+      padding-top: 14px;
+	}
+
 
 /* Accounts Module */
 
 
 /* ng-animate */
 
+.slide{
+    margin-top: 80px;
+}
 .slide.ng-leave {
   position: relative;
 }

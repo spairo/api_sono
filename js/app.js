@@ -1,6 +1,6 @@
 // appSonofe CMS v.1
 
-var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookies', 'angularFileUpload', 'audiometa', 'ui.bootstrap']);
+var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload', 'ui.bootstrap']);
 
 
   appSonofe.config(function($stateProvider, $urlRouterProvider){
@@ -22,32 +22,28 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
         //Register Form
 
-        // route to show our basic form (/form)
         .state('form', {
             url: '/form',
             templateUrl: 'js/views/form/form.html',
             controller: 'SignupCtrl'
         })
 
-        // nested states
-        // each of these sections will have their own view
-        // url will be nested (/form/profile)
-        .state('form.profile', {
-            url: '/profile',
-            templateUrl: 'js/views/form/form-profile.html'
-        })
+            // nested states
 
-        // url will be /form/interests
-        .state('form.interests', {
-            url: '/interests',
-            templateUrl: 'js/views/form/form-interests.html'
-        })
+            .state('form.profile', {
+                url: '/profile',
+                templateUrl: 'js/views/form/form-profile.html'
+            })
 
-        // url will be /form/payment
-        .state('form.payment', {
-            url: '/payment',
-            templateUrl: 'js/views/form/form-payment.html'
-        })
+            .state('form.interests', {
+                url: '/interests',
+                templateUrl: 'js/views/form/form-interests.html'
+            })
+
+            .state('form.payment', {
+                url: '/payment',
+                templateUrl: 'js/views/form/form-payment.html'
+            })
 
         //Dashboard Module
 
@@ -58,13 +54,22 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
         //Upload Module
 
-        .state('upload', {
-            url: '/upload',
-            templateUrl: 'js/views/upload/uploadTemplate.html'
+        .state('uploader', {
+            url: '/uploader',
+            templateUrl: 'js/views/upload/uploader.html',
+            controller: 'UploadCtrl'
         })
-            .state('music', {
-                url: '/upload/music',
-                templateUrl: 'js/views/upload/musicTemplate.html'
+            .state('uploader.type', {
+                url: '/type',
+                templateUrl: 'js/views/upload/uploader-type.html'
+            })
+            .state('uploader.files', {
+                url: '/files',
+                templateUrl: 'js/views/upload/uploader-files.html'
+            })
+            .state('uploader.metadata', {
+                url: '/metadata',
+                templateUrl: 'js/views/upload/uploader-metadata.html'
             })
 
         //Accounts Module
@@ -78,12 +83,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
                 templateUrl: 'js/views/accounts/createTemplate.html'
             })
 
-        //Extra
-
-        .state('uploader', {
-            url: '/uploader',
-            templateUrl: 'js/views/upload/index.html'
-        })
+        //Pages
 
         .state('about', {
             url: '/about',
@@ -92,7 +92,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
   });
 
-  //Wizard Register
+
+  //Form Register
 
   appSonofe.controller('SignupCtrl', function($scope) {
 
@@ -105,6 +106,64 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
       };
 
   });
+
+  //Form Uploader
+
+  appSonofe.controller('UploadCtrl', function($scope) {
+
+      // we will store all of our form data in this object
+      $scope.formupload = {};
+
+      // function to process the form
+      $scope.processForm = function() {
+          alert('awesome!');
+      };
+
+  });
+
+  // Uploader Files
+
+
+  var filesCtrl = [ '$scope', '$upload', function($scope, $upload) {
+
+    $scope.onFileSelect = function($files) {
+      //$files: an array of files selected, each file has name, size, and type.
+      for (var i = 0; i < $files.length; i++) {
+        var file = $files[i];
+        $scope.upload = $upload.upload({
+          url: 'server/upload/url', //upload.php script, node.js route, or servlet url
+          //method: 'POST' or 'PUT',
+          //headers: {'header-key': 'header-value'},
+          //withCredentials: true,
+          data: {myObj: $scope.myModelObj},
+          file: file, // or list of files ($files) for html5 only
+          //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
+          // customize file formData name ('Content-Desposition'), server side file variable name.
+          //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file'
+          // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
+          //formDataAppender: function(formData, key, val){}
+        }).progress(function(evt) {
+
+          console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+
+        }).success(function(data, status, headers, config) {
+          // file is uploaded successfully
+          console.log(data);
+
+        });
+        //.error(...)
+        //.then(success, error, progress);
+        // access or attach event listeners to the underlying XMLHttpRequest.
+        //.xhr(function(xhr){xhr.upload.addEventListener(...)})
+      }
+      /* alternative way of uploading, send the file binary with the file's content-type.
+         Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed.
+         It could also be used to monitor the progress of a normal http post/put request with large data*/
+      // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
+    };
+
+  }];
+
 
 
   //Upload Manager files
@@ -327,41 +386,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
           fileUpload.uploadFileAndFieldsToUrl(file, fields, uploadUrl);
       };
-
-  }]);
-
-  /////////////////////////////////////
-
-  //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="thisalbum" -F title="thistitle" -F artist="thisartist" -F genre="thisgenre" -F year="thisyear" -F content_type="023" -X PUT
-
-  function MyCtrl($scope, $window) {
-
-      $scope.name = 'Superhero';
-
-      MyCtrl.prototype.$scope = $scope;
-  }
-
-  MyCtrl.prototype.setFile = function(element) {
-      var $scope = this.$scope;
-
-      $scope.$apply(function() {
-
-          $scope.theFile = element.files[0];
-
-      });
-  };
-
-//////////////////////////
-
-  appSonofe.controller('MetadataCtrl', ["AudioParser", function ($scope, AudioParser) {
-
-          var setFiles;
-
-          $scope.setFile = function(file){
-              AudioParser.getInfo(file).then(function(fileInfo){
-                  // do something here
-              });
-          };
 
   }]);
 
