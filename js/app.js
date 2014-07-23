@@ -131,8 +131,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       for (var i = 0; i < $files.length; i++) {
         var file = $files[i];
         $scope.upload = $upload.upload({
-          url: 'server/upload/url', //upload.php script, node.js route, or servlet url
-          //method: 'POST' or 'PUT',
+          url: 'http://godster.mx/conference', //servlet url
+          method: 'POST',
           //headers: {'header-key': 'header-value'},
           //withCredentials: true,
           data: {myObj: $scope.myModelObj},
@@ -156,10 +156,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         // access or attach event listeners to the underlying XMLHttpRequest.
         //.xhr(function(xhr){xhr.upload.addEventListener(...)})
       }
-      /* alternative way of uploading, send the file binary with the file's content-type.
-         Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed.
-         It could also be used to monitor the progress of a normal http post/put request with large data*/
-      // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
     };
 
   }];
