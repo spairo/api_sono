@@ -127,9 +127,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       'use strict';
 
-      // create a uploader with options
       var uploader = $scope.uploader = $fileUploader.create({
-          scope: $scope,                          // to automatically update the html. Default: $rootScope
+          scope: $scope,
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
@@ -139,7 +138,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           ]
       });
 
-      // FAQ #1
+      // faq #1
       var item = {
           file: {
               name: 'test',
@@ -152,18 +151,21 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       item.remove = function() {
           uploader.removeFromQueue(this);
       };
+
       //uploader.queue.push(item);
-      //uploader.progress = 100;
+      uploader.progress = 100;
 
 
       // ADDING FILTERS
 
       uploader.filters.push(function (item) { // second user filter
-          console.info('filter2');
+
+          console.info('Adding', item);
           return true;
+
       });
 
-      // REGISTER HANDLERS
+      // HANDLERS
 
       uploader.bind('afteraddingfile', function (event, item) {
           console.info('After adding a file', item);
@@ -187,15 +189,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
 
-          //console.info('Success', xhr, item, response);
-
-          //console.warn("ATENCIO", item);
-
           var node = response.response[0].node_id;
 
-          alert(node);
-          //return node.data;
-          //  return response.data;
+          $scope.foo = node;
+
 	    });
 
       uploader.bind('cancel', function (event, xhr, item) {
@@ -346,6 +343,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
   		$scope.artist = data.response;
+
 
     });
   });
