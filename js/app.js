@@ -125,8 +125,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   appSonofe.factory('Nodo', function(){
     return {
-        sayHello: function(text){
-            return text;
+        sayHello: function(result){
+            return "La fabrica: " + result;
         }
     }
   });
