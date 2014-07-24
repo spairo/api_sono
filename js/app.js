@@ -130,18 +130,39 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         }
     }
   });
+ /////////////////////////////////////////////
 
-  function FirstCtrl($scope, Nodo){
 
-    $scope.data = Nodo;
+  appSonofe.factory('testFactory', function () {
+
+
+      return { sayHello: function(result){ return result; } }
+
+  });
+
+  function FirstCtrl($scope, testFactory) {
+
+      $scope.data = testFactory;
 
   }
 
-  function SecondCtrl($scope, Nodo){
+  function SecondCtrl($scope, testFactory) {
 
-    $scope.data = Nodo;
+      $scope.data = testFactory;
 
   }
+
+  function HelloCtrl($scope, testFactory) {
+
+      var node = "596";
+
+      $scope.foo = testFactory.sayHello(node);
+
+  }
+
+  /////////////////////////////////////////////
+
+
 
 
 
