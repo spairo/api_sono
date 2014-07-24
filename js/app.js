@@ -189,15 +189,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
 
+          //get response(node)
           $scope.node = response.response[0].node_id;
-
-          //alert(node);
-
-          //$scope.node;
-
-          //$scope.artist = data.response;
-
-
 
 	    });
 
