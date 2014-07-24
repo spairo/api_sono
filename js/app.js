@@ -3,6 +3,7 @@
 var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookies', 'angularFileUpload', 'audiometa', 'ui.bootstrap']);
 
 
+
   appSonofe.config(function($stateProvider, $urlRouterProvider){
 
       $urlRouterProvider.otherwise('/start');
@@ -22,32 +23,28 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
         //Register Form
 
-        // route to show our basic form (/form)
         .state('form', {
             url: '/form',
             templateUrl: 'js/views/form/form.html',
             controller: 'SignupCtrl'
         })
 
-        // nested states
-        // each of these sections will have their own view
-        // url will be nested (/form/profile)
-        .state('form.profile', {
-            url: '/profile',
-            templateUrl: 'js/views/form/form-profile.html'
-        })
+          // nested states
 
-        // url will be /form/interests
-        .state('form.interests', {
-            url: '/interests',
-            templateUrl: 'js/views/form/form-interests.html'
-        })
+          .state('form.profile', {
+              url: '/profile',
+              templateUrl: 'js/views/form/form-profile.html'
+          })
 
-        // url will be /form/payment
-        .state('form.payment', {
-            url: '/payment',
-            templateUrl: 'js/views/form/form-payment.html'
-        })
+          .state('form.interests', {
+              url: '/interests',
+              templateUrl: 'js/views/form/form-interests.html'
+          })
+
+          .state('form.payment', {
+              url: '/payment',
+              templateUrl: 'js/views/form/form-payment.html'
+          })
 
         //Dashboard Module
 
@@ -80,12 +77,111 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
         //Extra
 
-        .state('about', {
-            url: '/about',
-            templateUrl: 'js/views/tmp_about.html'
+        .state('home', {
+            url: '/home',
+            templateUrl: 'js/views/home/index.html',
+            controller: 'homeController'
+        })
+
+        .state('login', {
+            url: '/login',
+            templateUrl: 'js/views/login/index.html',
+            controller: 'loginController'
         });
 
   });
+
+
+  appSonofe.factory("auth", function($cookies,$cookieStore,$location) {
+    return{
+        login : function(username, password)
+        {
+            //creamos la cookie con el nombre que nos han pasado
+            $cookies.username = username,
+            $cookies.password = password;
+            //mandamos a la home
+            $location.path("/home");
+        },
+        logout : function()
+        {
+            //al hacer logout eliminamos la cookie con $cookieStore.remove
+            $cookieStore.remove("username"),
+            $cookieStore.remove("password");
+            //mandamos al login
+            $location.path("/login");
+        },
+        checkStatus : function()
+        {
+            //creamos un array con las rutas que queremos controlar
+            var rutasPrivadas = ["/home","/dashboard","/login"];
+            if(this.in_array($location.path(),rutasPrivadas) && typeof($cookies.username) == "undefined")
+            {
+                $location.path("/login");
+            }
+            //en el caso de que intente acceder al login y ya haya iniciado sesión lo mandamos a la home
+            if(this.in_array("/login",rutasPrivadas) && typeof($cookies.username) != "undefined")
+            {
+                $location.path("/home");
+            }
+        },
+        in_array : function(needle, haystack)
+        {
+            var key = '';
+            for(key in haystack)
+            {
+                if(haystack[key] == needle)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+  });
+
+  
+  function CookieCtrl($scope, $cookieStore) {
+    $cookieStore.put('City', 'London');
+    $scope.cookieValue = $cookieStore.get('City');
+  }
+
+
+  //creamos el controlador pasando $scope y $http, así los tendremos disponibles
+
+  appSonofe.controller('loginController', function($scope,auth){
+      //la función login que llamamos en la vista llama a la función
+      //login de la factoria auth pasando lo que contiene el campo
+      //de texto del formulario
+      $scope.login = function()
+      {
+          auth.login($scope.username, $scope.password);
+      }
+
+  });
+
+
+ //creamos el controlador pasando $scope y auth
+
+  appSonofe.controller('homeController', function($scope, $cookies, auth)
+  {
+      //devolvemos a la vista el nombre del usuario
+      $scope.username = $cookies.username;
+      $scope.password = $cookies.password;
+      //la función logout que llamamos en la vista llama a la función
+      //logout de la factoria auth
+      $scope.logout = function()
+      {
+          auth.logout();
+      }
+
+  });
+
+
+
+
+
+
+
 
   //Wizard Register
 
