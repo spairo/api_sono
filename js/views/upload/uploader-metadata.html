@@ -1,6 +1,18 @@
 <h1>Soy Metedata</h1>
-<div ng-controller="ModalDemoCtrl">
-    <script type="text/ng-template" id="myModalContent.html">
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<div ng-controller="ModalmetaCtrl">
+  <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-body">
             <form class="well-sm" ng-controller="MetadataEditCtrl" name="forma">
               <h2 class="text-center">Metadata</h2>
@@ -38,7 +50,6 @@
             </form>
             Selected node: <b>{{ selected.item }}</b>
         </div>
-    </script>
-
-<button ctype="button" class="btn btn-default" ng-click="openmeta()" ng-disabled="!uploader.getNotUploadedItems().length"><span class="glyphicon glyphicon-edit"></span> Metada</button>
+  </script>
+  <button ctype="button" class="btn btn-default" ng-click="openmeta()"><span class="glyphicon glyphicon-edit"></span> Metada</button>
 </div>

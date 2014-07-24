@@ -121,9 +121,20 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
+  //Factory Node
+
+  appSonofe.factory('Nodo', function(){
+    return {
+        sayHello: function(text){
+            return text;
+        }
+    }
+  });
+
+
   //Upload Manager files
 
-  appSonofe.controller('UploadController', function ($scope, $fileUploader) {
+  appSonofe.controller('UploadController', function ($scope, $fileUploader, Nodo) {
 
       'use strict';
 
@@ -154,7 +165,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       //uploader.queue.push(item);
       uploader.progress = 100;
-
 
       // ADDING FILTERS
 
@@ -190,7 +200,12 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       uploader.bind('success', function (event, xhr, item, response) {
 
           //get response(node)
-          $scope.node = response.response[0].node_id;
+
+        //$scope.node = response.response[0].node_id;
+
+        var node = response.response[0].node_id;
+
+        $scope.noode = Nodo.sayHello(node);
 
 	    });
 
@@ -219,7 +234,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   // Metadata
 
-  var ModalDemoCtrl = function ($scope, $modal, $log) {
+  var ModalmetaCtrl = function ($scope, $modal, $log, thenode) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -286,6 +301,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
+
+
 
   appSonofe.service('fileUpload', ['$http', function ($http) {
 
