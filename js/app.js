@@ -136,7 +136,14 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   appSonofe.factory('testFactory', function () {
 
 
-      return { sayHello: foo }
+      return {
+
+          sayHello: function(text){
+
+            return text;
+
+          }
+      };
 
   });
 
@@ -156,7 +163,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       var node = "596";
 
-      var foo = testFactory.sayHello(node);
+      $scope.foo = testFactory.sayHello(node);
 
   }
 
