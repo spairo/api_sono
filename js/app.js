@@ -131,6 +131,20 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     }
   });
 
+  function FirstCtrl($scope, Nodo){
+
+    $scope.data = Nodo;
+
+  }
+
+  function SecondCtrl($scope, Nodo){
+
+    $scope.data = Nodo;
+
+  }
+
+
+
 
   //Upload Manager files
 
