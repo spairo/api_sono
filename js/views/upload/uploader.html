@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-9 col-sm-offset-2">
+    <div class="uploader-form">
+
+        <div class="text-center">
+            <br />
+            <h1>Uploader</h1>
+            <div id="status-buttons" class="text-center">
+                <a ui-sref-active="active" ui-sref=".type"><span>1</span></a>
+                <a ui-sref-active="active" ui-sref=".files"><span>2</span></a>
+                <a ui-sref-active="active" ui-sref=".metadata"><span>3</span></a>
+            </div>
+        </div>
+
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <form id="signup-form" ng-submit="processForm()" ng-controller="UploadCtrl" name="form_upload">
+            <!-- our nested state views will be injected here -->
+
+            <div id="form-views" ui-view></div>
+
+            <!-- show our formData as it is being typed -->
+            <pre>
+              {{ formupload }} {{node}}
+            </pre>
+        </form>
+
+    </div>
+  </div>
+</div>

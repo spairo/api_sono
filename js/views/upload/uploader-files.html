@@ -1,0 +1,76 @@
+<div ng-controller="UploadController" ng-file-drop>
+  <h2>Seleccionar archivos</h2>
+  <input class="btn btn-default btn-lg well-sm" ng-file-select name="conference_file" filename="conference_file" type="file" />
+
+  <!--<input type="file" multiple onchange="angular.element(this).scope().setFiles(this)"/>-->
+
+  <p><h3>Longitud de la cola: {{ uploader.queue.length }}</h3></p>
+
+  <table class="table">
+      <thead>
+          <tr>
+              <th width="50%">Nombre</th>
+              <th ng-show="uploader.isHTML5">Tamaño</th>
+              <th ng-show="uploader.isHTML5">Progreso</th>
+              <th>Estatus</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="item in uploader.queue">
+              <td><strong>{{ item.file.name }}</strong></td>
+              <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+              <td ng-show="uploader.isHTML5">
+                  <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar-sonofe" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                  </div>
+              </td>
+              <td class="text-center">
+                  <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                  <span ng-show="item.isSuccess">{{noode}}</span>
+                  <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                  <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+              </td>
+              <td nowrap>
+                  <button ctype="button" class="btn btn-default btn-xs" ng-click="openmeta()" ng-disabled="!uploader.getNotUploadedItems().length">
+                      <span class="glyphicon glyphicon-edit"></span> Metada
+                  </button>
+                  <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                      <span class="glyphicon glyphicon-upload"></span> Subir
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                      <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
+                  </button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                      <span class="glyphicon glyphicon-trash"></span> Remover
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+<div ng-controller="FirstCtrl">
+
+  <input type="text" ng-model="data.noode">
+
+  <h1>{{data.noode}}</h1>
+
+</div>
+
+<div ng-controller="SecondCtrl">
+
+  <input type="text" ng-model="data.noode">
+
+  <h1>{{data.noode}}</h1>
+
+</div>
+
+<div class="form-group row well-lg">
+  <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref="uploader.metadata" class="btn btn-lg btn-block btn-info">
+        <span class="button-text">siguiente</span>
+        <span class="glyphicon glyphicon-edit"></span>
+      </a>
+  </div>
+</div>

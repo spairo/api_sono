@@ -1,0 +1,21 @@
+<div class="upload-box">
+  <span class="title">Elige un Opcion:</span>
+  <div class="row">
+    <div class="col-md-6">
+      <input type="radio" id="radio1" ng-model="formupload.content_type" value="0" checked>
+         <label for="radio1">Musica</label>
+    </div>
+    <div class="col-md-6">
+      <input type="radio" id="radio2" ng-model="formupload.content_type" value="1">
+         <label for="radio2">conferencia</label>
+    </div>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref="uploader.files" ng-disabled="!formupload.content_type" class="btn btn-lg btn-block btn-info">
+        <span class="button-text">Siguiente</span>
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 // appSonofe CMS v.1
 
-var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookies', 'angularFileUpload', 'audiometa', 'ui.bootstrap']);
+var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload', 'ui.bootstrap']);
 
 
 
@@ -29,22 +29,22 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
             controller: 'SignupCtrl'
         })
 
-          // nested states
+            // nested states
 
-          .state('form.profile', {
-              url: '/profile',
-              templateUrl: 'js/views/form/form-profile.html'
-          })
+            .state('form.profile', {
+                url: '/profile',
+                templateUrl: 'js/views/form/form-profile.html'
+            })
 
-          .state('form.interests', {
-              url: '/interests',
-              templateUrl: 'js/views/form/form-interests.html'
-          })
+            .state('form.interests', {
+                url: '/interests',
+                templateUrl: 'js/views/form/form-interests.html'
+            })
 
-          .state('form.payment', {
-              url: '/payment',
-              templateUrl: 'js/views/form/form-payment.html'
-          })
+            .state('form.payment', {
+                url: '/payment',
+                templateUrl: 'js/views/form/form-payment.html'
+            })
 
         //Dashboard Module
 
@@ -55,13 +55,22 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
         //Upload Module
 
-        .state('upload', {
-            url: '/upload',
-            templateUrl: 'js/views/upload/uploadTemplate.html'
+        .state('uploader', {
+            url: '/uploader',
+            templateUrl: 'js/views/upload/uploader.html',
+            controller: 'UploadCtrl'
         })
-            .state('music', {
-                url: '/upload/music',
-                templateUrl: 'js/views/upload/musicTemplate.html'
+            .state('uploader.type', {
+                url: '/type',
+                templateUrl: 'js/views/upload/uploader-type.html'
+            })
+            .state('uploader.files', {
+                url: '/files',
+                templateUrl: 'js/views/upload/uploader-files.html'
+            })
+            .state('uploader.metadata', {
+                url: '/metadata',
+                templateUrl: 'js/views/upload/uploader-metadata.html'
             })
 
         //Accounts Module
@@ -75,115 +84,16 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
                 templateUrl: 'js/views/accounts/createTemplate.html'
             })
 
-        //Extra
+        //Pages
 
-        .state('home', {
-            url: '/home',
-            templateUrl: 'js/views/home/index.html',
-            controller: 'homeController'
-        })
-
-        .state('login', {
-            url: '/login',
-            templateUrl: 'js/views/login/index.html',
-            controller: 'loginController'
+        .state('about', {
+            url: '/about',
+            templateUrl: 'js/views/pages/about.html'
         });
 
   });
 
-
-  appSonofe.factory("auth", function($cookies,$cookieStore,$location) {
-    return{
-        login : function(username, password)
-        {
-            //creamos la cookie con el nombre que nos han pasado
-            $cookies.username = username,
-            $cookies.password = password;
-            //mandamos a la home
-            $location.path("/home");
-        },
-        logout : function()
-        {
-            //al hacer logout eliminamos la cookie con $cookieStore.remove
-            $cookieStore.remove("username"),
-            $cookieStore.remove("password");
-            //mandamos al login
-            $location.path("/login");
-        },
-        checkStatus : function()
-        {
-            //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/home","/dashboard","/login"];
-            if(this.in_array($location.path(),rutasPrivadas) && typeof($cookies.username) == "undefined")
-            {
-                $location.path("/login");
-            }
-            //en el caso de que intente acceder al login y ya haya iniciado sesión lo mandamos a la home
-            if(this.in_array("/login",rutasPrivadas) && typeof($cookies.username) != "undefined")
-            {
-                $location.path("/home");
-            }
-        },
-        in_array : function(needle, haystack)
-        {
-            var key = '';
-            for(key in haystack)
-            {
-                if(haystack[key] == needle)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-  });
-
-  
-  function CookieCtrl($scope, $cookieStore) {
-    $cookieStore.put('City', 'London');
-    $scope.cookieValue = $cookieStore.get('City');
-  }
-
-
-  //creamos el controlador pasando $scope y $http, así los tendremos disponibles
-
-  appSonofe.controller('loginController', function($scope,auth){
-      //la función login que llamamos en la vista llama a la función
-      //login de la factoria auth pasando lo que contiene el campo
-      //de texto del formulario
-      $scope.login = function()
-      {
-          auth.login($scope.username, $scope.password);
-      }
-
-  });
-
-
- //creamos el controlador pasando $scope y auth
-
-  appSonofe.controller('homeController', function($scope, $cookies, auth)
-  {
-      //devolvemos a la vista el nombre del usuario
-      $scope.username = $cookies.username;
-      $scope.password = $cookies.password;
-      //la función logout que llamamos en la vista llama a la función
-      //logout de la factoria auth
-      $scope.logout = function()
-      {
-          auth.logout();
-      }
-
-  });
-
-
-
-
-
-
-
-
-  //Wizard Register
+  //Form Register
 
   appSonofe.controller('SignupCtrl', function($scope) {
 
@@ -197,15 +107,82 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
   });
 
+  //Form Uploader
+
+  appSonofe.controller('UploadCtrl', function($scope) {
+
+      // we will store all of our form data in this object
+      $scope.formupload = {};
+
+      // function to process the form
+      $scope.processForm = function() {
+          alert('awesome!');
+      };
+
+  });
+
+  //Factory Node
+
+  appSonofe.factory('Nodo', function(){
+    return {
+        sayHello: function(result){
+            return result;
+        }
+    }
+  });
+ /////////////////////////////////////////////
+
+
+  appSonofe.factory('testFactory', function () {
+
+      var sayHello = {};
+
+      return {
+
+          sayHello: function(text){
+
+            return text;
+
+          }
+      }
+
+  });
+
+  function FirstCtrl($scope, testFactory) {
+
+      $scope.data = testFactory;
+
+  }
+
+  function SecondCtrl($scope, testFactory) {
+
+      $scope.data = testFactory;
+
+  }
+
+  function HelloCtrl($scope, testFactory) {
+
+      var node = "596";
+
+      $scope.foo = testFactory.sayHello(node);
+
+  }
+
+  /////////////////////////////////////////////
+
+
+
+
+
 
   //Upload Manager files
 
-  appSonofe.controller('UploadController', function ($scope, $fileUploader) {
+  appSonofe.controller('UploadController', function ($scope, $fileUploader, Nodo) {
+
       'use strict';
 
-      // create a uploader with options
       var uploader = $scope.uploader = $fileUploader.create({
-          scope: $scope,                          // to automatically update the html. Default: $rootScope
+          scope: $scope,
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
@@ -213,15 +190,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
           formData: [
               { key: 'value' }
           ]
-          /*,filters: [
-              function (item) {                    // first user filter
-                  console.info('filter1');
-                  return true;
-              }
-          ]*/
       });
 
-      // FAQ #1
+      // faq #1
       var item = {
           file: {
               name: 'test',
@@ -234,18 +205,20 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
       item.remove = function() {
           uploader.removeFromQueue(this);
       };
-      //uploader.queue.push(item);
-      //uploader.progress = 100;
 
+      //uploader.queue.push(item);
+      uploader.progress = 100;
 
       // ADDING FILTERS
 
       uploader.filters.push(function (item) { // second user filter
-          console.info('filter2');
+
+          console.info('Adding', item);
           return true;
+
       });
 
-      // REGISTER HANDLERS
+      // HANDLERS
 
       uploader.bind('afteraddingfile', function (event, item) {
           console.info('After adding a file', item);
@@ -269,14 +242,14 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
       uploader.bind('success', function (event, xhr, item, response) {
 
-          console.info('Success', xhr, item, response);
+          //get response(node)
 
-          console.warn("ATENCIO", item);
+        //$scope.node = response.response[0].node_id;
 
-          var node = response.response[0].node_id;
+        var node = response.response[0].node_id;
 
-          return node.data;
-          //  return response.data;
+        $scope.noode = Nodo.sayHello(node);
+
 	    });
 
       uploader.bind('cancel', function (event, xhr, item) {
@@ -304,7 +277,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
   // Metadata
 
-  var ModalDemoCtrl = function ($scope, $modal, $log) {
+  var ModalmetaCtrl = function ($scope, $modal, $log, thenode) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -372,6 +345,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
   }]);
 
+
+
   appSonofe.service('fileUpload', ['$http', function ($http) {
 
       this.uploadFileAndFieldsToUrl = function(file, file2, fields, uploadUrl){
@@ -421,47 +396,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'ngCookie
 
   }]);
 
-  /////////////////////////////////////
-
-  //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="thisalbum" -F title="thistitle" -F artist="thisartist" -F genre="thisgenre" -F year="thisyear" -F content_type="023" -X PUT
-
-  function MyCtrl($scope, $window) {
-
-      $scope.name = 'Superhero';
-
-      MyCtrl.prototype.$scope = $scope;
-  }
-
-  MyCtrl.prototype.setFile = function(element) {
-      var $scope = this.$scope;
-
-      $scope.$apply(function() {
-
-          $scope.theFile = element.files[0];
-
-      });
-  };
-
-//////////////////////////
-
-  appSonofe.controller('MetadataCtrl', ["AudioParser", function ($scope, AudioParser) {
-
-          var setFiles;
-
-          $scope.setFile = function(file){
-              AudioParser.getInfo(file).then(function(fileInfo){
-                  // do something here
-              });
-          };
-
-  }]);
-
   // Artist List
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
   		$scope.artist = data.response;
+
 
     });
   });
