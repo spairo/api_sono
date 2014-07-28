@@ -175,8 +175,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .success(function(data) {
-            window.location = "/#"
+            window.location = "/static/api_sono/#/start"
             alert("You will redirect soon");
+        }),
+        .error(function(data){
+            alert("Oops! Algo salio mal");
         })
       };
 
