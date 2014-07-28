@@ -168,6 +168,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       $scope.formlogin = {};
 
       $scope.processForm = function() {
+
         $http({
               method  : 'POST',
               url     : 'http://godster.mx/login',
@@ -177,7 +178,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         .success(function(data) {
             window.location = "/static/api_sono/#/start"
             alert("You will redirect soon");
-        }),
+        })
         .error(function(data){
             alert("Oops! Algo salio mal");
         })
@@ -464,7 +465,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
           })
-
           .success(function(){
               alert("Artista Creado exitosamente");
           })
