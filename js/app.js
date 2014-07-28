@@ -63,6 +63,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
                 url: '/type',
                 templateUrl: 'js/views/upload/uploader-type.html'
             })
+            .state('uploader.album', {
+                url: '/album',
+                templateUrl: 'js/views/upload/uploader-album.html'
+            })
             .state('uploader.files', {
                 url: '/files',
                 templateUrl: 'js/views/upload/uploader-files.html'
@@ -95,15 +99,48 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Form Register
 
-  appSonofe.controller('SignupCtrl', function($scope) {
+  appSonofe.controller('SignupCtrl', function($scope, $http) {
 
       // we will store all of our form data in this object
       $scope.formsignup = {};
 
       // function to process the form
+      //$scope.processForm = function() {
+        //  alert('awesome! Te has registrado');
+      //};
+
+
       $scope.processForm = function() {
-          alert('awesome! Te has registrado');
+      	$http({
+              method  : 'POST',
+              url     : 'http://godster.mx/usersp',
+              data    : $.param($scope.formsignup),  // pass in data as strings
+              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+          })
+        .success(function(data) {
+            console.log(data);
+            alert("entro");
+        })
       };
+
+
+
+
+
+  });
+
+
+  // Form Album
+
+  appSonofe.controller('albumCtrl', function($scope) {
+
+      // we will store all of our form data in this object
+      //$scope.formsignup = {};
+
+      // function to process the form
+      //$scope.processForm = function() {
+        //  alert('awesome! Te has registrado');
+      //};
 
   });
 
@@ -130,23 +167,31 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         }
     }
   });
+
  /////////////////////////////////////////////
 
+  /*
+  appSonofe.service('userService', function(){
+    this.users = ['John', 'James', 'Jake'];
+  });
+  */
 
   appSonofe.factory('testFactory', function () {
 
-      var sayHello = {}; 
+      var nodo;
 
       return {
 
-          sayHello: function(text){
+          sayHello: function(nodo){
 
-            return text;
+            return "Hi " + nodo + "!";
 
           }
       }
 
   });
+
+
 
   function FirstCtrl($scope, testFactory) {
 
@@ -162,7 +207,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   function HelloCtrl($scope, testFactory) {
 
-      var node = "596";
+      var node = "666";
 
       $scope.foo = testFactory.sayHello(node);
 
@@ -277,7 +322,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   // Metadata
 
-  var ModalmetaCtrl = function ($scope, $modal, $log, thenode) {
+  var ModalmetaCtrl = function ($scope, $modal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 

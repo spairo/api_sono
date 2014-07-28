@@ -4,34 +4,34 @@
 <div class="form-group">
     <div class="radio">
         <label>
-           <input type="radio" ng-model="formsignup.user_role" value="independiente" checked>
+           <input type="radio" ng-model="formsignup.user_role" value="2" checked>
            <span class="accounts_type">Artista Independiente</span>
         </label>
     </div>
     <div class="radio">
         <label>
-            <input type="radio" ng-model="formsignup.user_role" value="disquera">
+            <input type="radio" ng-model="formsignup.user_role" value="0">
             <span class="accounts_type">Disquera</span>
         </label>
     </div>
     <div class="radio">
         <label>
-            <input type="radio" ng-model="formsignup.user_role" value="ministerio">
+            <input type="radio" ng-model="formsignup.user_role" value="1">
             <span class="accounts_type">Ministerio</span>
         </label>
     </div>
 </div>
 
 <div class="description_accounts" ng-if="formsignup.user_role">
-  <div ng-show="formsignup.user_role == 'independiente'">
+  <div ng-show="formsignup.user_role == '2'">
     <h2>Artista Independiente<h2>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
   </div>
-  <div ng-show="formsignup.user_role == 'disquera'">
+  <div ng-show="formsignup.user_role == '0'">
     <h2>Disquera<h2>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
   </div>
-  <div ng-show="formsignup.user_role == 'ministerio'">
+  <div ng-show="formsignup.user_role == '1'">
     <h2>Ministerio<h2>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
   </div>

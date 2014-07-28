@@ -1,0 +1,45 @@
+<form class="" ng-controller="albumCtrl" name="albumform">
+
+  <h2 class="text-center">Crear Album</h2>
+  <div class="form-group" ng-class="{'has-error': albumform.Titulo.$invalid , 'has-success': albumform.Titulo.$valid}">
+    <label for="Titulo">Album</label>
+    <input type="text" class="form-control" ng-model="field1" placeholder="Nombre del Album" name="Titulo" required>
+  </div>
+
+  <div class="form-group" ng-class="{'has-error': albumform.Titulo.$invalid , 'has-success': albumform.Titulo.$valid}">
+    <label for="Artista">Artista</label>
+    <input type="text" class="form-control" ng-model="field1" placeholder="Artista" name="Artista" required>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group" ng-class="{'has-error': albumform.Titulo.$invalid , 'has-success': albumform.Titulo.$valid}">
+        <label for="Año">Año</label>
+        <input type="text" class="form-control" ng-model="field1" placeholder="Año" name="Año" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="cover">Album Cover</label>
+        <input type="file" file-model="myFile">
+        <p class="help-block"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="help-block" role="alert" ng-show="albumform.Titulo.$error.required || albumform.Artista.$error.required || albumform.Album.$error.required">
+    <span class="text-danger">Los Campos marcados son Obligatorios</span>
+  </div>
+
+  <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
+  <button ng-click="uploadForm()" class="btn" ng-disabled="albumform.$invalid" ng-class="{'btn-warning': albumform.$invalid , 'btn-success': albumform.$valid}">Guardar</button>
+</form>
+
+<div class="form-group row">
+  <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref="uploader.files"  class="btn btn-lg btn-block btn-info">
+        <span class="button-text">Siguiente</span>
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+  </div>
+</div>

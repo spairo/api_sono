@@ -1,6 +1,12 @@
 <div ng-controller="UploadController" ng-file-drop>
-  <h2>Seleccionar archivos</h2>
-  <input class="btn btn-default btn-lg well-sm" ng-file-select name="conference_file" filename="conference_file" type="file" />
+
+
+  <div class="row">
+    <div class="col-md-9 col-md-offset-2">
+      <h2>Seleccionar archivos</h2>
+      <input class="btn btn-default btn-lg well-sm" ng-file-select name="conference_file" filename="conference_file" type="file" />
+    </div>
+  </div>
 
   <!--<input type="file" multiple onchange="angular.element(this).scope().setFiles(this)"/>-->
 
@@ -9,7 +15,13 @@
   <table class="table">
       <thead>
           <tr>
-              <th width="50%">Nombre</th>
+              <th>File</th>
+              <th>Nombre</th>
+              <th>Artista</th>
+              <th>Album</th>
+              <th>cover</th>
+              <th>genero</th>
+              <th>año</th>
               <th ng-show="uploader.isHTML5">Tamaño</th>
               <th ng-show="uploader.isHTML5">Progreso</th>
               <th>Estatus</th>
@@ -19,6 +31,36 @@
       <tbody>
           <tr ng-repeat="item in uploader.queue">
               <td><strong>{{ item.file.name }}</strong></td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="field1" placeholder="Nombre" name="Nombre" required>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="field1" placeholder="Artista" name="Artista" required>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="field1" placeholder="Album" name="Album" required>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="field1" placeholder="Cover" name="Cover" required>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="field1" placeholder="Genero" name="Genero" required>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="field1" placeholder="año" name="año" required>
+                </div>
+              </td>
               <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
               <td ng-show="uploader.isHTML5">
                   <div class="progress" style="margin-bottom: 0;">
@@ -32,40 +74,20 @@
                   <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
               </td>
               <td nowrap>
-                  <button ctype="button" class="btn btn-default btn-xs" ng-click="openmeta()" ng-disabled="!uploader.getNotUploadedItems().length">
-                      <span class="glyphicon glyphicon-edit"></span> Metada
-                  </button>
                   <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
                       <span class="glyphicon glyphicon-upload"></span> Subir
                   </button>
-                  <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                  <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
                       <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
-                  </button>
+                  </button>-->
                   <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                      <span class="glyphicon glyphicon-trash"></span> Remover
+                      <span class="glyphicon glyphicon-trash"></span>
                   </button>
               </td>
           </tr>
       </tbody>
   </table>
 </div>
-
-<div ng-controller="FirstCtrl">
-
-  <input type="text" ng-model="data.noode">
-
-  <h1>{{data.noode}}</h1>
-
-</div>
-
-<div ng-controller="SecondCtrl">
-
-  <input type="text" ng-model="data.noode">
-
-  <h1>{{data.noode}}</h1>
-
-</div>
-
 <div class="form-group row well-lg">
   <div class="col-xs-6 col-xs-offset-3">
       <a ui-sref="uploader.metadata" class="btn btn-lg btn-block btn-info">
