@@ -114,6 +114,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             console.log(data);
             alert("awesome! Te has registrado");
         })
+        .error(function(data){
+            alert("Oops! Algo salio mal, intenta otra vez");
+            window.location = "/static/api_sono/#/form/interests"
+        })
       };
 
   });
