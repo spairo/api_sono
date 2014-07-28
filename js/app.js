@@ -113,7 +113,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       $scope.processForm = function() {
       	$http({
               method  : 'POST',
-              url     : 'http://godster.mx/usersp',
+              url     : 'http://godster.mx/users',
               data    : $.param($scope.formsignup),  // pass in data as strings
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
           })
