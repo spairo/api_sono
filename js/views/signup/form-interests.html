@@ -10,7 +10,7 @@
     </div>
     <div class="radio">
         <label>
-            <input type="radio" ng-model="formsignup.user_role" value="0">
+            <input type="radio" ng-model="formsignup.user_role" value="3">
             <span class="accounts_type">Disquera</span>
         </label>
     </div>
@@ -27,7 +27,7 @@
     <h2>Artista Independiente<h2>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
   </div>
-  <div ng-show="formsignup.user_role == '0'">
+  <div ng-show="formsignup.user_role == '3'">
     <h2>Disquera<h2>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
   </div>
@@ -39,7 +39,7 @@
 
 <div class="form-group row">
   <div class="col-xs-6 col-xs-offset-3">
-      <a ui-sref="form.profile" ng-disabled="!formsignup.user_role" class="btn btn-lg btn-block btn-info">
+      <a ui-sref="signup.profile" ng-disabled="!formsignup.user_role" class="btn btn-lg btn-block btn-info">
         <span class="button-text">Siguiente</span>
         <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>

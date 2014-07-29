@@ -22,27 +22,27 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
         //Register Form
 
-        .state('form', {
-            url: '/form',
-            templateUrl: 'js/views/form/form.html',
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'js/views/signup/form.html',
             controller: 'SignupCtrl'
         })
 
             // nested states
 
-            .state('form.profile', {
-                url: '/profile',
-                templateUrl: 'js/views/form/form-profile.html'
-            })
-
-            .state('form.interests', {
+            .state('signup.interests', {
                 url: '/interests',
-                templateUrl: 'js/views/form/form-interests.html'
+                templateUrl: 'js/views/signup/form-interests.html'
             })
 
-            .state('form.payment', {
-                url: '/payment',
-                templateUrl: 'js/views/form/form-payment.html'
+            .state('signup.profile', {
+                url: '/profile',
+                templateUrl: 'js/views/signup/form-profile.html'
+            })
+
+            .state('signup.join', {
+                url: '/join',
+                templateUrl: 'js/views/signup/form-join.html'
             })
 
         //Dashboard Module
@@ -88,7 +88,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             })
 
         //Pages
-
+        .state('Login', {
+            url: '/login',
+            templateUrl: 'js/views/pages/login.html'
+        })
         .state('about', {
             url: '/about',
             templateUrl: 'js/views/pages/about.html'
@@ -111,12 +114,21 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .success(function(data) {
-            console.log(data);
-            alert("awesome! Te has registrado");
+
+            var resp = data.response;
+
+            if(resp === "user created"){
+
+                $scope.result = true;
+
+            }else{
+
+                $scope.result = false;
+            }
+
         })
         .error(function(data){
             alert("Oops! Algo salio mal, intenta otra vez");
-            window.location = "/static/api_sono/#/form/interests"
         })
       };
 
@@ -148,18 +160,18 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 
-            $scope.items = items;
-            $scope.selected = {
-              item: $scope.items[0]
-            };
+              $scope.items = items;
+              $scope.selected = {
+                item: $scope.items[0]
+              };
 
-            $scope.ok = function () {
-              $modalInstance.close($scope.selected.item);
-            };
+              $scope.ok = function () {
+                $modalInstance.close($scope.selected.item);
+              };
 
-            $scope.cancel = function () {
-              $modalInstance.dismiss('cancel');
-            };
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
 
           };
       };
@@ -171,7 +183,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       $scope.formlogin = {};
 
-      $scope.processForm = function() {
+      $scope.processlogin = function() {
 
         $http({
               method  : 'POST',
@@ -180,8 +192,18 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .success(function(data) {
-            window.location = "/static/api_sono/#/start"
-            alert("You will redirect soon");
+
+            var resp = data.response;
+
+            if(resp === "Login Successfu"){
+
+                $scope.result = data.response;
+
+            }else{
+
+                $scope.result = data.response;
+            }
+
         })
         .error(function(data){
             alert("Oops! Algo salio mal");
@@ -559,7 +581,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           .success(function(){
               alert("Artista Creado exitosamente");
           })
-
           .error(function(){
             alert("Oops! algo salio mal");
           });
