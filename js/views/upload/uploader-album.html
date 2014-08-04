@@ -1,28 +1,44 @@
 <form class="" ng-controller="albumCtrl" name="albumform">
 
   <h2 class="text-center">Crear Album</h2>
-  <div class="form-group" ng-class="{'has-error': albumform.Titulo.$invalid , 'has-success': albumform.Titulo.$valid}">
-    <label for="Titulo">Album</label>
-    <input type="text" class="form-control" ng-model="field1" placeholder="Nombre del Album" name="Titulo" required>
+
+  <div class="form-group">
+    readonly
+    <input type="text" class="form-control" ng-model="formalbum.field5" value="602" name="nodo">
   </div>
 
-  <div class="form-group" ng-class="{'has-error': albumform.Titulo.$invalid , 'has-success': albumform.Titulo.$valid}">
-    <label for="Artista">Artista</label>
-    <input type="text" class="form-control" ng-model="field1" placeholder="Artista" name="Artista" required>
+  <div class="form-group" ng-class="{'has-error-sonofe': albumform.album.$invalid , 'has-sonofe': albumform.album.$valid}">
+    <div class="input-group">
+      <div class="input-group-addon">album</div>
+      <input class="form-control" type="text" ng-model="formalbum.field1" name="album" required>
+    </div>
+  </div>
+
+  <div class="form-group"  ng-class="{'has-error-sonofe': albumform.artista.$invalid , 'has-sonofe': albumform.artista.$valid}">
+    <div class="input-group">
+      <div class="input-group-addon">artista</div>
+      <input class="form-control" type="text" ng-model="formalbum.field2" name="artista" required>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group" ng-class="{'has-error': albumform.Titulo.$invalid , 'has-success': albumform.Titulo.$valid}">
-        <label for="Año">Año</label>
-        <input type="text" class="form-control" ng-model="field1" placeholder="Año" name="Año" required>
+
+      <div class="form-group" ng-class="{'has-error-sonofe': albumform.year.$invalid , 'has-sonofe': albumform.year.$valid}">
+        <div class="input-group">
+          <div class="input-group-addon">Año</div>
+          <input type="text" class="form-control" ng-model="formalbum.field3" name="year" required>
+        </div>
       </div>
+
     </div>
     <div class="col-md-6">
       <div class="form-group">
+
         <label for="cover">Album Cover</label>
         <input type="file" file-model="myFile">
         <p class="help-block"></p>
+
       </div>
     </div>
   </div>
@@ -32,7 +48,11 @@
   </div>
 
   <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
-  <button ng-click="uploadForm()" class="btn" ng-disabled="albumform.$invalid" ng-class="{'btn-warning': albumform.$invalid , 'btn-success': albumform.$valid}">Guardar</button>
+  <button ng-click="albumForm()" class="btn" ng-disabled="albumform.$invalid" ng-class="{'btn-warning': albumform.$invalid , 'btn-success': albumform.$valid}">Guardar</button>
+
+  <pre>
+    {{formalbum}}
+  </pre>
 </form>
 
 <div class="form-group row">

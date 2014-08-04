@@ -216,13 +216,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   appSonofe.controller('albumCtrl', function($scope) {
 
-      // we will store all of our form data in this object
-      //$scope.formsignup = {};
+      $scope.formalbum = {};
 
-      // function to process the form
-      //$scope.processForm = function() {
+      $scope.albumForm = function() {
         //  alert('awesome! Te has registrado');
-      //};
+      };
 
   });
 
