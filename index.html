@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" ng-app="appSonofe">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,7 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body ng-app="appSonofe">
+	<body>
 
 		<div class="header">
 			<div class="container">
@@ -31,15 +31,11 @@
 						<script type="text/ng-template" id="myModalLogin.html">
 								<div class="modal-content">
 									<div class="modal-body modal-register">
-										<button type="button" class="close" ng-click="cancel()">&times;</button>
+										<button type="button" class="close" ng-click="cancel()" >&times;</button>
 
 										<form class="form-login" ng-controller="LoginCtrl" name="form_login">
 												<label class="title" name="">Log In</label>
 												<img class="profile-img" src="img/02.Astronauta.png" alt="icon">
-
-												<div class="alert alert-danger" role="alert">
-													<b>{{result}}</b>
-												</div>
 
 												<div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
 													<input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required autofocus>
@@ -53,9 +49,10 @@
 														<input type="checkbox" value="remember-me">
 														Remember me
 												</label>
-												<label>
-													<code>{{ formlogin }}</code>
-												</label>
+												<br />
+												<div class="form-group">
+													<pre>{{ formlogin }}</pre>
+												</div>
 
 												<button ng-click="processlogin()" class="btn-regis" ng-disabled="form_login.$invalid">Log in</button>
 										</form>
