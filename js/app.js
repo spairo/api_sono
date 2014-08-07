@@ -100,6 +100,20 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   });
 
 
+  //Factory Node, Role
+
+  appSonofe.factory('MyService',function(){
+
+    return { nodo:"", role: ""};
+
+  });
+
+  appSonofe.controller('Ctrl22',function($scope, MyService){
+
+    $scope.MyService = MyService;
+
+  });
+
   //Form Register
 
   appSonofe.controller('SignupCtrl', function($scope, $http) {
@@ -179,7 +193,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Form Login
 
-  appSonofe.controller('LoginCtrl', function($scope, $http) {
+  appSonofe.controller('LoginCtrl', function($scope, $http, MyService) {
 
       $scope.formlogin = {};
 
@@ -193,6 +207,22 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         })
         .success(function(data) {
 
+            var user_node = data.user_node;
+            var user_role = data.user_role;
+
+            $scope.MyService = MyService;
+
+              MyService.nodo = user_node;
+              MyService.role = user_role;
+
+
+            //$scope.node = response.response[0].node_id;
+
+            //var node = response.response[0].node_id;
+
+            //$scope.noode = Nodo.sayHello(node);
+
+            /*
             var resp = data.response;
 
             if(resp === "Login Successfu"){
@@ -202,27 +232,106 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             }else{
 
                 $scope.result = data.response;
-            }
+            }*/
 
         })
         .error(function(data){
+
             alert("Oops! Algo salio mal");
+
         })
       };
-
   });
 
   // Form Album
 
-  appSonofe.controller('albumCtrl', function($scope) {
+  appSonofe.directive('fileModel', ['$parse', function ($parse) {
+
+      return {
+
+          restrict: 'A',
+
+          link: function(scope, element, attrs) {
+
+              var model = $parse(attrs.fileModel);
+
+              var modelSetter = model.assign;
+
+              element.bind('change', function(){
+
+                  scope.$apply(function(){
+
+                      modelSetter(scope, element[0].files[0]);
+
+                  });
+              });
+          }
+      };
+
+  }]);
+
+  appSonofe.service('fileUpload', ['$http', function ($http) {
+
+      this.uploadFileAndFieldsToUrl = function(file, fields, uploadUrl){
+
+          var fd = new FormData();
+
+          fd.append('cover', file);
+
+          for(var i = 0; i < fields.length; i++){
+
+              fd.append(fields[i].name, fields[i].data)
+
+          }
+
+          $http.post(uploadUrl, fd, {
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined}
+          })
+
+          .success(function(){
+              alert("Album Creado exitosamente");
+          })
+          .error(function(){
+            alert("Oops! algo salio mal");
+          });
+      }
+
+  }]);
+
+  appSonofe.controller('albumCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+
 
       $scope.formalbum = {};
 
-      $scope.albumForm = function() {
-        //  alert('awesome! Te has registrado');
+      $scope.albumForm = function(){
+
+          var file = $scope.myFile;
+
+          console.log('file is ' + JSON.stringify(file));
+
+          var field1 = $scope.field1;
+
+          console.info('campo 1 is ' + $scope.field1);
+
+          var field2 = $scope.field2;
+          console.info('campo 2 is ' + $scope.field2);
+
+          var field3 = $scope.field3;
+          console.info('campo 3 is ' + $scope.field3);
+
+          var uploadUrl = "http://godster.mx/artist";
+
+          var fields = [ {"name": "artist_name", "data": $scope.field1},
+                         {"name": "company", "data": $scope.field2},
+                         {"name": "genre", "data": $scope.field3} ];
+
+          fileUpload.uploadFileAndFieldsToUrl(file, fields, uploadUrl);
       };
 
-  });
+  }]);
+
+
 
   //Form Uploader
 
@@ -237,68 +346,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   });
-
-  //Factory Node
-
-  appSonofe.factory('Nodo', function(){
-    return {
-        sayHello: function(result){
-            return result;
-        }
-    }
-  });
-
- /////////////////////////////////////////////
-
-  /*
-  appSonofe.service('userService', function(){
-    this.users = ['John', 'James', 'Jake'];
-  });
-  */
-
-  appSonofe.factory('testFactory', function () {
-
-      var nodo;
-
-      return {
-
-          sayHello: function(nodo){
-
-            return "Hi " + nodo + "!";
-
-          }
-      }
-
-  });
-
-
-
-  function FirstCtrl($scope, testFactory) {
-
-      $scope.data = testFactory;
-
-  }
-
-  function SecondCtrl($scope, testFactory) {
-
-      $scope.data = testFactory;
-
-  }
-
-  function HelloCtrl($scope, testFactory) {
-
-      var node = "666";
-
-      $scope.foo = testFactory.sayHello(node);
-
-  }
-
-  /////////////////////////////////////////////
-
-
-
-
-
 
   //Upload Manager files
 
@@ -367,13 +414,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
 
-          //get response(node)
+        //get response(node)
 
         //$scope.node = response.response[0].node_id;
 
-        var node = response.response[0].node_id;
+        //var node = response.response[0].node_id;
 
-        $scope.noode = Nodo.sayHello(node);
+        //$scope.noode = Nodo.sayHello(node);
 
 	    });
 
@@ -482,7 +529,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           for(var i = 0; i < fields.length; i++){
 
               fd.append(fields[i].name, fields[i].data)
-
           }
 
           $http.put(uploadUrl, fd, {
@@ -594,6 +640,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           var file2 = $scope.myFile2;
 
           console.log('file is ' + JSON.stringify(file));
+
+          var foo = $scope.myFile2;
+
+          console.log('file is ' + foo);
 
           var uploadUrl = "http://godster.mx/artist";
 
