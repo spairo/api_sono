@@ -54,7 +54,13 @@
 
 
 <div ng-controller="fruitsController">
-{{MyArtists.artist}}
+  <h1>{{foo}}</h1>
+  List artists:
+  <ul>
+    <li ng-repeat="artists as artist">
+        {{artists.name}}
+    </li>
+  </ul>
 </div>
 
 

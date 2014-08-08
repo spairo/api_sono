@@ -109,32 +109,52 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
-
+/*
   appSonofe.factory('MyArtists', function($http){
 
 
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
-      artist = data.response;
+      var artists = data.response;
     });
 
-    return { artist:"" };
+    return { getArtistsAsync: "artists" };
 
-  });
+  });*/
 
 
   /*
-  appSonofe.factory('MyArtists', function($http) {
+  appSonofe.factory('MyArtists', function($http, $scope) {
     return {
       getArtistsAsync: function() {
-
         $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
-            $scope.artist = data.response;
+            var artists = data.response;
         });
       }
     };
+  });*/
+
+  appSonofe.factory('MyArtists', function($http) {
+
+    var obj = {content:null};
+
+    $http.get('http://godster.mx/artist').success(function(data) {
+
+        console.warn("Entro el get a artist");
+        obj.content = data.response;
+    });
+
+    return obj;
+
   });
-*/
+
+
+
   appSonofe.controller('fruitsController', function($scope, MyArtists) {
+
+    $scope.foo = "Im cucumber";
+    console.log(foo);
+    //$scope.artist = MyArtists.obj();
+    //console.warn(MyArtists.obj);
 
   });
 
