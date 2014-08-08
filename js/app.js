@@ -156,6 +156,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var modalInstance = $modal.open({
             templateUrl: 'myModalLogin.html',
+            controller: ModalInstanceCtrl,
             size: size,
             backdrop: 'static',
             resolve: {
@@ -164,15 +165,21 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           });
       };
 
-      $scope.cancel = function () {
-          $modalInstance.dismiss('cancel');
-      };
-
   };
+
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    };
 
   //Form Login
 
   appSonofe.controller('LoginCtrl', function($scope, $http, MyService) {
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
 
       $scope.formlogin = {};
 
@@ -214,7 +221,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             }*/
 
         })
-        .error(function(data){
+        .error(function(data, status){
 
             alert("Oops! Algo salio mal");
 
@@ -249,27 +256,27 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  appSonofe.service('fileUpload', ['$http', function ($http) {
+  appSonofe.service('albumUpload', ['$http', function ($http) {
 
-      this.uploadFileAndFieldsToUrl = function(file, fields, uploadUrl){
+      this.uploadFileAndFieldsToUrl = function(file, fields, albumUrl){
 
           var fd = new FormData();
 
           fd.append('cover', file);
 
           for(var i = 0; i < fields.length; i++){
-
               fd.append(fields[i].name, fields[i].data)
-
           }
 
-          $http.post(uploadUrl, fd, {
+          $http.post(albumUrl, fd, {
               transformRequest: angular.identity,
-              headers: {'Content-Type': undefined}
+              headers: {'Content-Type': undefined }
           })
+          .success(function(response, status){
 
-          .success(function(){
               alert("Album Creado exitosamente");
+
+              console.info(response);
           })
           .error(function(){
             alert("Oops! algo salio mal");
@@ -278,29 +285,28 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  appSonofe.controller('albumCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+  // year,artist,name,cover, {company}
 
-
+  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', function($scope, albumUpload, MyService){
 
       $scope.albumForm = function(){
 
-          alert("Lanzado function para albums");
+          var albumUrl = "http://godster.mx/album";
 
           var file = $scope.myFile;
 
-          console.log('file is ' + JSON.stringify(file));
+          var node = MyService.nodo;
 
-          var uploadUrl = "http://godster.mx/albums";
+          var fields = [ {"name": "name", "data": $scope.formalbum.field1},
+                         {"name": "artist", "data": $scope.formalbum.field2},
+                         {"name": "year", "data": $scope.formalbum.field3},
+                         {"name": "genere", "data": $scope.formalbum.field4},
+                         {"name": "company", "data": node}, ];
 
-          var fields = [ {"name": "s", "data": $scope.field1},
-                         {"name": "ss", "data": $scope.field2},
-                         {"name": "sss", "data": $scope.field3} ];
-
-          fileUpload.uploadFileAndFieldsToUrl(file, fields, uploadUrl);
+          albumUpload.uploadFileAndFieldsToUrl(file, fields, albumUrl);
       };
 
   }]);
-
 
 
   //Form Uploader
