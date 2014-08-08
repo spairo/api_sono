@@ -11,7 +11,7 @@
     <div class="input-group">
       <div class="input-group-addon">artista</div>
         <select class="form-control" ng-model="formalbum.field2" name="artista" required>
-          <option ng-repeat="artists in artist" value="{{artists.node_id}}"> {{artists.name}} </option>
+          <option ng-repeat="artist in artists.content" value="{{artist.node_id}}"> {{artist.name}} </option>
         </select>
     </div>
   </div>
@@ -29,7 +29,13 @@
       <div class="form-group" ng-class="{'has-error-sonofe': albumform.genere.$invalid , 'has-sonofe': albumform.genere.$valid}">
         <div class="input-group">
           <div class="input-group-addon">Genero</div>
-          <input type="text" class="form-control" ng-model="formalbum.field4" name="genere" required>
+          <select class="form-control" ng-model="formalbum.field4" name="genere" required>
+            <option>Rock</option>
+            <option>Metal</option>
+            <option>Pop</option>
+            <option>Biblico</option>
+            <option>Prueba</option>
+          </select>
         </div>
       </div>
     </div>
@@ -51,42 +57,3 @@
     {{formalbum}}
   </pre>
 </form>
-
-
-<div ng-controller="fruitsController">
-  <h1>{{foo}}</h1>
-  List artists:
-  <ul>
-    <li ng-repeat="artists as artist">
-        {{artists.name}}
-    </li>
-  </ul>
-</div>
-
-
-
-
-
-
-
-<!--
-<div class="container">
-  <h1>Soy About, soon</h1>
-  <br />
-
-  <div ng-controller="HelloCtrl" >
-    <h1>{{foo}}</h1>
-  </div>
-  <hr>
-  <div ng-controller="FirstCtrl">
-      <input type="text" ng-model="data.sayHello">
-       <h1>{{data.sayHello}}</h1>
-
-  </div>
-  <hr>
-  <div ng-controller="SecondCtrl">
-      <input type="text" ng-model="data.sayHello">
-       <h1>{{data.sayHello}}</h1>
-
-  </div>
-</div>-->
