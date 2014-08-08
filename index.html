@@ -24,7 +24,7 @@
 	<body ng-app="appSonofe">
 		<div class="header">
 			<div class="container">
-				<a ui-sref-active="active" ui-sref="form.interests" class="buttons">Sign Up</a>
+				<a ui-sref-active="active" ui-sref="signup.interests" class="buttons">Sign Up</a>
 
 				<div ng-controller="ModalLoginCtrl">
 						<script type="text/ng-template" id="myModalLogin.html">
@@ -35,6 +35,11 @@
 										<form class="form-login" ng-controller="LoginCtrl" name="form_login">
 												<label class="title" name="">Log In</label>
 												<img class="profile-img" src="img/02.Astronauta.png" alt="icon">
+
+												<div class="alert alert-danger" role="alert">
+													<b>{{result}}</b>
+												</div>
+
 												<div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
 													<input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required autofocus>
 													<p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
@@ -50,7 +55,7 @@
 												<label>
 													<code>{{ formlogin }}</code>
 												</label>
-												<button ng-click="processForm()" class="btn-regis" ng-disabled="form_login.$invalid">Log in</button>
+												<button ng-click="processlogin()" class="btn-regis" ng-disabled="form_login.$invalid">Log in</button>
 										</form>
 
 									</div>
@@ -80,7 +85,7 @@
 		</div>
 
 		<!-- Core Javascript -->
-		<!--<script src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>-->
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js" type="text/javascript"></script>
 		<script src="js/vendor/ui-bootstrap.js"></script>
 		<script src="js/vendor/angular-file-upload.js"></script>

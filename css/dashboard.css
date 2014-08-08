@@ -106,18 +106,26 @@ html, body {
     }
 
 
+
+/* Heading */
+
+h1{
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: lighter;
+}
+
 /* form Register */
 
 #form-container{
   background:#F1F2F9;
-  border-radius: 8px;
+  overflow: hidden;
+  min-height:300px;
 }
   #form-container .page-header{
     background: #F1F2F9;
     margin:0;
     padding:30px;
-    border-top-left-radius:5px;
-    border-top-right-radius:5px;
   }
     #form-container .page-header h1{
       text-transform: uppercase;
@@ -153,7 +161,8 @@ html, body {
 
 /* ANIMATION STYLINGS */
 
-#signup-form            { position:relative; min-height:300px; overflow:hidden; padding:30px; }
+#signup-form{ position:relative; min-height:100px; overflow:hidden; padding:30px;  }
+
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
 #form-views.ng-enter,

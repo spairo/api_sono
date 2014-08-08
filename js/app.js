@@ -23,27 +23,27 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
         //Register Form
 
-        .state('form', {
-            url: '/form',
-            templateUrl: 'js/views/form/form.html',
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'js/views/signup/form.html',
             controller: 'SignupCtrl'
         })
 
             // nested states
 
-            .state('form.profile', {
-                url: '/profile',
-                templateUrl: 'js/views/form/form-profile.html'
-            })
-
-            .state('form.interests', {
+            .state('signup.interests', {
                 url: '/interests',
-                templateUrl: 'js/views/form/form-interests.html'
+                templateUrl: 'js/views/signup/form-interests.html'
             })
 
-            .state('form.payment', {
-                url: '/payment',
-                templateUrl: 'js/views/form/form-payment.html'
+            .state('signup.profile', {
+                url: '/profile',
+                templateUrl: 'js/views/signup/form-profile.html'
+            })
+
+            .state('signup.join', {
+                url: '/join',
+                templateUrl: 'js/views/signup/form-join.html'
             })
 
         //Dashboard Module
@@ -63,6 +63,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             .state('uploader.type', {
                 url: '/type',
                 templateUrl: 'js/views/upload/uploader-type.html'
+            })
+            .state('uploader.album', {
+                url: '/album',
+                templateUrl: 'js/views/upload/uploader-album.html'
             })
             .state('uploader.files', {
                 url: '/files',
@@ -85,7 +89,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             })
 
         //Pages
-
+        .state('Login', {
+            url: '/login',
+            templateUrl: 'js/views/pages/login.html'
+        })
         .state('about', {
             url: '/about',
             templateUrl: 'js/views/pages/about.html'
@@ -95,14 +102,124 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Form Register
 
-  appSonofe.controller('SignupCtrl', function($scope) {
+  appSonofe.controller('SignupCtrl', function($scope, $http) {
 
-      // we will store all of our form data in this object
       $scope.formsignup = {};
 
-      // function to process the form
       $scope.processForm = function() {
-          alert('awesome! Te has registrado');
+      	$http({
+              method  : 'POST',
+              url     : 'http://godster.mx/users',
+              data    : $.param($scope.formsignup),  // pass in data as strings
+              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .success(function(data) {
+
+            var resp = data.response;
+
+            if(resp === "user created"){
+
+                $scope.result = true;
+
+            }else{
+
+                $scope.result = false;
+            }
+
+        })
+        .error(function(data){
+            alert("Oops! Algo salio mal, intenta otra vez");
+        })
+      };
+
+  });
+
+  // Login Modal
+
+  var ModalLoginCtrl = function ($scope, $modal, $log) {
+
+      $scope.openlogin = function (size) {
+
+          var modalInstance = $modal.open({
+            templateUrl: 'myModalLogin.html',
+            controller: ModalInstanceCtrl,
+            size: size,
+            backdrop: 'static',
+            resolve: {
+              items: function () {
+                return $scope.items;
+              }
+            }
+          });
+
+          modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+
+          var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+
+              $scope.items = items;
+              $scope.selected = {
+                item: $scope.items[0]
+              };
+
+              $scope.ok = function () {
+                $modalInstance.close($scope.selected.item);
+              };
+
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
+
+          };
+      };
+  };
+
+  //Form Login
+
+  appSonofe.controller('LoginCtrl', function($scope, $http) {
+
+      $scope.formlogin = {};
+
+      $scope.processlogin = function() {
+
+        $http({
+              method  : 'POST',
+              url     : 'http://godster.mx/login',
+              data    : $.param($scope.formlogin),
+              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .success(function(data) {
+
+            var resp = data.response;
+
+            if(resp === "Login Successfu"){
+
+                $scope.result = data.response;
+
+            }else{
+
+                $scope.result = data.response;
+            }
+
+        })
+        .error(function(data){
+            alert("Oops! Algo salio mal");
+        })
+      };
+
+  });
+
+  // Form Album
+
+  appSonofe.controller('albumCtrl', function($scope) {
+
+      $scope.formalbum = {};
+
+      $scope.albumForm = function() {
+        //  alert('awesome! Te has registrado');
       };
 
   });
@@ -130,23 +247,29 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         }
     }
   });
+
  /////////////////////////////////////////////
 
+  /*
+  appSonofe.service('userService', function(){
+    this.users = ['John', 'James', 'Jake'];
+  });
+  */
 
   appSonofe.factory('testFactory', function () {
 
-      var sayHello = {};
-
       return {
 
-          sayHello: function(text){
+          sayHello: function(nodo){
 
-            return text;
+            return "Hi " + nodo + "!";
 
           }
       }
 
   });
+
+
 
   function FirstCtrl($scope, testFactory) {
 
@@ -162,7 +285,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   function HelloCtrl($scope, testFactory) {
 
-      var node = "596";
+      var node = "666";
 
       $scope.foo = testFactory.sayHello(node);
 
@@ -277,7 +400,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   // Metadata
 
-  var ModalmetaCtrl = function ($scope, $modal, $log, thenode) {
+  var ModalmetaCtrl = function ($scope, $modal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -345,8 +468,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-
-
   appSonofe.service('fileUpload', ['$http', function ($http) {
 
       this.uploadFileAndFieldsToUrl = function(file, file2, fields, uploadUrl){
@@ -366,7 +487,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
           })
-
           .success(function(){
               alert("Artista Creado exitosamente");
           })
@@ -402,7 +522,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
   		$scope.artist = data.response;
-
 
     });
   });
@@ -448,7 +567,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               fd.append(fields[i].name, fields[i].data)
 
           }
-
           $http.post(uploadUrl, fd, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
@@ -457,7 +575,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           .success(function(){
               alert("Artista Creado exitosamente");
           })
-
           .error(function(){
             alert("Oops! algo salio mal");
           });
@@ -484,122 +601,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
-
-  // Login Modal
-
-  var ModalLoginCtrl = function ($scope, $modal, $log) {
-
-      $scope.openlogin = function (size) {
-
-          var modalInstance = $modal.open({
-            templateUrl: 'myModalLogin.html',
-            controller: ModalInstanceCtrl,
-            size: size,
-            backdrop: 'static',
-            resolve: {
-              items: function () {
-                return $scope.items;
-              }
-            }
-          });
-
-          modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-          }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-          });
-
-          var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
-
-            $scope.items = items;
-            $scope.selected = {
-              item: $scope.items[0]
-            };
-
-            $scope.ok = function () {
-              $modalInstance.close($scope.selected.item);
-            };
-
-            $scope.cancel = function () {
-              $modalInstance.dismiss('cancel');
-            };
-
-          };
-      };
-  };
-
-  //Login Post
-
-  appSonofe.controller('LoginCtrl', function($scope, $http, $log){
-
-    $scope.formlogin = {};
-
-    $scope.processForm = function() {
-
-        $http({
-              method  : 'POST',
-              url     : 'http://godster.mx/login',
-              data    : $scope.formlogin,
-              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-
-        }).success(function(data) {
-            console.log(data);
-            $log.info('Log In: ' + new Date());
-
-
-        });
-
-    };
-
-  });
-
-  //Register Modal
-
-  var ModalSigninCtrl = function ($scope, $modal, $log) {
-
-      $scope.opensignup = function (size) {
-
-          var modalInstance = $modal.open({
-            templateUrl: 'myModalSignin.html',
-            size: size,
-            backdrop: 'static',
-            resolve: {
-              items: function () {
-                return $scope.items;
-              }
-            }
-          });
-
-      };
-  };
-
-
-  // Register
-/*
-  appSonofe.controller('SignupCtrl', function($scope, $http, $log){
-
-    $scope.formsignup = {};
-
-    $scope.signup = function() {
-
-
-        $http({
-              method  : 'POST',
-              url     : 'http://godster.mx/users',
-              data    : $.param($scope.formData),
-              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-
-        }).success(function(data) {
-
-            console.log(data);
-            $log.info('Sign Up: ' + new Date());
-
-        });
-
-    };
-
-  });*/
-
 
   //Tools
 
