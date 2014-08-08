@@ -11,8 +11,30 @@
     <div class="col-md-3"></div>
   </div>
 </div>
+
+<hr>
+
+<div ng-controller="DemoCtrl">
+
+
+  <select ng-model="selectedTestAccount.node_id" ng-options="item.node_id as item.name for item in salida">
+      <option ng-value="node_id">Select Account</option>
+  </select>
+
+
+
+  {{selectedTestAccount.node_id}}
+
+</div>
+
+<hr>
+
 <div ng-controller="ArtistlistCtrl">
-  <ul ng-repeat="artists in artist">
-    <li>{{artists.node_id}} - {{artists.name}}</li>
-  </ul>
+  <select ng-model="woo">
+    <option ng-repeat="artists in artist" value="{{artists.node_id}}"> {{artists.name}} </option>
+  </select>
+
+  <pre>
+    {{woo}}
+  </pre>
 </div>

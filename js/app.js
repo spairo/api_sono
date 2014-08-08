@@ -434,6 +434,24 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     });
   });
 
+
+  appSonofe.controller('DemoCtrl', function ($scope, $http) {
+
+    $scope.selectedTestAccount = null;
+
+    $scope.testAccounts = [];
+
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+        $scope.salida = data.response;
+    });
+
+  });
+
+
+
+
+
+
   //Create Artist
 
   appSonofe.directive('fileModel', ['$parse', function ($parse) {
