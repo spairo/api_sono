@@ -54,7 +54,8 @@
 
 
 <div ng-controller="fruitsController">
-  {{fruits}}
+  {{response}}
+  <option ng-repeat="response in artist" value="{{response.node_id}}"> {{response.name}} </option>
 </div>
 
 

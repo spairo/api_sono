@@ -124,16 +124,19 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   appSonofe.factory('MyArtists', function($http) {
     return {
-      getArtistsAsync: function(callback) {
-        $http.get('http://godster.mx/artist').success(callback);
+      getArtistsAsync: function() {
+        alert("enviando");
+        $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+            $scope.artist = data.response;
+        });
       }
     };
   });
 
   appSonofe.controller('fruitsController', function($scope, MyArtists) {
-    MyArtists.getArtistsAsync(function(data) {
+    MyArtists.getArtistsAsync(function() {
       console.log('fruitsController async returned value');
-      $scope.fruits = data.response;
+      $scope.response = artist.response;
     });
   });
 
