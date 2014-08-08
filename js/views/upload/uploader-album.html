@@ -1,48 +1,80 @@
-<form class="" ng-controller="albumCtrls" name="albumform">
+<form class="" ng-controller="AlbumCtrl" name="albumform">
   <h2 class="text-center">Crear Album</h2>
-
   <div class="form-group" ng-class="{'has-error-sonofe': albumform.album.$invalid , 'has-sonofe': albumform.album.$valid}">
     <div class="input-group">
       <div class="input-group-addon">album</div>
       <input class="form-control" type="text" ng-model="formalbum.field1" name="album" required>
     </div>
   </div>
-
   <div class="form-group"  ng-class="{'has-error-sonofe': albumform.artista.$invalid , 'has-sonofe': albumform.artista.$valid}">
     <div class="input-group">
       <div class="input-group-addon">artista</div>
-      <input class="form-control" type="text" ng-model="formalbum.field2" name="artista" required>
+        <select class="form-control" ng-model="formalbum.field2" name="artista" required>
+          <option ng-repeat="artist in artists.content" value="{{artist.node_id}}"> {{artist.name}} </option>
+        </select>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-6">
-
       <div class="form-group" ng-class="{'has-error-sonofe': albumform.year.$invalid , 'has-sonofe': albumform.year.$valid}">
         <div class="input-group">
           <div class="input-group-addon">Año</div>
-          <input type="text" class="form-control" ng-model="formalbum.field3" name="year" required>
+          <select class="form-control" ng-model="formalbum.field3" name="year" required>
+            <option>1970</option>
+            <option>1980</option>
+            <option>1990</option>
+            <option>1991</option>
+            <option>1992</option>
+            <option>1993</option>
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>1997</option>
+            <option>1999</option>
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+          </select>
         </div>
       </div>
-
     </div>
     <div class="col-md-6">
-      <div class="form-group">
-
-        <label for="cover">Album Cover</label>
-        <input type="file" file-model="formalbum.myFile">
-        <p class="help-block"></p>
+      <div class="form-group" ng-class="{'has-error-sonofe': albumform.genere.$invalid , 'has-sonofe': albumform.genere.$valid}">
+        <div class="input-group">
+          <div class="input-group-addon">Genero</div>
+          <select class="form-control" ng-model="formalbum.field4" name="genere" required>
+            <option>Rock</option>
+            <option>Metal</option>
+            <option>Pop</option>
+            <option>Biblico</option>
+            <option>Prueba</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-
+  <div class="form-group">
+    <label for="cover">Album Cover</label>
+    <input type="file" file-model="myFile">
+    <p class="help-block"></p>
+  </div>
   <div class="help-block" role="alert" ng-show="albumform.album.$error.required || albumform.artista.$error.required || albumform.year.$error.required">
     <span class="text-danger">Los Campos marcados son Obligatorios</span>
   </div>
-
   <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
   <button ng-click="albumForm()" class="btn" ng-disabled="albumform.$invalid" ng-class="{'btn-warning': albumform.$invalid , 'btn-success': albumform.$valid}">Guardar</button>
-
   <pre>
     {{formalbum}}
   </pre>

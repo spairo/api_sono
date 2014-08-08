@@ -113,7 +113,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     var obj = { content:null };
 
-    $http.get('http://godster.mx/artist').success(function(data) {
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data) {
 
         console.info("Trigger for MyArtist's Factory");
         obj.content = data.response;
@@ -124,15 +124,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   });
 
 
-  /*
-  Test controllers
 
+
+  /*
   appSonofe.controller('fruitsController', function($scope, MyServiceArtistasync) {
     $scope.foo = MyServiceArtistasync;
-  });
-
-  appSonofe.controller('Ctrl22',function($scope, MyService){
-
   });
   */
 
