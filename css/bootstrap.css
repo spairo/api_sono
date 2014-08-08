@@ -1889,6 +1889,7 @@ select[multiple].input-lg {
   letter-spacing: 4px;
   background-color: #3A66FB;
   border-color: #3A66FB;
+  min-width: 120px;
 }
 .has-sonofe .form-control-feedback {
   color: #3c763d;
@@ -1918,9 +1919,10 @@ select[multiple].input-lg {
   letter-spacing: 4px;
   background-color: #f2dede;
   border-color: #a94442;
+  min-width: 120px;
 }
 
-/**/
+/* ////// */
 
 .has-warning .help-block,
 .has-warning .control-label,

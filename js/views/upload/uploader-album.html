@@ -1,11 +1,5 @@
-<form class="" ng-controller="albumCtrl" name="albumform">
-
+<form class="" ng-controller="albumCtrls" name="albumform">
   <h2 class="text-center">Crear Album</h2>
-
-  <div class="form-group">
-    readonly
-    <input type="text" class="form-control" ng-model="formalbum.field5" value="602" name="nodo">
-  </div>
 
   <div class="form-group" ng-class="{'has-error-sonofe': albumform.album.$invalid , 'has-sonofe': albumform.album.$valid}">
     <div class="input-group">
@@ -36,14 +30,13 @@
       <div class="form-group">
 
         <label for="cover">Album Cover</label>
-        <input type="file" file-model="myFile">
+        <input type="file" file-model="formalbum.myFile">
         <p class="help-block"></p>
-
       </div>
     </div>
   </div>
 
-  <div class="help-block" role="alert" ng-show="albumform.Titulo.$error.required || albumform.Artista.$error.required || albumform.Album.$error.required">
+  <div class="help-block" role="alert" ng-show="albumform.album.$error.required || albumform.artista.$error.required || albumform.year.$error.required">
     <span class="text-danger">Los Campos marcados son Obligatorios</span>
   </div>
 

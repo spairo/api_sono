@@ -100,6 +100,51 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
+
+  //Factories
+
+  appSonofe.factory('MyService',function(){
+
+    return { nodo:"", role: ""};
+
+  });
+
+
+  appSonofe.factory('MyArtists', function($http){
+
+
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+      artist = data.response;
+    });
+
+    return { artist:"" };
+
+  });
+
+
+  /*
+  appSonofe.factory('MyArtists', function($http) {
+    return {
+      getArtistsAsync: function() {
+
+        $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+            $scope.artist = data.response;
+        });
+      }
+    };
+  });
+*/
+  appSonofe.controller('fruitsController', function($scope, MyArtists) {
+
+  });
+
+
+  appSonofe.controller('Ctrl22',function($scope, MyService){
+
+
+
+  });
+
   //Form Register
 
   appSonofe.controller('SignupCtrl', function($scope, $http) {
@@ -113,7 +158,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               data    : $.param($scope.formsignup),  // pass in data as strings
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
-        .success(function(data) {
+        .success(function(data, status) {
 
             var resp = data.response;
 
@@ -146,40 +191,26 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             size: size,
             backdrop: 'static',
             resolve: {
-              items: function () {
-                return $scope.items;
-              }
+
             }
           });
-
-          modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-          }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-          });
-
-          var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
-
-              $scope.items = items;
-              $scope.selected = {
-                item: $scope.items[0]
-              };
-
-              $scope.ok = function () {
-                $modalInstance.close($scope.selected.item);
-              };
-
-              $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-              };
-
-          };
       };
+
   };
+
+    var ModalInstanceCtrl = function ($scope, $modalInstance) {
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    };
 
   //Form Login
 
-  appSonofe.controller('LoginCtrl', function($scope, $http) {
+  appSonofe.controller('LoginCtrl', function($scope, $http, MyService) {
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
 
       $scope.formlogin = {};
 
@@ -191,8 +222,24 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               data    : $.param($scope.formlogin),
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
-        .success(function(data) {
+        .success(function(data, status) {
 
+            var user_node = data.user_node;
+            var user_role = data.user_role;
+
+            $scope.MyService = MyService;
+
+              MyService.nodo = user_node;
+              MyService.role = user_role;
+
+
+            //$scope.node = response.response[0].node_id;
+
+            //var node = response.response[0].node_id;
+
+            //$scope.noode = Nodo.sayHello(node);
+
+            /*
             var resp = data.response;
 
             if(resp === "Login Successfu"){
@@ -202,27 +249,96 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             }else{
 
                 $scope.result = data.response;
-            }
+            }*/
 
         })
-        .error(function(data){
+        .error(function(data, status){
+
             alert("Oops! Algo salio mal");
+
         })
       };
-
   });
 
   // Form Album
 
-  appSonofe.controller('albumCtrl', function($scope) {
+  appSonofe.directive('fileModel', ['$parse', function ($parse) {
 
-      $scope.formalbum = {};
+      return {
 
-      $scope.albumForm = function() {
-        //  alert('awesome! Te has registrado');
+          restrict: 'A',
+
+          link: function(scope, element, attrs) {
+
+              var model = $parse(attrs.fileModel);
+
+              var modelSetter = model.assign;
+
+              element.bind('change', function(){
+
+                  scope.$apply(function(){
+
+                      modelSetter(scope, element[0].files[0]);
+
+                  });
+              });
+          }
       };
 
-  });
+  }]);
+
+
+
+  appSonofe.service('albumUpload', ['$http', function ($http) {
+
+      this.uploadFileAndFieldsToUrl = function(file, fields, albumUrl){
+
+          var fd = new FormData();
+
+          fd.append('cover', file);
+
+          for(var i = 0; i < fields.length; i++){
+              fd.append(fields[i].name, fields[i].data)
+          }
+
+          $http.post(albumUrl, fd, {
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined }
+          })
+          .success(function(response, status){
+
+              alert("Album Creado exitosamente");
+              console.info(response);
+
+          })
+          .error(function(){
+            alert("Oops! algo salio mal");
+          });
+      }
+
+  }]);
+
+  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', function($scope, albumUpload, MyService, MyArtists){
+
+
+      $scope.albumForm = function(){
+
+          var albumUrl = "http://godster.mx/album";
+
+          var file = $scope.myFile;
+
+          var node = MyService.nodo;
+
+          var fields = [ {"name": "name", "data": $scope.formalbum.field1},
+                         {"name": "artist", "data": $scope.formalbum.field2},
+                         {"name": "year", "data": $scope.formalbum.field3},
+                         {"name": "genere", "data": $scope.formalbum.field4},
+                         {"name": "company", "data": node}, ];
+
+          albumUpload.uploadFileAndFieldsToUrl(file, fields, albumUrl);
+      };
+
+  }]);
 
   //Form Uploader
 
@@ -238,69 +354,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
-  //Factory Node
-
-  appSonofe.factory('Nodo', function(){
-    return {
-        sayHello: function(result){
-            return result;
-        }
-    }
-  });
-
- /////////////////////////////////////////////
-
-  /*
-  appSonofe.service('userService', function(){
-    this.users = ['John', 'James', 'Jake'];
-  });
-  */
-
-  appSonofe.factory('testFactory', function () {
-
-      return {
-
-          sayHello: function(nodo){
-
-            return "Hi " + nodo + "!";
-
-          }
-      }
-
-  });
-
-
-
-  function FirstCtrl($scope, testFactory) {
-
-      $scope.data = testFactory;
-
-  }
-
-  function SecondCtrl($scope, testFactory) {
-
-      $scope.data = testFactory;
-
-  }
-
-  function HelloCtrl($scope, testFactory) {
-
-      var node = "666";
-
-      $scope.foo = testFactory.sayHello(node);
-
-  }
-
-  /////////////////////////////////////////////
-
-
-
-
-
-
   //Upload Manager files
 
-  appSonofe.controller('UploadController', function ($scope, $fileUploader, Nodo) {
+  appSonofe.controller('UploadController', function ($scope, $fileUploader) {
 
       'use strict';
 
@@ -365,13 +421,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('success', function (event, xhr, item, response) {
 
-          //get response(node)
+        //get response(node)
 
         //$scope.node = response.response[0].node_id;
 
-        var node = response.response[0].node_id;
+        //var node = response.response[0].node_id;
 
-        $scope.noode = Nodo.sayHello(node);
+        //$scope.noode = Nodo.sayHello(node);
 
 	    });
 
@@ -398,132 +454,29 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
-  // Metadata
-
-  var ModalmetaCtrl = function ($scope, $modal, $log) {
-
-    $scope.items = ['item1', 'item2', 'item3'];
-
-    //name ng-click
-    $scope.openmeta = function (size) {
-
-      var modalInstance = $modal.open({
-        templateUrl: 'myModalContent.html',
-        controller: ModalInstanceCtrl,
-        backdrop: 'static',
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
-    };
-  };
-
-  var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
-
-    $scope.items = items;
-    $scope.selected = {
-      item: $scope.items[0]
-    };
-
-    $scope.ok = function () {
-      $modalInstance.close($scope.selected.item);
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
-  };
-
-  appSonofe.directive('fileModel', ['$parse', function ($parse) {
-
-      return {
-
-          restrict: 'A',
-
-          link: function(scope, element, attrs) {
-
-              var model = $parse(attrs.fileModel);
-
-              var modelSetter = model.assign;
-
-              element.bind('change', function(){
-
-                  scope.$apply(function(){
-
-                      modelSetter(scope, element[0].files[0]);
-
-                  });
-              });
-          }
-      };
-
-  }]);
-
-  appSonofe.service('fileUpload', ['$http', function ($http) {
-
-      this.uploadFileAndFieldsToUrl = function(file, file2, fields, uploadUrl){
-
-          var fd = new FormData();
-
-          fd.append('background_image', file);
-          fd.append('profile_image', file2);
-
-          for(var i = 0; i < fields.length; i++){
-
-              fd.append(fields[i].name, fields[i].data)
-
-          }
-
-          $http.put(uploadUrl, fd, {
-              transformRequest: angular.identity,
-              headers: {'Content-Type': undefined}
-          })
-          .success(function(){
-              alert("Artista Creado exitosamente");
-          })
-          .error(function(){
-            alert("Oops! algo salio mal");
-          });
-      }
-
-  }]);
-
-  appSonofe.controller('MetadataEditCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
-
-      $scope.uploadForm = function(){
-
-          var file = $scope.myFile;
-
-          console.log('file is ' + JSON.stringify(file));
-
-          var uploadUrl = "http://godster.mx/artist";
-
-          var fields = [ {"name": "artist_name", "data": $scope.field1},
-                         {"name": "company", "data": $scope.field2},
-                         {"name": "genre", "data": $scope.field3} ];
-
-          fileUpload.uploadFileAndFieldsToUrl(file, fields, uploadUrl);
-      };
-
-  }]);
-
   // Artist List
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
+
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
   		$scope.artist = data.response;
 
     });
+  });
+
+  appSonofe.controller('DemoCtrl', function ($scope, $http) {
+
+    $scope.selectedTestAccount = null;
+
+    //$scope.testAccounts = [];
+
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+
+  		$scope.artist = data.response;
+
+    });
+
   });
 
   //Create Artist
