@@ -30,6 +30,7 @@
 <hr>
 
 <div ng-controller="ArtistlistCtrl">
+  
   <select ng-model="woo">
     <option ng-repeat="artists in artist" value="{{artists.node_id}}"> {{artists.name}} </option>
   </select>

@@ -100,12 +100,41 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   });
 
 
-  //Factory Node, Role
+  //Factories
 
   appSonofe.factory('MyService',function(){
 
     return { nodo:"", role: ""};
 
+  });
+
+  /*
+  appSonofe.factory('MyArtists', function($http){
+    return {
+        getArtist: function() {
+            return $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+                $scope.artist = data.response;
+            });
+        }
+    };
+
+  });*/
+
+
+
+  appSonofe.factory('MyArtists', function($http) {
+    return {
+      getArtistsAsync: function(callback) {
+        $http.get('http://godster.mx/artist').success(callback);
+      }
+    };
+  });
+
+  appSonofe.controller('fruitsController', function($scope, MyArtists) {
+    MyArtists.getArtistsAsync(function(data) {
+      console.log('fruitsController async returned value');
+      $scope.fruits = data.response;
+    });
   });
 
   appSonofe.controller('Ctrl22',function($scope, MyService){
@@ -275,8 +304,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           .success(function(response, status){
 
               alert("Album Creado exitosamente");
-
               console.info(response);
+
           })
           .error(function(){
             alert("Oops! algo salio mal");
@@ -285,9 +314,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  // year,artist,name,cover, {company}
+  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', function($scope, albumUpload, MyService, MyArtists){
 
-  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', function($scope, albumUpload, MyService){
 
       $scope.albumForm = function(){
 
@@ -307,7 +335,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
-
 
   //Form Uploader
 
@@ -426,31 +453,25 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   // Artist List
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
+
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
 
   		$scope.artist = data.response;
 
-
     });
   });
-
 
   appSonofe.controller('DemoCtrl', function ($scope, $http) {
 
     $scope.selectedTestAccount = null;
 
-    $scope.testAccounts = [];
+    //$scope.testAccounts = [];
 
     $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
         $scope.salida = data.response;
     });
 
   });
-
-
-
-
-
 
   //Create Artist
 
