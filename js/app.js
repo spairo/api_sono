@@ -59,6 +59,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             url: '/uploader',
             templateUrl: 'js/views/upload/uploader.html',
             controller: 'UploadCtrl'
+            
         })
             .state('uploader.type', {
                 url: '/type',
@@ -103,7 +104,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Factories
 
-  appSonofe.factory('MyService',function(){
+  appSonofe.factory('MyServiceNodeasync',function(){
 
     return { nodo:"", role: ""};
 
@@ -126,11 +127,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
 
 
-  /*
-  appSonofe.controller('fruitsController', function($scope, MyServiceArtistasync) {
-    $scope.foo = MyServiceArtistasync;
+
+  appSonofe.controller('fruitsController', function($scope, MyServiceNodeasync) {
+    $scope.foo = MyServiceNodeasync;
   });
-  */
+
 
   //Form Register
 
@@ -193,7 +194,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Form Login
 
-  appSonofe.controller('LoginCtrl', function($scope, $http, MyService) {
+  appSonofe.controller('LoginCtrl', function($scope, $http, MyServiceNodeasync) {
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -214,7 +215,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             var user_node = data.user_node;
             var user_role = data.user_role;
 
-            $scope.MyService = MyService;
+            $scope.MyService = MyServiceNodesync;
 
             MyService.nodo = user_node;
             MyService.role = user_role;
