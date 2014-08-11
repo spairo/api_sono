@@ -3,6 +3,7 @@
 var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload', 'ui.bootstrap']);
 
 
+
   appSonofe.config(function($stateProvider, $urlRouterProvider){
 
       $urlRouterProvider.otherwise('/start');
@@ -58,6 +59,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             url: '/uploader',
             templateUrl: 'js/views/upload/uploader.html',
             controller: 'UploadCtrl'
+
         })
             .state('uploader.type', {
                 url: '/type',
@@ -102,24 +104,25 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Factories
 
-  appSonofe.factory('MyService',function(){
+  appSonofe.factory('MyServiceNodeasync',function(){
 
     return { nodo:"", role: ""};
 
   });
 
+  appSonofe.factory('MyServiceArtistasync', function($http) {
 
-  appSonofe.factory('MyArtists', function($http){
+    var obj = { content:null };
 
+    $http.get('http://godster.mx/artist', { cache: true }).success(function(data) {
 
-    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
-      artist = data.response;
+        console.info("Trigger for MyArtist's Factory");
+        obj.content = data.response;
     });
 
-    return { artists:"1" };
+    return obj;
 
   });
-
 
   /*
   appSonofe.factory('MyArtists', function($http) {
@@ -133,16 +136,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     };
   });
 */
-  appSonofe.controller('fruitsController', function($scope, MyArtists) {
-    $scope.MyArtists.artists;
+
+  appSonofe.controller('fruitsController', function($scope, MyServiceNodeasync) {
+    $scope.foo = MyServiceNodeasync;
   });
 
-
-  appSonofe.controller('Ctrl22',function($scope, MyService){
-
-
-
-  });
 
   //Form Register
 
@@ -205,7 +203,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Form Login
 
-  appSonofe.controller('LoginCtrl', function($scope, $http, MyService) {
+  appSonofe.controller('LoginCtrl', function($scope, $http, MyServiceNodeasync) {
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -226,10 +224,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             var user_node = data.user_node;
             var user_role = data.user_role;
 
-            $scope.MyService = MyService;
+            $scope.MyService = MyServiceNodesync;
 
-              MyService.nodo = user_node;
-              MyService.role = user_role;
+            MyService.nodo = user_node;
+            MyService.role = user_role;
 
 
             //$scope.node = response.response[0].node_id;
@@ -286,6 +284,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
+
+
   appSonofe.service('albumUpload', ['$http', function ($http) {
 
       this.uploadFileAndFieldsToUrl = function(file, fields, albumUrl){
@@ -315,8 +315,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', function($scope, albumUpload, MyService, MyArtists){
+  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', 'MyServiceArtistasync', function($scope, albumUpload, MyService, MyServiceArtistasync){
 
+      $scope.artists = MyServiceArtistasync;
 
       $scope.albumForm = function(){
 
@@ -460,17 +461,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   		$scope.artist = data.response;
 
     });
-  });
-
-  appSonofe.controller('DemoCtrl', function ($scope, $http) {
-
-    $scope.selectedTestAccount = null;
-
-    //$scope.testAccounts = [];
-
-    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
-        $scope.salida = data.response;
-    });
 
   });
 
@@ -515,7 +505,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
               fd.append(fields[i].name, fields[i].data)
 
           }
-
           $http.post(uploadUrl, fd, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
@@ -551,7 +540,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  //Tools
+  //Console Logs
 
 /*
   console.info(var, "Info");
