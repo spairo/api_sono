@@ -116,7 +116,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       artist = data.response;
     });
 
-    return { artist:"" };
+    return { artists:"1" };
 
   });
 
@@ -134,13 +134,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   });
 */
   appSonofe.controller('fruitsController', function($scope, MyArtists) {
-
+    $scope.MyArtists.artists;
   });
 
 
   appSonofe.controller('Ctrl22',function($scope, MyService){
 
-    
+
 
   });
 
