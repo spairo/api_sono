@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-md-9 col-md-offset-2">
-      <h2>Seleccionar archivos</h2>
+      <h2>Seleccionar archivos <span class="glyphicon glyphicon-picture"></span></h2>
       <input class="btn btn-default btn-lg well-sm" ng-file-select name="conference_file" filename="conference_file" type="file" />
     </div>
   </div>
@@ -16,12 +16,7 @@
       <thead>
           <tr>
               <th>File</th>
-              <th>Nombre</th>
-              <th>Artista</th>
               <th>Album</th>
-              <th>cover</th>
-              <th>genero</th>
-              <th>año</th>
               <th ng-show="uploader.isHTML5">Tamaño</th>
               <th ng-show="uploader.isHTML5">Progreso</th>
               <th>Estatus</th>
@@ -32,34 +27,9 @@
           <tr ng-repeat="item in uploader.queue">
               <td><strong>{{ item.file.name }}</strong></td>
               <td>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="field1" placeholder="Nombre" name="Nombre" required>
-                </div>
-              </td>
-              <td>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="field1" placeholder="Artista" name="Artista" required>
-                </div>
-              </td>
-              <td>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="field1" placeholder="Album" name="Album" required>
-                </div>
-              </td>
-              <td>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="field1" placeholder="Cover" name="Cover" required>
-                </div>
-              </td>
-              <td>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="field1" placeholder="Genero" name="Genero" required>
-                </div>
-              </td>
-              <td>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="field1" placeholder="año" name="año" required>
-                </div>
+                <select class="form-control" name="artista" required>
+                  <option ng-repeat="album in albums.content" value="{{album.node_id}}"> {{album.name}} </option>
+                </select>
               </td>
               <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
               <td ng-show="uploader.isHTML5">

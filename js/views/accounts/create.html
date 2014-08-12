@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 accounts-box">
+          <form class="well-lg" ng-controller="createArtistCtrl" name="forma">
+            <h2>Crear Artista</h2>
+
+            <div class="help-block" role="alert" ng-show="forma.nombreA.$error.required || forma.empresa.$error.required || forma.genero.$error.required">
+              <span class="text-danger txt-negative">* Todos los Campos Marcados son Obligatorios</span>
+            </div>
+            <div class="form-group" ng-class="{'has-error-sonofe': forma.nombreA.$invalid , 'has-sonofe': forma.nombreA.$valid}">
+              <div class="input-group">
+                <div class="input-group-addon">Nombre</div>
+                <input class="form-control" type="text" ng-model="artistform.field1" name="nombreA" required>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error-sonofe': forma.empresa.$invalid , 'has-sonofe': forma.empresa.$valid}">
+              <div class="input-group">
+                <div class="input-group-addon">Compañia</div>
+                <input class="form-control" type="text" ng-model="artistform.field2" name="empresa" required>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error-sonofe': forma.genere.$invalid , 'has-sonofe': forma.genere.$valid}">
+              <div class="input-group">
+                <div class="input-group-addon">Genero</div>
+                <select class="form-control" ng-model="artistform.field3" name="genere" required>
+                  <option>Rock</option>
+                  <option>Pop</option>
+                  <option>Rap</option>
+                  <option>Musica electrónica</option>
+                  <option>Hip-Hop</option>
+                  <option>Reggae</option>
+                  <option>Clasica</option>
+                  <option>Dance</option>
+                  <option>Soul</option>
+                  <option>New age</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group has-sonofe">
+              <label for="background_img" class="txt-normal">Background Image</label>
+              <input class="form-control" type="file" file-model="artistform.file">
+              <p class="help-block"></p>
+            </div>
+
+            <div class="form-group has-sonofe">
+              <label for="profile_img" class="txt-normal">Imagen Perfil</label>
+              <input class="form-control" type="file" file-model="artistform.file2">
+              <p class="help-block"></p>
+            </div>
+            <pre>
+
+              {{artistform}}
+            </pre>
+            <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid">Agregar Artista</button>
+          </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

@@ -82,11 +82,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
         .state('accounts', {
             url: '/accounts',
-            templateUrl: 'js/views/accounts/accountsTemplate.html'
+            templateUrl: 'js/views/accounts/index.html'
         })
             .state('create', {
                 url: '/accounts/create',
-                templateUrl: 'js/views/accounts/createTemplate.html'
+                templateUrl: 'js/views/accounts/create.html'
             })
 
         //Pages
@@ -124,18 +124,24 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
-  /*
-  appSonofe.factory('MyArtists', function($http) {
-    return {
-      getArtistsAsync: function() {
+  appSonofe.factory('MyServiceAlbumasync', function($http) {
 
-        $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
-            $scope.artist = data.response;
-        });
-      }
-    };
+    var obj = { content:null };
+
+    $http.get('http://godster.mx/album', { cache: true }).success(function(data) {
+
+        console.info("Trigger for Album's Factory");
+        obj.content = data.response;
+    });
+
+    return obj;
+
   });
-*/
+
+
+
+
+
 
   appSonofe.controller('fruitsController', function($scope, MyServiceNodeasync) {
     $scope.foo = MyServiceNodeasync;
@@ -315,7 +321,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyService', 'MyServiceArtistasync', function($scope, albumUpload, MyService, MyServiceArtistasync){
+  appSonofe.controller('AlbumCtrl', ['$scope', 'albumUpload', 'MyServiceNodeasync', 'MyServiceArtistasync', function($scope, albumUpload, MyServiceNodeasync, MyServiceArtistasync){
 
       $scope.artists = MyServiceArtistasync;
 
@@ -354,9 +360,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Upload Manager files
 
-  appSonofe.controller('UploadController', function ($scope, $fileUploader) {
+  appSonofe.controller('UploadController', function ($scope, $fileUploader, MyServiceAlbumasync) {
 
       'use strict';
+
+      $scope.albums = MyServiceAlbumasync;
 
       var uploader = $scope.uploader = $fileUploader.create({
           scope: $scope,
@@ -539,6 +547,27 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
+
+// Directives
+
+  appSonofe.directive('validFile',function(){
+    return {
+      require:'ngModel',
+      link:function(scope,el,attrs,ngModel){
+        el.bind('change',function(){
+          scope.$apply(function(){
+            ngModel.$setViewValue(el.val());
+            ngModel.$render();
+          });
+        });
+      }
+    }
+  });
+
+
+// UI-Bootstrap
+
+
 
   //Console Logs
 

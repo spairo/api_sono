@@ -1,10 +1,99 @@
 /* Sonofe structure */
-html, body {
+
+html,
+body {
   height: 100%;
   width: 100%;
-  padding: 0;
-  margin: 0;
+  background: #3B3A3D;
 }
+
+/* New Structure App*/
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+}
+#page-wrapper {
+    min-height: 100%;
+    max-height: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 150px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
+
+
+
+.sidebar{
+  background: #3B3A3D;
+}
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.sidebar ul li a.active {
+    background-color: #eee;
+}
+
+.sidebar .arrow {
+    float: right;
+}
+
+.sidebar .fa.arrow:before {
+    content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+    content: "\f107";
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: 0!important;
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 37px;
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 52px;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: absolute;
+        width: 150px;
+        margin-top: 51px;
+        background: #3B3A3D;
+    }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}
+
+
+
+
+
+
+
+
 
 /* Structure General App */
 
@@ -109,10 +198,23 @@ html, body {
 
 /* Heading */
 
-h1{
+h1,h2,h3,h4,h5{
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: lighter;
+}
+
+.txt-normal{
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: normal;
+  font-size: 12px;
+}
+.txt-negative{
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: normal;
+  font-size: 12px;
 }
 
 /* form Register */
@@ -185,30 +287,28 @@ h1{
 
 /* Animations */
 
-/* slide out to the left */
-
-@keyframes slideOutLeft {
-    to      { transform: translateX(-200%); }
-}
-@-moz-keyframes slideOutLeft {
-    to      { -moz-transform: translateX(-200%); }
-}
-@-webkit-keyframes slideOutLeft {
-    to      { -webkit-transform: translateX(-200%); }
-}
-/* slide in from the right */
-@keyframes slideInRight {
-    from    { transform:translateX(200%); }
-    to      { transform: translateX(0); }
-}
-@-moz-keyframes slideInRight {
-    from    { -moz-transform:translateX(200%); }
-    to      { -moz-transform: translateX(0); }
-}
-@-webkit-keyframes slideInRight {
-    from    { -webkit-transform:translateX(200%); }
-    to      { -webkit-transform: translateX(0); }
-}
+  @keyframes slideOutLeft {
+      to      { transform: translateX(-200%); }
+  }
+  @-moz-keyframes slideOutLeft {
+      to      { -moz-transform: translateX(-200%); }
+  }
+  @-webkit-keyframes slideOutLeft {
+      to      { -webkit-transform: translateX(-200%); }
+  }
+  /* slide in from the right */
+  @keyframes slideInRight {
+      from    { transform:translateX(200%); }
+      to      { transform: translateX(0); }
+  }
+  @-moz-keyframes slideInRight {
+      from    { -moz-transform:translateX(200%); }
+      to      { -moz-transform: translateX(0); }
+  }
+  @-webkit-keyframes slideInRight {
+      from    { -webkit-transform:translateX(200%); }
+      to      { -webkit-transform: translateX(0); }
+  }
 
 /* Overview Accounts */
 
@@ -238,7 +338,6 @@ h1{
 
 .uploader-form{
   background: #F1F2F9;
-  border-radius: 8px;
 }
   .uploader-form .button-text{
     text-transform: uppercase;
@@ -370,6 +469,41 @@ h1{
 
 
 /* Accounts Module */
+
+.accounts-box{
+  height: auto;
+  background: #F1F2F9;
+  overflow: hidden;
+  margin-top: 50px;
+  padding: 10px 20px;
+}
+  .accounts-box a{
+    text-decoration: none;
+  }
+  .accounts-box .add{
+    width: 100%;
+    height: 50px;
+    margin: 30px 0 30px 0;
+    background: #F1F2F9;
+    border: 3px solid #3A66FB;
+    color: #3B3A3D;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-align: center;
+    padding-top: 10px;
+    text-decoration: none;
+  }
+  .accounts-box button{
+    width: 100%;
+    height: 50px;
+    margin: 30px 0 30px 0;
+    background: #3A66FB;
+    border: 3px solid #3A66FB;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
 
 
 /* ng-animate */
