@@ -541,7 +541,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var fields = [ {"name": "artist_name", "data": $scope.field1},
                          {"name": "company", "data": $scope.field2},
-                         {"name": "genre", "data": $scope.field3} ];
+                         {"name": "genere", "data": $scope.field3} ];
 
           fileUpload.uploadFileAndFieldsToUrl(file, file2, fields, uploadUrl);
       };
