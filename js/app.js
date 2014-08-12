@@ -16,10 +16,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             url: '/start',
             templateUrl: 'js/views/start/index.html'
         })
-          .state('second', {
-              url: '/start/second',
-              templateUrl: 'js/views/start/start2Tpl.html'
-          })
 
         //Register Form
 
@@ -28,9 +24,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             templateUrl: 'js/views/signup/form.html',
             controller: 'SignupCtrl'
         })
-
-            // nested states
-
             .state('signup.interests', {
                 url: '/interests',
                 templateUrl: 'js/views/signup/form-interests.html'
