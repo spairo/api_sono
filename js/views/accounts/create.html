@@ -12,19 +12,19 @@
             <div class="form-group" ng-class="{'has-error-sonofe': forma.nombreA.$invalid , 'has-sonofe': forma.nombreA.$valid}">
               <div class="input-group">
                 <div class="input-group-addon">Nombre</div>
-                <input class="form-control" type="text" ng-model="artistform.field1" name="nombreA" required>
+                <input class="form-control" type="text" ng-model="field1" name="nombreA" required>
               </div>
             </div>
             <div class="form-group" ng-class="{'has-error-sonofe': forma.empresa.$invalid , 'has-sonofe': forma.empresa.$valid}">
               <div class="input-group">
                 <div class="input-group-addon">Compañia</div>
-                <input class="form-control" type="text" ng-model="artistform.field2" name="empresa" required>
+                <input class="form-control" type="text" ng-model="field2" name="empresa" required>
               </div>
             </div>
             <div class="form-group" ng-class="{'has-error-sonofe': forma.genere.$invalid , 'has-sonofe': forma.genere.$valid}">
               <div class="input-group">
                 <div class="input-group-addon">Genero</div>
-                <select class="form-control" ng-model="artistform.field3" name="genere" required>
+                <select class="form-control" ng-model="field3" name="genere" required>
                   <option>Rock</option>
                   <option>Pop</option>
                   <option>Rap</option>
@@ -41,19 +41,16 @@
 
             <div class="form-group has-sonofe">
               <label for="background_img" class="txt-normal">Background Image</label>
-              <input class="form-control" type="file" file-model="artistform.file">
+              <input class="form-control" type="file" file-model="file">
               <p class="help-block"></p>
             </div>
 
             <div class="form-group has-sonofe">
               <label for="profile_img" class="txt-normal">Imagen Perfil</label>
-              <input class="form-control" type="file" file-model="artistform.file2">
+              <input class="form-control" type="file" file-model="file2">
               <p class="help-block"></p>
             </div>
-            <pre>
 
-              {{artistform}}
-            </pre>
             <button ng-click="uploadForm()" class="btn" ng-disabled="forma.$invalid">Agregar Artista</button>
           </form>
         </div>
