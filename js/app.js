@@ -223,10 +223,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             var user_node = data.user_node;
             var user_role = data.user_role;
 
-            $scope.MyService = MyServiceNodeasync;
+            //$scope.MyService = MyServiceNodeasync;
 
-            MyService.nodo = user_node;
-            MyService.role = user_role;
+            //MyService.nodo = user_node;
+            //MyService.role = user_role;
 
 
             //$scope.node = response.response[0].node_id;
@@ -534,7 +534,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var fields = [ {"name": "artist_name", "data": $scope.field1},
                          {"name": "company", "data": $scope.field2},
-                         {"name": "genere", "data": $scope.field3} ];
+                         {"name": "genre", "data": $scope.field3} ];
 
           fileUpload.uploadFileAndFieldsToUrl(file, file2, fields, uploadUrl);
       };
