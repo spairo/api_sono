@@ -223,7 +223,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             var user_node = data.user_node;
             var user_role = data.user_role;
 
-            $scope.MyService = MyServiceNodesync;
+            $scope.MyService = MyServiceNodeasync;
 
             MyService.nodo = user_node;
             MyService.role = user_role;
