@@ -525,10 +525,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       $scope.uploadForm = function(){
 
-          var file = $scope.myFile;
-          var file2 = $scope.myFile2;
-
           var node = MyServiceNodeasync.nodo;
+
+          var file = $scope.file;
+
+          var file2 = $scope.file2;
 
           console.log('file is ' + JSON.stringify(file));
 
