@@ -329,7 +329,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           var fields = [ {"name": "name", "data": $scope.field1},
                          {"name": "artist", "data": $scope.field2},
                          {"name": "year", "data": $scope.field3},
-                         {"name": "genere", "data": $scope.field4},
+                         {"name": "genre", "data": $scope.field4},
                          {"name": "company", "data": node}, ];
 
           albumUpload.uploadFileAndFieldsToUrl(file, fields, albumUrl);
@@ -530,8 +530,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           var file = $scope.file;
 
           var file2 = $scope.file2;
-
-          console.log('file is ' + JSON.stringify(file));
 
           var uploadUrl = "http://godster.mx/artist";
 
