@@ -107,7 +107,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     var obj = { content:null };
 
-    $http.get('http://godster.mx/artist', { cache: true }).success(function(data) {
+    $http.get('http://godster.mx/artist', { cache: false }).success(function(data) {
 
         console.info("Trigger for MyArtist's Factory");
         obj.content = data.response;
@@ -121,7 +121,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     var obj = { content:null };
 
-    $http.get('http://godster.mx/get_albums', { cache: true }).success(function(data) {
+    $http.get('http://godster.mx/get_albums', { cache: false }).success(function(data) {
 
         console.info("Trigger for Album's Factory");
         obj.content = data.response;
@@ -326,10 +326,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var node = MyServiceNodeasync.nodo;
 
-          var fields = [ {"name": "name", "data": $scope.formalbum.field1},
-                         {"name": "artist", "data": $scope.formalbum.field2},
-                         {"name": "year", "data": $scope.formalbum.field3},
-                         {"name": "genere", "data": $scope.formalbum.field4},
+          var fields = [ {"name": "name", "data": $scope.field1},
+                         {"name": "artist", "data": $scope.field2},
+                         {"name": "year", "data": $scope.field3},
+                         {"name": "genere", "data": $scope.field4},
                          {"name": "company", "data": node}, ];
 
           albumUpload.uploadFileAndFieldsToUrl(file, fields, albumUrl);

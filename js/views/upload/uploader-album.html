@@ -3,13 +3,13 @@
   <div class="form-group" ng-class="{'has-error-sonofe': albumform.album.$invalid , 'has-sonofe': albumform.album.$valid}">
     <div class="input-group">
       <div class="input-group-addon">album</div>
-      <input class="form-control" type="text" ng-model="formalbum.field1" name="album" required>
+      <input class="form-control" type="text" ng-model="field1" name="album" required>
     </div>
   </div>
   <div class="form-group"  ng-class="{'has-error-sonofe': albumform.artista.$invalid , 'has-sonofe': albumform.artista.$valid}">
     <div class="input-group">
       <div class="input-group-addon">artista</div>
-        <select class="form-control" ng-model="formalbum.field2" name="artista" required>
+        <select class="form-control" ng-model="field2" name="artista" required>
           <option ng-repeat="artist in artists.content" value="{{artist.node_id}}"> {{artist.name}} </option>
         </select>
     </div>
@@ -19,7 +19,7 @@
       <div class="form-group" ng-class="{'has-error-sonofe': albumform.year.$invalid , 'has-sonofe': albumform.year.$valid}">
         <div class="input-group">
           <div class="input-group-addon">Año</div>
-          <select class="form-control" ng-model="formalbum.field3" name="year" required>
+          <select class="form-control" ng-model="field3" name="year" required>
             <option>1970</option>
             <option>1980</option>
             <option>1990</option>
@@ -54,7 +54,7 @@
       <div class="form-group" ng-class="{'has-error-sonofe': albumform.genere.$invalid , 'has-sonofe': albumform.genere.$valid}">
         <div class="input-group">
           <div class="input-group-addon">Genero</div>
-          <select class="form-control" ng-model="formalbum.field4" name="genere" required>
+          <select class="form-control" ng-model="field4" name="genere" required>
             <option>Rock</option>
             <option>Pop</option>
             <option>Rap</option>
@@ -80,9 +80,6 @@
   </div>
   <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
   <button ng-click="albumForm()" class="btn" ng-disabled="albumform.$invalid" ng-class="{'btn-warning': albumform.$invalid , 'btn-success': albumform.$valid}">Guardar</button>
-  <pre>
-    {{formalbum}}
-  </pre>
 </form>
 
 <div class="form-group row">
