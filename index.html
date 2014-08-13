@@ -36,9 +36,29 @@
                 <a class="navbar-brand" href="index.html">Sonofe</a>
             </div>
             <!-- /.navbar-header -->
-
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
+								<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Tools
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"> User Profile</a>
+                        </li>
+                        <li><a href="#"> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+						<ul class="nav navbar-top-links navbar-right">
+							<li class="dropdown" ng-controller="fruitsController">
+								nodo:{{foo.nodo}} - role: {{foo.role}}
+							</li>
+						</ul>
+						<ul class="nav navbar-top-links navbar-right">
+								<li class="dropdown">
 									<div ng-controller="ModalLoginCtrl">
 											<script type="text/ng-template" id="myModalLogin.html">
 													<div class="modal-content">
@@ -49,12 +69,12 @@
 																	<label class="title" name="">Log In</label>
 																	<img class="profile-img" src="img/02.Astronauta.png" alt="icon">
 
-																	<div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
-																		<input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required autofocus>
+																	<div class="form-group" ng-class="{'has-error-sonofe': form_login.username.$invalid , 'has-sonofe': form_login.username.$valid}">
+																		<input type="text" class="form-control" ng-model="formlogin.username" name="username" placeholder="Username" required>
 																		<p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
 																	</div>
-																	<div class="form-group" ng-class="{'has-error': form_login.passw.$invalid , 'has-success': form_login.passw.$valid}">
-																		<input type="password" class="input-regs" ng-model="formlogin.password" name="passw" placeholder="Password" required autofocus>
+																	<div class="form-group" ng-class="{'has-error-sonofe': form_login.passw.$invalid , 'has-sonofe': form_login.passw.$valid}">
+																		<input type="password" class="form-control" ng-model="formlogin.password" name="passw" placeholder="Password" required>
 																		<p ng-show="form_login.passw.$invalid && !form_login.passw.$pristine" class="help-block">You Password is required.</p>
 																	</div>
 																	<label class="checkbox pull-left">
@@ -74,23 +94,7 @@
 											<button type="button" class="buttons" ng-click="openlogin()">log in</button>
 									</div>
 								</li>
-								<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Tools
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"> User Profile</a>
-                        </li>
-                        <li><a href="#"> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
+						</ul>
             <!-- /.navbar-top-links -->
 
             <div class="navbar-left navbar-default sidebar" role="navigation">
@@ -144,11 +148,11 @@
 												<label class="title" name="">Log In</label>
 												<img class="profile-img" src="img/02.Astronauta.png" alt="icon">
 
-												<div class="form-group" ng-class="{'has-error': form_login.username.$invalid , 'has-success': form_login.username.$valid}">
+												<div class="form-group" ng-class="{'has-error-sonofe': form_login.username.$invalid , 'has-sonofe': form_login.username.$valid}">
 													<input type="text" class="input-regs" ng-model="formlogin.username" name="username" placeholder="Username" required autofocus>
 													<p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
 												</div>
-												<div class="form-group" ng-class="{'has-error': form_login.passw.$invalid , 'has-success': form_login.passw.$valid}">
+												<div class="form-group" ng-class="{'has-error-sonofe': form_login.passw.$invalid , 'has-sonofe': form_login.passw.$valid}">
 													<input type="password" class="input-regs" ng-model="formlogin.password" name="passw" placeholder="Password" required autofocus>
 													<p ng-show="form_login.passw.$invalid && !form_login.passw.$pristine" class="help-block">You Password is required.</p>
 												</div>

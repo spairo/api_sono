@@ -135,7 +135,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
 
 
-
+  //only testing
   appSonofe.controller('fruitsController', function($scope, MyServiceNodeasync) {
     $scope.foo = MyServiceNodeasync;
   });
@@ -220,13 +220,13 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         })
         .success(function(data, status) {
 
-            var user_node = data.user_node;
+            var user_node = data.node_id;
             var user_role = data.user_role;
 
-            //$scope.MyService = MyServiceNodeasync;
+            $scope.Nodeasync = MyServiceNodeasync;
 
-            //MyService.nodo = user_node;
-            //MyService.role = user_role;
+            $scope.Nodeasync.nodo = user_node;
+            $scope.Nodeasync.role = user_role;
 
 
             //$scope.node = response.response[0].node_id;
@@ -324,7 +324,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
           var file = $scope.myFile;
 
-          var node = MyService.nodo;
+          var node = MyServiceNodeasync.nodo;
 
           var fields = [ {"name": "name", "data": $scope.formalbum.field1},
                          {"name": "artist", "data": $scope.formalbum.field2},
@@ -457,7 +457,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
 
-    $http.get('http://godster.mx/artist', { cache: true }).success(function(data){
+    $http.get('http://godster.mx/artist', { cache: false }).success(function(data){
 
   		$scope.artist = data.response;
 
@@ -521,20 +521,22 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  appSonofe.controller('createArtistCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+  appSonofe.controller('createArtistCtrl', ['$scope', 'fileUpload', 'MyServiceNodeasync', function($scope, fileUpload, MyServiceNodeasync){
 
       $scope.uploadForm = function(){
 
           var file = $scope.myFile;
           var file2 = $scope.myFile2;
 
+          var node = MyServiceNodeasync.nodo;
+
           console.log('file is ' + JSON.stringify(file));
 
           var uploadUrl = "http://godster.mx/artist";
 
           var fields = [ {"name": "artist_name", "data": $scope.field1},
-                         {"name": "company", "data": $scope.field2},
-                         {"name": "genre", "data": $scope.field3} ];
+                         {"name": "company", "data": node},
+                         {"name": "genre", "data": $scope.field2} ];
 
           fileUpload.uploadFileAndFieldsToUrl(file, file2, fields, uploadUrl);
       };
