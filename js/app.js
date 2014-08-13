@@ -121,7 +121,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     var obj = { content:null };
 
-    $http.get('http://godster.mx/album', { cache: true }).success(function(data) {
+    $http.get('http://godster.mx/get_albums', { cache: true }).success(function(data) {
 
         console.info("Trigger for Album's Factory");
         obj.content = data.response;
