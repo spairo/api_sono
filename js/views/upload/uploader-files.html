@@ -10,7 +10,39 @@
 
   <!--<input type="file" multiple onchange="angular.element(this).scope().setFiles(this)"/>-->
 
-  <p><h3>Longitud de la cola: {{ uploader.queue.length }}</h3></p>
+  <script type="text/ng-template" id="myModalMeta.html">
+      <div class="modal-content">
+        <div class="modal-body modal-register">
+          <button type="button" class="close" ng-click="cancel()" >&times;</button>
+
+          <form class="form-login" ng-controller="LoginCtrl" name="form_login">
+              <label class="title" name="">Log In</label>
+              <img class="profile-img" src="img/02.Astronauta.png" alt="icon">
+
+              <div class="form-group" ng-class="{'has-error-sonofe': form_login.username.$invalid , 'has-sonofe': form_login.username.$valid}">
+                <input type="text" class="form-control" ng-model="formlogin.username" name="username" placeholder="Username" required>
+                <p ng-show="form_login.username.$invalid && !form_login.username.$pristine" class="help-block">You Username is required.</p>
+              </div>
+              <div class="form-group" ng-class="{'has-error-sonofe': form_login.passw.$invalid , 'has-sonofe': form_login.passw.$valid}">
+                <input type="password" class="form-control" ng-model="formlogin.password" name="passw" placeholder="Password" required>
+                <p ng-show="form_login.passw.$invalid && !form_login.passw.$pristine" class="help-block">You Password is required.</p>
+              </div>
+              <label class="checkbox pull-left">
+                  <input type="checkbox" value="remember-me">
+                  Remember me
+              </label>
+              <br />
+              <div class="form-group">
+                <pre>{{ formlogin }}</pre>
+              </div>
+              <button ng-click="processlogin()" class="btn-regis" ng-disabled="form_login.$invalid">Log in</button>
+          </form>
+
+        </div>
+      </div>
+  </script>
+
+  <h3>Longitud de la cola: {{ uploader.queue.length }}</h3>
 
   <table class="table">
       <thead>
@@ -57,6 +89,7 @@
       </tbody>
   </table>
 </div>
+
 <div class="form-group row well-lg">
   <div class="col-xs-6 col-xs-offset-3">
       <a ui-sref="uploader.metadata" class="btn btn-lg btn-block btn-info">
