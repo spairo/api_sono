@@ -17,7 +17,7 @@
 
           <form class="form-login" ng-controller="MetaCtrl" name="form_meta">
               <h2>Metadata</h2>
-              <select class="form-control" ng-model="album.field1" name="artista" required>
+              <select class="form-control" ng-model="album.node_id" name="artista" required>
                 <option ng-repeat="album in albums.content" value="{{album.node_id}}"> {{album.name}} </option>
               </select>
               <br />
