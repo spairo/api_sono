@@ -107,7 +107,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     var obj = { content:null };
 
-    $http.get('http://godster.mx/artist', { cache: false }).success(function(data) {
+    $http.get('http://godster.mx/artist').success(function(data) {
 
         console.info("Trigger for MyArtist's Factory");
         obj.content = data.response;
@@ -121,7 +121,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     var obj = { content:null };
 
-    $http.get('http://godster.mx/get_albums', { cache: false }).success(function(data) {
+    $http.get('http://godster.mx/get_albums').success(function(data) {
 
         console.info("Trigger for Album's Factory");
         obj.content = data.response;
