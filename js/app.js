@@ -505,7 +505,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   appSonofe.controller('ArtistlistCtrl', function($scope, $http){
 
-    $http.get('http://godster.mx/artist', { cache: false }).success(function(data){
+  $http.get('http://godster.mx/artist'/*, { cache: false }*/).success(function(data){
 
   		$scope.artist = data.response;
 
