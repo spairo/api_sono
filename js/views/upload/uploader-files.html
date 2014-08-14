@@ -37,7 +37,6 @@
       <thead>
           <tr>
               <th>File</th>
-              <th>Album</th>
               <th ng-show="uploader.isHTML5">Tamaño</th>
               <th ng-show="uploader.isHTML5">Progreso</th>
               <th>Estatus</th>
@@ -47,13 +46,8 @@
       <tbody>
           <tr ng-repeat="item in uploader.queue">
               <td><strong>{{ item.file.name }}</strong></td>
-              <td>
-                <select class="form-control" name="artista" required>
-                  <option ng-repeat="album in albums.content" value="{{album.node_id}}"> {{album.name}} </option>
-                </select>
-              </td>
               <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-              <td ng-show="uploader.isHTML5">
+              <td ng-show="uploader.isHTML5" width="40%">
                   <div class="progress" style="margin-bottom: 0;">
                       <div class="progress-bar-sonofe" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                   </div>
