@@ -364,7 +364,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
-          autoUpload: 'true',
+          //autoUpload: 'false',
           //headers 'Content-Type: application/json',
           formData: [
               { key: 'value' }
@@ -438,11 +438,62 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
+  //MetadataCtrl
 
-  // Metadata Modal
+  appSonofe.controller('MetaCtrl', function($scope, $http, MyServiceAlbumasync){
 
-//MetaInstanceCtrl
+    $scope.albums = MyServiceAlbumasync;
 
+    $scope.album = {};
+
+    $scope.getAlbum = function() {
+
+      $http({
+            method  : 'GET',
+            url     : 'http://godster.mx/album',
+            data    : $.param($scope.album),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+      .success(function(data, status, response) {
+
+          console.info('The data: ', data);
+          console.info('The response: ', response);
+          //var user_node = data.node_id;
+          //var user_role = data.user_role;
+
+          //$scope.Nodeasync = MyServiceNodeasync;
+
+          //$scope.Nodeasync.nodo = user_node;
+          //$scope.Nodeasync.role = user_role;
+
+
+          //$scope.node = response.response[0].node_id;
+
+          //var node = response.response[0].node_id;
+
+          //$scope.noode = Nodo.sayHello(node);
+
+          /*
+          var resp = data.response;
+
+          if(resp === "Login Successfu"){
+
+              $scope.result = data.response;
+
+          }else{
+
+              $scope.result = data.response;
+          }*/
+
+      })
+      .error(function(data, status){
+        console.error('Oops! Algo salio mal');
+      })
+    };
+
+  });
+
+  //MetaInstanceCtrl
 
   var MetaInstanceCtrl = function ($scope, $modalInstance) {
     $scope.cancel = function () {
