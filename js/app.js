@@ -449,7 +449,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
     $scope.getAlbum = function() {
 
       $http({
-            method  : 'GET',
+            method  : 'POST',
             url     : 'http://godster.mx/album',
             data    : $.param($scope.album),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
