@@ -21,6 +21,7 @@
                 <option ng-repeat="album in albums.content" value="{{album.node_id}}"> {{album.name}} </option>
               </select>
               <br />
+
               <div class="form-group">
                 <pre>{{ album }}</pre>
               </div>
@@ -73,7 +74,7 @@
       </tbody>
   </table>
 </div>
-
+<button id="submit1">aff</button>
 <div class="form-group row well-lg">
   <div class="col-xs-6 col-xs-offset-3">
       <a ui-sref="uploader.metadata" class="btn btn-lg btn-block btn-info">

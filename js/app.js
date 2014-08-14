@@ -3,7 +3,6 @@
 var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularFileUpload', 'ui.bootstrap', 'ngDialog']);
 
 
-
   appSonofe.config(function($stateProvider, $urlRouterProvider){
 
       $urlRouterProvider.otherwise('/start');
@@ -448,46 +447,19 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     $scope.getAlbum = function() {
 
+    console.log($scope.album);
+
       $http({
             method  : 'POST',
-            url     : 'http://godster.mx/album',
+            url     : 'http://godster.mx/album_info',
             data    : $.param($scope.album),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
       })
-      .success(function(data, status, response) {
-
+      .success(function(data, status) {
           console.info('The data: ', data);
-          console.info('The response: ', response);
-          //var user_node = data.node_id;
-          //var user_role = data.user_role;
-
-          //$scope.Nodeasync = MyServiceNodeasync;
-
-          //$scope.Nodeasync.nodo = user_node;
-          //$scope.Nodeasync.role = user_role;
-
-
-          //$scope.node = response.response[0].node_id;
-
-          //var node = response.response[0].node_id;
-
-          //$scope.noode = Nodo.sayHello(node);
-
-          /*
-          var resp = data.response;
-
-          if(resp === "Login Successfu"){
-
-              $scope.result = data.response;
-
-          }else{
-
-              $scope.result = data.response;
-          }*/
-
       })
       .error(function(data, status){
-        console.error('Oops! Algo salio mal');
+          console.error('Oops! Algo salio mal');
       })
     };
 
