@@ -1,25 +1,31 @@
-<label>
-  <span class="subtitle">Selecciona el tipo de cuenta:</span>
-</label>
+<h5>Selecciona el tipo de cuenta:</h5>
+<br />
 <div class="form-group">
-    <div class="radio">
-        <label>
-           <input type="radio" ng-model="formsignup.user_role" value="2" checked>
-           <span class="accounts_type">Artista Independiente</span>
-        </label>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="radio">
+          <label>
+             <input type="radio" ng-model="formsignup.user_role" value="2" checked>
+             <span class="accounts_type">Artista Independiente</span>
+          </label>
+      </div>
     </div>
-    <div class="radio">
-        <label>
-            <input type="radio" ng-model="formsignup.user_role" value="3">
-            <span class="accounts_type">Disquera</span>
-        </label>
+    <div class="col-md-4">
+      <label>
+          <img src="img/icons/disquera.png" src="disquera" width="40">
+          <input type="radio" ng-model="formsignup.user_role" value="3">
+          <span class="accounts_type">Disquera</span>
+      </label>
     </div>
-    <div class="radio">
-        <label>
-            <input type="radio" ng-model="formsignup.user_role" value="1">
-            <span class="accounts_type">Ministerio</span>
-        </label>
+    <div class="col-md-4">
+      <div class="radio">
+          <label>
+              <input type="radio" ng-model="formsignup.user_role" value="1">
+              <span class="accounts_type">Ministerio</span>
+          </label>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="description_accounts" ng-if="formsignup.user_role">
