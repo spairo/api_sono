@@ -4,25 +4,26 @@
   <div class="row">
     <div class="col-md-4">
       <div class="radio">
-          <label>
-             <input type="radio" ng-model="formsignup.user_role" value="2" checked>
-             <span class="accounts_type">Artista Independiente</span>
-          </label>
+        <label>
+          <input type="radio" ng-model="formsignup.user_role" value="2" checked>
+          <span class="accounts_type">Artista Independiente</span>
+        </label>
       </div>
     </div>
     <div class="col-md-4">
-      <label>
-          <img src="img/icons/disquera.png" src="disquera" width="40">
+      <div class="radio">
+        <label>
           <input type="radio" ng-model="formsignup.user_role" value="3">
           <span class="accounts_type">Disquera</span>
-      </label>
+        </label>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="radio">
-          <label>
-              <input type="radio" ng-model="formsignup.user_role" value="1">
-              <span class="accounts_type">Ministerio</span>
-          </label>
+        <label>
+          <input type="radio" ng-model="formsignup.user_role" value="1">
+          <span class="accounts_type">Ministerio</span>
+        </label>
       </div>
     </div>
   </div>
@@ -45,7 +46,7 @@
 
 <div class="form-group row">
   <div class="col-xs-6 col-xs-offset-3">
-      <a ui-sref="signup.profile" ng-disabled="!formsignup.user_role" class="btn btn-lg btn-block btn-info">
+      <a ui-sref="signup.profile" ng-disabled="!formsignup.user_role" class="btn btn-lg btn-block btn-sonofe">
         <span class="button-text">Siguiente</span>
         <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>

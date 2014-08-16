@@ -179,7 +179,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   // Login Modal
 
-  var ModalLoginCtrl = function ($scope, $modal, $log) {
+  var ModalLoginCtrl = function ($scope, $modal) {
 
       $scope.openlogin = function (size) {
 
@@ -204,7 +204,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Form Login
 
-  appSonofe.controller('LoginCtrl', function($scope, $http, MyServiceNodeasync) {
+  appSonofe.controller('LoginCtrl', function($scope, $http, MyServiceNodeasync, $modal) {
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -230,24 +230,16 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             $scope.Nodeasync.nodo = user_node;
             $scope.Nodeasync.role = user_role;
 
+            var resp = status;
 
-            //$scope.node = response.response[0].node_id;
-
-            //var node = response.response[0].node_id;
-
-            //$scope.noode = Nodo.sayHello(node);
-
-            /*
-            var resp = data.response;
-
-            if(resp === "Login Successfu"){
+            if(resp == 200){
 
                 $scope.result = data.response;
 
             }else{
 
                 $scope.result = data.response;
-            }*/
+            }
 
         })
         .error(function(data, status){
@@ -284,8 +276,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
-
-
 
   appSonofe.service('albumUpload', ['$http', function ($http) {
 
@@ -434,9 +424,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         })
     };
 
+    //Send PUT
+
     $scope.putAlbum = function(){
 
-      //alert("Voy a actualizar la parte final");
       console.log("Kaboooom!");
     };
 
@@ -538,6 +529,40 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
+
+  //Directives
+
+  appSonofe.directive("passwordVerify", function() {
+     return {
+        require: "ngModel",
+        scope: {
+          passwordVerify: '='
+        },
+        link: function(scope, element, attrs, ctrl) {
+          scope.$watch(function() {
+              var combined;
+
+              if (scope.passwordVerify || ctrl.$viewValue) {
+                 combined = scope.passwordVerify + '_' + ctrl.$viewValue;
+              }
+              return combined;
+          }, function(value) {
+              if (value) {
+                  ctrl.$parsers.unshift(function(viewValue) {
+                      var origin = scope.passwordVerify;
+                      if (origin !== viewValue) {
+                          ctrl.$setValidity("passwordVerify", false);
+                          return undefined;
+                      } else {
+                          ctrl.$setValidity("passwordVerify", true);
+                          return viewValue;
+                      }
+                  });
+              }
+          });
+       }
+     };
+  });
 
 
   //Console Logs
