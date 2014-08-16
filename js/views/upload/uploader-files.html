@@ -1,36 +1,4 @@
-<div ng-controller="UploadController" ng-file-drop>
-
-
-  <div class="row">
-    <div class="col-md-9 col-md-offset-2">
-
-    <h3>Select files</h3>
-
-                    <div ng-show="uploader.isHTML5">
-                        <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                        <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                            Base drop zone
-                        </div>
-
-                        <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                        <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                            <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                                Another drop zone with its own settings
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                    Multiple
-                    <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
-
-                    Single
-                    <input type="file" nv-file-select="" uploader="uploader" />
-
-    </div>
-  </div>
-
-
+<div ng-controller="UploadController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
   <script type="text/ng-template" id="myModalMeta.html">
       <div class="modal-content">
         <div class="modal-header modal-register">
@@ -71,19 +39,35 @@
       </div>
   </script>
 
+  <div class="row">
+    <div class="col-md-9 col-md-offset-2">
 
-
-  <h3>Upload queue</h3>
-                    <p>Queue length: {{ uploader.queue.length }}</p>
+      <h2 class="text-center">seleccionar Archivos</h2>
+      <div ng-show="uploader.isHTML5">
+          <!-- 3. nv-file-over uploader="link" over-class="className" -->
+          <div class="dropzone well-lg my-drop-zone" nv-file-over="" uploader="uploader">
+              Base drop zone
+          </div>
+      </div>
+      <!--
+      Multiple
+      <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
+      -->
+      <h5>Single</h5>
+      <input type="file" nv-file-select="" uploader="uploader" />
+    </div>
+  </div>
+  <h3>cola de subida</h3>
+                    <p>longitud de la cola: {{ uploader.queue.length }}</p>
 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="50%">Name</th>
-                                <th ng-show="uploader.isHTML5">Size</th>
-                                <th ng-show="uploader.isHTML5">Progress</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th width="50%">Archivo</th>
+                                <th ng-show="uploader.isHTML5">Tamaño</th>
+                                <th ng-show="uploader.isHTML5">Progreso</th>
+                                <th>Estatus</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,10 +89,10 @@
                                         <span class="glyphicon glyphicon-upload"></span> Upload
                                     </button>
                                     <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
                                     </button>
                                     <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                        <span class="glyphicon glyphicon-trash"></span> Remover
                                     </button>
                                 </td>
                             </tr>
@@ -117,7 +101,7 @@
 
                     <div>
                         <div>
-                            Queue progress:
+                            Cola progreso:
                             <div class="progress" style="">
                                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
@@ -126,10 +110,10 @@
                             <span class="glyphicon glyphicon-upload"></span> Upload all
                         </button>
                         <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancelar Todo
                         </button>
                         <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                            <span class="glyphicon glyphicon-trash"></span> Remove all
+                            <span class="glyphicon glyphicon-trash"></span> Remover Todo
                         </button>
                     </div>
 
