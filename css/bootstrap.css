@@ -2179,6 +2179,12 @@ fieldset[disabled] .btn-primary.active {
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
+.btn-sonofe {
+  color: #fff;
+  background-color: #3A66FB;
+  border-color: #3A66FB;
+  text-transform: uppercase;
+}
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
@@ -2260,6 +2266,7 @@ fieldset[disabled] .btn-info.active {
   color: #fff;
   background-color: #f0ad4e;
   border-color: #eea236;
+  text-transform: uppercase;
 }
 .btn-warning:hover,
 .btn-warning:focus,
@@ -2301,6 +2308,7 @@ fieldset[disabled] .btn-warning.active {
   color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a;
+  text-transform: uppercase;
 }
 .btn-danger:hover,
 .btn-danger:focus,
