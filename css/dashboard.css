@@ -364,7 +364,9 @@ h1,h2,h3,h4,h5{
     font-weight: lighter;
   }
   .uploader-form .dropzone{
-    border: 3px #ccc dotted;
+    color: #fff;
+    background-color: #3A66FB;
+    border: 3px dashed #fff;
   }
   .uploader-form .dropzone h5{
     text-align: center;
