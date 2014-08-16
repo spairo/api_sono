@@ -353,15 +353,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
             autoUpload: 'true',
         });
 
-        // FILTERS
-        /*
-        uploader.filters.push({
-            name: 'customFilter',
-            fn: function(item *//*{File|FileLikeObject}*//*, options) {
-                return this.queue.length < 10;
-            }
-        });*/
-
         // CALLBACKS
         /*
         uploader.onWhenAddingFileFailed = function(item *//*{File|FileLikeObject}*//*, filter, options) {
