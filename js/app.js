@@ -355,9 +355,9 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           alias: 'conference_file',
           autoUpload: 'true',
           //headers: 'Content-Type: application/x-www-form-urlencoded',
-          formData: [
-              { key: 'value' }
-          ]
+          //formData: [
+            //  { key: 'value' }
+          //]
       });
 
       uploader.progress = 100;
