@@ -342,7 +342,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Uploader Manager files
 
-  appSonofe.controller('UploadController', function ($scope, $fileUploader, MyServiceAlbumasync, UploadedNode, $modal) {
+  appSonofe.controller('UploadController', function ($scope, $fileUploader, MyServiceAlbumasync, $modal) {
 
       'use strict';
 
@@ -355,9 +355,19 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           alias: 'conference_file',
           autoUpload: 'true',
           //headers: 'Content-Type: application/x-www-form-urlencoded',
-          //formData: [
-            //  { key: 'value' }
-          //]
+          formData: [
+              { conference_file: item }
+          ]
+      });
+
+       // FILTERS
+
+      uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
       });
 
       uploader.progress = 100;
