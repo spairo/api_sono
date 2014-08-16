@@ -12,22 +12,40 @@
 
   <script type="text/ng-template" id="myModalMeta.html">
       <div class="modal-content">
-        <div class="modal-body modal-register">
+        <div class="modal-header modal-register">
           <button type="button" class="close" ng-click="cancel()" >&times;</button>
 
-          <form class="form-login" ng-controller="MetaCtrl" name="form_meta">
-              <h2>Metadata</h2>
-              <select class="form-control" ng-model="album.node_id" name="artista" required>
-                <option ng-repeat="album in albums.content" value="{{album.node_id}}"> {{album.name}} </option>
-              </select>
-              <br />
-
-              <div class="form-group">
-                <pre>{{ album }}</pre>
+          <h2 class="text-center">Metadata</h2>
+        </div>
+        <div class="modal-body modal-register" ng-controller="MetaCtrl">
+          <form class="form-login" name="form_meta">
+            <h5>seleccioné album</h5>
+            <div class="row">
+              <div class="col-md-8">
+                <select class="form-control" ng-model="album.node_id" name="artista" required>
+                  <option ng-repeat="album in albums.content" value="{{album.node_id}}"> {{album.name}} </option>
+                </select>
               </div>
-              <button ng-click="getAlbum()" class="btn-regis" ng-disabled="form_meta.$invalid">seleccionar album</button>
+              <div class="col-md-4">
+                <button ng-click="getAlbum()" class="btn-select" ng-disabled="form_meta.$invalid">seleccionar</button>
+              </div>
+            </div>
           </form>
 
+
+          <form>
+            <div class="media">
+              <div class="pull-left">
+                <img class="media-object" src="{{url}}" alt="{{name}}" width="64">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{name}}</h4>
+                {{artist}} - {{company}} - {{genre}} -{{year}}
+              </div>
+            </div>
+            <button ng-click="putAlbum()" class="btn-select">UPDATE</button>
+          </form>
+          <pre>{{ conference }}</pre>
         </div>
       </div>
   </script>
@@ -74,7 +92,6 @@
       </tbody>
   </table>
 </div>
-<button id="submit1">aff</button>
 <div class="form-group row well-lg">
   <div class="col-xs-6 col-xs-offset-3">
       <a ui-sref="uploader.metadata" class="btn btn-lg btn-block btn-info">

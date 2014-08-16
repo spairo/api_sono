@@ -50,7 +50,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         .state('uploader', {
             url: '/uploader',
             templateUrl: 'js/views/upload/uploader.html',
-            controller: 'UploadCtrl'
 
         })
             .state('uploader.type', {
@@ -102,6 +101,12 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   });
 
+  appSonofe.factory('UploadedNode',function(){
+
+    return { nodo:""};
+
+  });
+
   appSonofe.factory('MyServiceArtistasync', function($http) {
 
     var obj = { content:null };
@@ -131,14 +136,11 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
   });
 
 
+  //Only testing
 
-
-
-  //only testing
   appSonofe.controller('fruitsController', function($scope, MyServiceNodeasync) {
     $scope.foo = MyServiceNodeasync;
   });
-
 
   //Form Register
 
@@ -336,23 +338,10 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   }]);
 
-  //Form Uploader
-
-  appSonofe.controller('UploadCtrl', function($scope) {
-
-      // we will store all of our form data in this object
-      $scope.formupload = {};
-
-      // function to process the form
-      $scope.processForm = function() {
-          alert('awesome!');
-      };
-
-  });
 
   //Uploader Manager files
 
-  appSonofe.controller('UploadController', function ($scope, $fileUploader, MyServiceAlbumasync, $modal) {
+  appSonofe.controller('UploadController', function ($scope, $fileUploader, MyServiceAlbumasync, UploadedNode, $modal) {
 
       'use strict';
 
@@ -363,8 +352,8 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           url: 'http://godster.mx/conference',
           method: 'POST',
           alias: 'conference_file',
-          //autoUpload: 'false',
-          //headers 'Content-Type: application/json',
+          autoUpload: 'true',
+          headers: 'Content-Type: application/x-www-form-urlencoded',
           formData: [
               { key: 'value' }
           ]
@@ -376,7 +365,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
       uploader.bind('afteraddingfile', function (event, item) {
 
-          console.info('After adding a file', item);
+          console.info('After adding a file open Modal', item);
 
               var modalInstance = $modal.open({
                 templateUrl: 'myModalMeta.html',
@@ -391,6 +380,15 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       });
 
       uploader.bind('success', function (event, xhr, item, response) {
+
+        //var user_node = data.node_id;
+        //var user_role = data.user_role;
+
+        //$scope.Nodeasync = MyServiceNodeasync;
+
+        //$scope.Nodeasync.nodo = user_node;
+        //$scope.Nodeasync.role = user_role;
+
 
         //get response(node)
 
@@ -447,20 +445,35 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
     $scope.getAlbum = function() {
 
-    console.log($scope.album);
+        $http({
+              method  : 'POST',
+              url     : 'http://godster.mx/album_info',
+              data    : $.param($scope.album),
+              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .success(function(data, status) {
+          //$scope.meta = data.response;
+          //console.warn($scope.meta);
 
-      $http({
-            method  : 'POST',
-            url     : 'http://godster.mx/album_info',
-            data    : $.param($scope.album),
-            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-      })
-      .success(function(data, status) {
-          console.info('The data: ', data);
-      })
-      .error(function(data, status){
+
+          //curl "http://127.0.0.1:5000/conference" -F cover_file=@"conferencia.mp3" -F node_id="032" -F album="album_node" -F title="thistitle" -F artist="artist_node" -F genre="thisgenre" -F year="thisyear" -F content_type="0"  -F company="node" -X PUT
+
+          $scope.artist = data.response[0].artist;
+          $scope.company = data.response[0].company;
+          $scope.genre = data.response[0].genre;
+          $scope.name = data.response[0].name;
+          $scope.url = data.response[0].url;
+          $scope.year = data.response[0].year;
+        })
+        .error(function(data, status){
           console.error('Oops! Algo salio mal');
-      })
+        })
+    };
+
+    $scope.putAlbum = function(){
+
+      //alert("Voy a actualizar la parte final");
+      console.log("Kaboooom!");
     };
 
   });
@@ -561,26 +574,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       };
 
   }]);
-
-// Directives
-
-  appSonofe.directive('validFile',function(){
-    return {
-      require:'ngModel',
-      link:function(scope,el,attrs,ngModel){
-        el.bind('change',function(){
-          scope.$apply(function(){
-            ngModel.$setViewValue(el.val());
-            ngModel.$render();
-          });
-        });
-      }
-    }
-  });
-
-
-// UI-Bootstrap
-
 
 
   //Console Logs

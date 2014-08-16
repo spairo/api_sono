@@ -337,6 +337,7 @@ h1,h2,h3,h4,h5{
 
 .uploader-form{
   background: #F1F2F9;
+  margin: 10px 20px;
 }
   .uploader-form .button-text{
     text-transform: uppercase;
@@ -535,9 +536,8 @@ h1,h2,h3,h4,h5{
   opacity: 1;
 }
 
-
-
 /* Modals */
+
 .modal-register{
   background: #F1F2F9;
 }
@@ -556,7 +556,6 @@ h1,h2,h3,h4,h5{
     border: 2px solid #3A66FB;
     padding-left: 10px;
   }
-
   .modal-register .btn-regis{
     background: #3A66FB;
     width: 100%;
@@ -567,6 +566,17 @@ h1,h2,h3,h4,h5{
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 5px;
+  }
+  .modal-register .btn-select{
+    background: #3A66FB;
+    width: 100%;
+    height:50px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 0 3px 0 3px;
   }
 .form-signin
 {
