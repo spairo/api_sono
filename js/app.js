@@ -344,7 +344,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
 
 
-  appSonofe.controller('UploadController', ['$scope', 'FileUploader','$modal','MyServiceAlbumasync', function($scope, FileUploader, MyServiceAlbumasync, $modal) {
+  appSonofe.controller('UploadController', ['$scope', 'FileUploader', '$modal', 'MyServiceAlbumasync', function($scope, FileUploader, MyServiceAlbumasync, $modal) {
 
         var uploader = $scope.uploader = new FileUploader({
             url: 'http://godster.mx/conference',
@@ -371,12 +371,12 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         uploader.onAfterAddingFile = function(fileItem) {
             console.info('onAfterAddingFile', fileItem);
 
-            var modalInstance = $modal.open({
+            /*var modalInstance = $modal.open({
               templateUrl: 'myModalMeta.html',
               controller: MetaInstanceCtrl,
-              backdrop: 'static',
+              //backdrop: 'static',
 
-            });
+            });*/
 
         };
         /*
