@@ -50,6 +50,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         .state('uploader', {
             url: '/uploader',
             templateUrl: 'js/views/upload/uploader.html',
+            //controller: 'UploadCtrl'
 
         })
             .state('uploader.type', {
