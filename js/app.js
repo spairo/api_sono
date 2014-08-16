@@ -354,7 +354,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           method: 'POST',
           alias: 'conference_file',
           autoUpload: 'true',
-          headers: 'Content-Type: application/x-www-form-urlencoded',
+          //headers: 'Content-Type: application/x-www-form-urlencoded',
           formData: [
               { key: 'value' }
           ]
