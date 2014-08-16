@@ -41,12 +41,10 @@
 
   <div class="row">
     <div class="col-md-9 col-md-offset-2">
-
-      <h2 class="text-center">seleccionar Archivos</h2>
+      <h2 class="text-center">elige los archivos que desean subir</h2>
       <div ng-show="uploader.isHTML5">
-          <!-- 3. nv-file-over uploader="link" over-class="className" -->
           <div class="dropzone well-lg my-drop-zone" nv-file-over="" uploader="uploader">
-              Base drop zone
+            <h5>Base drop zone</h5>
           </div>
       </div>
       <!--
@@ -57,8 +55,7 @@
       <input type="file" nv-file-select="" uploader="uploader" />
     </div>
   </div>
-  <h3>cola de subida</h3>
-                    <p>longitud de la cola: {{ uploader.queue.length }}</p>
+  <h3>longitud de la cola: {{ uploader.queue.length }}</h3>
 
                     <table class="table">
                         <thead>
@@ -76,7 +73,7 @@
                                 <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
                                 <td ng-show="uploader.isHTML5">
                                     <div class="progress" style="margin-bottom: 0;">
-                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        <div class="progress-bar-sonofe" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                                     </div>
                                 </td>
                                 <td class="text-center">
@@ -101,9 +98,9 @@
 
                     <div>
                         <div>
-                            Cola progreso:
+                            <h3>progreso:</h3>
                             <div class="progress" style="">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                <div class="progress-bar-sonofe" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
                         </div>
                         <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">

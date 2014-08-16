@@ -366,6 +366,13 @@ h1,h2,h3,h4,h5{
   .uploader-form .dropzone{
     border: 3px #ccc dotted;
   }
+  .uploader-form .dropzone h5{
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 15px;
+    font-weight: bold;
+  }
 
 
 

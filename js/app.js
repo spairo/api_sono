@@ -323,9 +323,7 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
       $scope.albumForm = function(){
 
           var albumUrl = "http://godster.mx/album";
-
           var file = $scope.myFile;
-
           var node = MyServiceNodeasync.nodo;
 
           var fields = [ {"name": "name", "data": $scope.field1},
@@ -342,8 +340,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
 
   //Uploader Manager files
 
-
-
   appSonofe.controller('UploadController', ['$scope', 'FileUploader', 'MyServiceAlbumasync', '$modal', function($scope, FileUploader, MyServiceAlbumasync, $modal) {
 
         var uploader = $scope.uploader = new FileUploader({
@@ -354,10 +350,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
         });
 
         // CALLBACKS
-        /*
-        uploader.onWhenAddingFileFailed = function(item *//*{File|FileLikeObject}*//*, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };*/
 
         uploader.onAfterAddingFile = function(fileItem) {
 
