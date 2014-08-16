@@ -354,10 +354,6 @@ var appSonofe = angular.module('appSonofe', ['ui.router', 'ngAnimate', 'angularF
           method: 'POST',
           alias: 'conference_file',
           autoUpload: 'true',
-          //headers: 'Content-Type: application/x-www-form-urlencoded',
-          formData: [
-              { conference_file: item }
-          ]
       });
 
        // FILTERS
