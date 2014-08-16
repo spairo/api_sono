@@ -222,6 +222,7 @@ h1,h2,h3,h4,h5{
   background:#F1F2F9;
   overflow: hidden;
   min-height:300px;
+  margin-top: 50px;
 }
   #form-container .page-header{
     background: #F1F2F9;
@@ -252,6 +253,7 @@ h1,h2,h3,h4,h5{
   }
 
 /* numbered buttons */
+
 #status-buttons                 {  }
 #status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
 #status-buttons a:hover         { text-decoration:none; }
@@ -260,14 +262,18 @@ h1,h2,h3,h4,h5{
 /* active buttons */
 #status-buttons a.active span   { background:#3A66FB; }
 
-/* ANIMATION STYLINGS */
 
-#signup-form{ position:relative; min-height:100px; overflow:hidden; padding:30px;  }
+#signup-form{ position:relative;
+              min-height:100px;
+              overflow:hidden;
+              padding:30px;
+}
 
 /* basic styling for entering and leaving */
-/* left and right added to ensure full width */
+
 #form-views.ng-enter,
-#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+#form-views.ng-leave {
+    position:absolute; left:30px; right:30px;
     transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
 }
 
